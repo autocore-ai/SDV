@@ -12,4 +12,4 @@ Project RoadMap:
 Project Milestones:
 
 
-![image](https://github.com/autocore-ai/SDV/blob/main/Images/SDVMileStone.jpg)
+![image](https://github.com/autocore-ai/SDV/blob/main/Images/MileStone-1.jpg)
