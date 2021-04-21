@@ -1,0 +1,121 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: sdv
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: autoware
+  namespace: sdv
+  labels:
+    app: autoware
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: autoware
+  serviceName: "sdv"
+  template:
+    metadata:
+      labels:
+        app: autoware
+    spec:
+      volumes:
+        - name: volume
+          emptyDir: {}
+      containers:
+        - name: sdk
+          image: ghcr.io/autocore-ai/autoware-architecture-proposal-sdk:sdv
+          volumeMounts:
+            - name: volume
+              mountPath: /AutowareArchitectureProposal
+          command: ["/bin/bash"]
+          args: ["-c", "export ROS_DOMAIN_ID=${HOSTNAME##*-} && cd /AutowareArchitectureProposal && source install/setup.bash && ros2 launch sdv_demo_launch sdv_demo.launch.xml"]
+      initContainers:
+        - name: exe
+          image: ghcr.io/autocore-ai/autoware-architecture-proposal-exe:sdv
+          command: ["/bin/sh"]
+          args: ["-c", "mv /AutowareArchitectureProposal/install /volume/"]
+          volumeMounts:
+            - name: volume
+              mountPath: /volume
+        - name: env
+          image: ghcr.io/autocore-ai/autoware-architecture-proposal-env:sdv
+          command: ["/bin/sh"]
+          args: ["-c", "mv /AutowareArchitectureProposal/env /volume/"]
+          volumeMounts:
+            - name: volume
+              mountPath: /volume
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: zenoh-bridge-dds
+  namespace: sdv
+  labels:
+    app: zenoh-bridge-dds
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zenoh-bridge-dds
+  serviceName: "sdv"
+  template:
+    metadata:
+      labels:
+        app: zenoh-bridge-dds
+    spec:
+      volumes:
+        - name: volume
+          emptyDir: {}
+      containers:
+        - name: zenoh-bridge-dds
+          image: moelang/zenoh-bridge-dds:latest
+          command: ["/bin/bash"]
+          args: ["-c", "export ROS_DOMAIN_ID=${HOSTNAME##*-} && zenoh-bridge-dds --scope /demo/dds -m peer -d ${ROS_DOMAIN_ID}"]
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rsu
+  namespace: sdv
+  labels:
+    app: rsu
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rsu
+  serviceName: "sdv"
+  template:
+    metadata:
+      labels:
+        app: rsu
+    spec:
+      containers:
+        - name: rsu
+          image: ghcr.io/autocore-ai/rsu:develop
+# ---
+# apiVersion: apps/v1
+# kind: StatefulSet
+# metadata:
+#   name: autotest-deployment
+#   namespace: sdv
+#   labels:
+#     app: autotest
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: autotest
+#   serviceName: "sdv"
+#   template:
+#     metadata:
+#       labels:
+#         app: autotest
+#     spec:
+#       containers:
+#         - name: autotest
+#           image: autotest:latest
+#           command: ["/bin/bash", "-ce", "tail -f /dev/null"]
