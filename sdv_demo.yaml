@@ -96,6 +96,28 @@ spec:
       containers:
         - name: rsu
           image: ghcr.io/autocore-ai/rsu:develop
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: storage
+  namespace: sdv
+  labels:
+    app: storage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: storage
+  serviceName: "sdv"
+  template:
+    metadata:
+      labels:
+        app: storage
+    spec:
+      containers:
+        - name: storage
+          image: ghcr.io/autocore-ai/zenoh:sdv-develop
 # ---
 # apiVersion: apps/v1
 # kind: StatefulSet
