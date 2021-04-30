@@ -1,0 +1,15 @@
+[submodule "Autoware"]
+	path = Autoware
+	url = git@github.com:autocore-ai/AutowareArchitectureProposal.git
+[submodule "CloudViewer"]
+	path = CloudViewer
+	url = git@github.com:autocore-ai/CloudViewer.git
+[submodule "RSU"]
+	path = RSU
+	url = git@github.com:autocore-ai/RSU.git
+[submodule "Utils/zenoh"]
+	path = Utils/zenoh
+	url = git@github.com:autocore-ai/zenoh.git
+[submodule "Utils/zenoh-plugin-dds"]
+	path = Utils/zenoh-plugin-dds
+	url = git@github.com:autocore-ai/zenoh-plugin-dds.git
