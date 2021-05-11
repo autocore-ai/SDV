@@ -25,23 +25,28 @@ spec:
         - name: volume
           emptyDir: {}
       containers:
+        - name: zenoh-bridge-dds
+          image: registry.autocore.ai/sdv/zenoh-bridge-dds:latest
+          command: ["/bin/bash"]
+          args: ["-c", "export ROS_DOMAIN_ID=${HOSTNAME##*-} && /root/zenoh-plugin-dds/target/release/dzd --scope /demo/dds -m peer"]
+          env:
+          - name: RMW_IMPLEMENTATION
+            value: rmw_cyclonedds_cpp
+          - name: RUST_LOG
+            value: info
         - name: sdk
           image: registry.autocore.ai/sdv/autoware-architecture-proposal-sdk:sdv
-          imagePullPolicy: Always
           volumeMounts:
             - name: volume
               mountPath: /AutowareArchitectureProposal
           command: ["/bin/bash"]
-          args: ["-c", "export ROS_DOMAIN_ID=${HOSTNAME##*-} && export RMW_IMPLEMENTATION=rmw_cyclonedds_cpp && cd /AutowareArchitectureProposal && source install/setup.bash && ros2 launch sdv_demo_launch sdv_demo.launch.xml"]
+          args: ["-c", "export ROS_DOMAIN_ID=${HOSTNAME##*-} && cd /AutowareArchitectureProposal && source install/setup.bash && ros2 launch sdv_demo_launch sdv_demo.launch.xml"]
           env:
-          - name: HOST_IP
-            valueFrom:
-              fieldRef:
-                fieldPath: status.hostIP
+          - name: RMW_IMPLEMENTATION
+            value: rmw_cyclonedds_cpp
       initContainers:
         - name: exe
           image: registry.autocore.ai/sdv/autoware-architecture-proposal-exe:sdv
-          imagePullPolicy: Always
           command: ["/bin/sh"]
           args: ["-c", "mv /AutowareArchitectureProposal/install /volume/"]
           volumeMounts:
@@ -49,39 +54,11 @@ spec:
               mountPath: /volume
         - name: env
           image: registry.autocore.ai/sdv/autoware-architecture-proposal-env:sdv
-          imagePullPolicy: Always
           command: ["/bin/sh"]
           args: ["-c", "mv /AutowareArchitectureProposal/env /volume/"]
           volumeMounts:
             - name: volume
               mountPath: /volume
----
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: zenoh-bridge-dds
-  namespace: sdv
-  labels:
-    app: zenoh-bridge-dds
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: zenoh-bridge-dds
-  serviceName: "sdv"
-  template:
-    metadata:
-      labels:
-        app: zenoh-bridge-dds
-    spec:
-      volumes:
-        - name: volume
-          emptyDir: {}
-      containers:
-        - name: zenoh-bridge-dds
-          image: moelang/zenoh-bridge-dds:latest
-          command: ["/bin/bash"]
-          args: ["-c", "export RUST_LOG=debug && export ROS_DOMAIN_ID=${HOSTNAME##*-} && zenoh-bridge-dds --scope /demo/dds -m peer -d ${ROS_DOMAIN_ID}"]
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -104,14 +81,13 @@ spec:
       containers:
         - name: rsu
           image: registry.autocore.ai/sdv/rsu:sdv
-          imagePullPolicy: Always
           env:
           - name: HOST_IP
             valueFrom:
               fieldRef:
                 fieldPath: status.hostIP
           - name: RUST_LOG
-            value: debug
+            value: info
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -135,11 +111,13 @@ spec:
       containers:
         - name: storage
           image: registry.autocore.ai/sdv/zenoh:sdv
-          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8000
               protocol: TCP
+          env:
+          - name: RUST_LOG
+            value: info
 # ---
 # apiVersion: apps/v1
 # kind: StatefulSet
