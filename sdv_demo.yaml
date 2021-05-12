@@ -26,7 +26,7 @@ spec:
           emptyDir: {}
       containers:
         - name: zenoh-bridge-dds
-          image: registry.autocore.ai/sdv/zenoh-bridge-dds:latest
+          image: autocore/zenoh-bridge-dds:sdv
           command: ["/bin/bash"]
           args: ["-c", "export ROS_DOMAIN_ID=${HOSTNAME##*-} && /root/zenoh-plugin-dds/target/release/dzd --scope /demo/dds -m peer"]
           env:
@@ -80,7 +80,7 @@ spec:
     spec:
       containers:
         - name: rsu
-          image: registry.autocore.ai/sdv/rsu:sdv
+          image: autocore/rsu:sdv
           env:
           - name: HOST_IP
             valueFrom:
@@ -110,7 +110,7 @@ spec:
       hostNetwork: true
       containers:
         - name: storage
-          image: registry.autocore.ai/sdv/zenoh:sdv
+          image: autocore/zenoh:sdv
           ports:
             - name: http
               containerPort: 8000
