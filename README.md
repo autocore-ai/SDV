@@ -1,6 +1,6 @@
 # AutoCore SDV Project
 
-![autoCore](https://autocore.ai/img/logo.webp "AutoCore")
+![Logo](https://user-images.githubusercontent.com/71419791/117961292-88465b80-b350-11eb-9cb5-221226b419c9.png "AutoCore")
 
 For business and partnership, please visit our website: [www.autocore.ai](http://www.autocore.ai "AutoCore Homepage").
 
