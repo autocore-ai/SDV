@@ -35,7 +35,7 @@ spec:
           - name: RUST_LOG
             value: info
         - name: sdk
-          image: registry.autocore.ai/sdv/autoware-architecture-proposal-sdk:sdv
+          image: autocore/autoware-architecture-proposal-sdk:sdv
           volumeMounts:
             - name: volume
               mountPath: /AutowareArchitectureProposal
@@ -46,14 +46,14 @@ spec:
             value: rmw_cyclonedds_cpp
       initContainers:
         - name: exe
-          image: registry.autocore.ai/sdv/autoware-architecture-proposal-exe:sdv
+          image: autocore/autoware-architecture-proposal-exe:sdv
           command: ["/bin/sh"]
           args: ["-c", "mv /AutowareArchitectureProposal/install /volume/"]
           volumeMounts:
             - name: volume
               mountPath: /volume
         - name: env
-          image: registry.autocore.ai/sdv/autoware-architecture-proposal-env:sdv
+          image: autocore/autoware-architecture-proposal-env:sdv
           command: ["/bin/sh"]
           args: ["-c", "mv /AutowareArchitectureProposal/env /volume/"]
           volumeMounts:
