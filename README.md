@@ -29,6 +29,25 @@ The overall SDV platform solution architecture is shown below:
 - 8 Core && 16G+ RAM && 30G Disk x86_64 pc
 - Ubuntu 18.04+ OS
 
+### Install [`docker`](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)
+
+```bash
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker $USER
+```
+
+**Then log out and log back in current user**
+
+### Install [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management)
+
+```bash
+sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update
+sudo apt-get install -y kubectl
+```
+
 ### Install [`minikube`](https://minikube.sigs.k8s.io/docs/start/#what-youll-need)
 
 ```bash
