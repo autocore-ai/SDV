@@ -12,13 +12,19 @@ For business and partnership, please visit our website: [www.autocore.ai](http:/
 
 ## Overview
 
-SDV project is a cooperative project with Futurewei, which will provide the technology-consulting services to develop and promote the 100 percent open source SDV (Software Defined Vehicle) software stack with reference design, with native integration of Cloud-Edge service capability. The SDV software stack is based on open source Autoware/ROS2/DDS and Zenoh, where DDS/Zenoh form an E2E Vehicle-Edge-Cloud middleware layer for the SDV platform. Thru the integration with Futurewei’ s open source KubeEdge project, the SDV platform will leverage Cloud Native Ecosystem tools to provide management, monitoring and software LCM (Life-Cycle-Management) functions.
+SDV (Software Defined Vehicle) project is a cooperative project between Autocore and Futurewei, which aims at providing the technology-consulting services by means of this 100 percent open source software stack with reference design for SDVs. Cloud-Edge service is also integrated as a part of this project to extend the V2X capabilities.
 
-The overall SDV platform solution architecture is shown below:
+The SDV software stack is based on open source Autoware/ROS2/DDS and Zenoh, where DDS/Zenoh act as the E2E Vehicle-Edge-Cloud middleware layer for the SDV platform. Thru the integration with Futurewei’ s open source KubeEdge project, the SDV platform will leverage Cloud Native Ecosystem tools to provide management, monitoring and software LCM (Life-Cycle-Management) functions.
+
+The system architecture of SDV platform project is shown in the figure below:
 
 ![Architecture](https://user-images.githubusercontent.com/7805397/112237928-a2cc5480-8c7e-11eb-8917-7a23a9f9acfb.png "Architecture")
 
+The software modules in host container runtime are as follows:
+
 ![](https://user-images.githubusercontent.com/7805397/112241214-c98d8980-8c84-11eb-8115-91281f22ac07.png)
+
+And the PCU Container runtime acts as the Domain controller in vehicle with the following software modules:
 
 ![](https://user-images.githubusercontent.com/7805397/112241219-cd211080-8c84-11eb-8cd3-e7db20d08565.png)
 
@@ -26,8 +32,10 @@ The overall SDV platform solution architecture is shown below:
 
 ### Hardware requirement
 
-- 8 Core && 16G+ RAM && 30G Disk x86_64 pc
-- Ubuntu 18.04+ OS
+- CPU: x86_64 8 Core or above  
+- RAM: 16G+  
+- Disk: 30G+ free space  
+- OS: Ubuntu 18.04+
 
 ### Install [`docker`](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)
 
@@ -37,7 +45,7 @@ sudo sh get-docker.sh
 sudo usermod -aG docker $USER
 ```
 
-**Then log out and log back in current user**
+**Then log out and log in with current user**
 
 ### Install [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management)
 
