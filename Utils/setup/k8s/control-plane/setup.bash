@@ -26,3 +26,8 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documen
 kubectl label node $(hostname) app=host
 
 kubectl taint nodes --all node-role.kubernetes.io/master-
+
+if [ -x "$(command -v code)" ]; then
+  code --install-extension ms-azuretools.vscode-docker
+  code --install-extension ms-kubernetes-tools.vscode-kubernetes-tools
+fi
