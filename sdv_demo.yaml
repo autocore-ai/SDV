@@ -21,6 +21,8 @@ spec:
       labels:
         app: autoware
     spec:
+      nodeSelector:
+        app: autoware
       volumes:
         - name: volume
           emptyDir: {}
@@ -78,6 +80,8 @@ spec:
       labels:
         app: rsu
     spec:
+      nodeSelector:
+        app: host
       containers:
         - name: rsu
           image: autocore/rsu:sdv
@@ -108,6 +112,8 @@ spec:
         app: storage
     spec:
       hostNetwork: true
+      nodeSelector:
+        app: host
       containers:
         - name: storage
           image: autocore/zenoh:sdv
@@ -137,6 +143,8 @@ spec:
       labels:
         app: autotest
     spec:
+      nodeSelector:
+        app: autoware
       containers:
         - name: autotest
           image: kaka1223/autotest:native
