@@ -32,42 +32,39 @@ And the PCU Container runtime acts as the Domain controller in vehicle with the 
 
 ### Hardware requirement
 
-- CPU: x86_64 8 Core or above  
-- RAM: 16G+  
-- Disk: 30G+ free space  
-- OS: Ubuntu 18.04+
+1. Host PC:  
+  - CPU: x86_64 3 Core or above  
+  - RAM: 8G+  
+  - OS: Ubuntu 18.04+  
+  - cable Ethernet
 
-### Install [`docker`](https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script)
+2. Autoware PC:  
+  - CPU: x86_64 8 Core or above  
+  - RAM: 16G+  
+  - Disk: 30G+ free space  
+  - OS: Ubuntu 18.04+  
+  - cable Ethernet
 
-```bash
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-sudo usermod -aG docker $USER
-```
+3. PCU clients x N  
 
-**Then log out and log in with current user**
+### Environment setup
 
-### Install [`kubectl`](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management)
+1. Host PC：  
 
-```bash
-sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-sudo apt-get update
-sudo apt-get install -y kubectl
-```
+  - `$ source Utils/setup/k8s/control-plane/setup.bash`  
+  Concole will output the information like "kubeadm join xxx", please use this information for clients to join in later steps.
 
-### Install [`minikube`](https://minikube.sigs.k8s.io/docs/start/#what-youll-need)
+2. Autoware PC:
 
-```bash
-curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
-sudo dpkg -i minikube_latest_amd64.deb
-```
+  - `$ source Utils/setup/k8s/worker/setup.bash`  
+  - `$ kubeadm join XXX`  
+    Please find the "xxx" in the concole output of Host PC as described in step 1.
 
-### Create cluster
+3. PCU:  
 
-```bash
-minikube start --cpus=8 --memory=16g
-```
+  - `$ source Utils/setup/k8s/worker/setup.bash`
+  - `$ kubeadm join XXX`  
+    Please find the "xxx" in the concole output of Host PC as described in step 1.
 
 ### Deploy workloads with config file
 
