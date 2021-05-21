@@ -1,3 +1,6 @@
+[submodule "AutoTest"]
+	path = AutoTest
+	url = git@github.com:autocore-ai/ats-script.git
 [submodule "Autoware"]
 	path = Autoware
 	url = git@github.com:autocore-ai/AutowareArchitectureProposal.git
@@ -7,6 +10,9 @@
 [submodule "RSU"]
 	path = RSU
 	url = git@github.com:autocore-ai/RSU.git
+[submodule "Utils/mcu"]
+	path = Utils/mcu
+	url = git@github.com:autocore-ai/pcu_mcu_hal.git
 [submodule "Utils/zenoh"]
 	path = Utils/zenoh
 	url = git@github.com:autocore-ai/zenoh.git
