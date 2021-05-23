@@ -42,10 +42,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-          resources:
-            limits:
-              memory: "1Gi"
-              cpu: "2000m"
         - name: sdk
           image: autocore/autoware-architecture-proposal-sdk:sdv
           imagePullPolicy: Always
@@ -65,10 +61,6 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-          resources:
-            limits:
-              memory: "4Gi"
-              cpu: "4000m"
       initContainers:
         - name: exe
           image: autocore/autoware-architecture-proposal-exe:sdv
@@ -111,10 +103,6 @@ spec:
           image: eclipse/zenoh:latest
           command: ["/bin/sh"]
           args: ["-c", "exec /zenohd --mem-storage=/**"]
-          resources:
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
           ports:
             - name: http
               containerPort: 8000
@@ -143,10 +131,6 @@ spec:
         - name: rsu
           image: autocore/rsu:develop
           imagePullPolicy: Always
-          resources:
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
           env:
             - name: HOST_IP
               valueFrom:
@@ -178,10 +162,6 @@ spec:
         - name: autotest
           image: autocore/autotest:sdv
           imagePullPolicy: Always
-          resources:
-            limits:
-              memory: "2Gi"
-              cpu: "2000m"
           env:
             - name: HOST_IP
               valueFrom:
