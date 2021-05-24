@@ -171,6 +171,8 @@ spec:
           image: autocore/autotest:sdv
           imagePullPolicy: Always
           env:
+            - name: ROS_DOMAIN_ID
+              value: 20
             - name: HOST_IP
               valueFrom:
                 fieldRef:
