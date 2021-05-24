@@ -6,9 +6,8 @@ For business and partnership, please visit our website: [www.autocore.ai](http:/
 
 ## Table of Contents
 
-1. [Overview](#overview)  
+1. [Overview](#overview)
 2. [Quick Start Guide](#quick-start-guide)
-
 
 ## Overview
 
@@ -32,46 +31,90 @@ And the PCU Container runtime acts as the Domain controller in vehicle with the 
 
 ### Hardware requirement
 
-1. Host PC:  
-  - CPU: x86_64 3 Core or above  
-  - RAM: 8G+  
-  - OS: Ubuntu 18.04+  
-  - cable Ethernet
+- Host:
 
-2. Autoware PC:  
-  - CPU: x86_64 8 Core or above  
-  - RAM: 16G+  
-  - Disk: 30G+ free space  
-  - OS: Ubuntu 18.04+  
-  - cable Ethernet
+  - Host PC:
+    - CPU: x86_64 4 Core or above
+    - RAM: 8G+
+    - Disk: 30G+ free space
+    - OS: Ubuntu 18.04+
+    - cable Ethernet
 
-3. PCU clients x N  
+- For each Worker (default sets 2 workers in cluster):
+
+  - [AutoCore PCU][autocore pcu]
+
+    - cable Ethernet
+
+      **OR**
+
+  - Worker PC (**Needs when you don't have [AutoCore PCU][autocore pcu]**):
+    - CPU: x86_64 8 Core or above
+    - RAM: 8G+
+    - Disk: 30G+ free space
+    - OS: Ubuntu 18.04+
+    - cable Ethernet
 
 ### Environment setup
 
-1. Host PC：  
+1. Host PC:
 
-  - `$ source Utils/setup/k8s/control-plane/setup.bash`  
-  Concole will output the information like "kubeadm join xxx", please use this information for clients to join in later steps.
+- ```bash
+  $ source Utils/setup/k8s/control-plane/setup.bash
+  ```
+  Concole will output the information like `kubeadm join xxx`, please use this information for clients to join in later steps.
 
-2. Autoware PC:
+1. [AutoCore PCU][autocore pcu] **OR** Worker PC:
 
-  - `$ source Utils/setup/k8s/worker/setup.bash`  
-  - `$ kubeadm join XXX`  
-    Please find the "xxx" in the concole output of Host PC as described in step 1.
+- ```bash
+  $ source Utils/setup/k8s/worker/setup.bash
+  ```
+- ```bash
+  $ sudo kubeadm join xxx
+  ```
+  Please find the `xxx` in the concole output of Host PC as described in step 1.
 
-3. PCU:  
+1. Back to Host PC
 
-  - `$ source Utils/setup/k8s/worker/setup.bash`
-  - `$ kubeadm join XXX`  
-    Please find the "xxx" in the concole output of Host PC as described in step 1.
+- For each worker node, label them:
+  ```bash
+  $ kubectl label node <worker_node_name> app=autoware
+  ```
 
 ### Deploy workloads with config file
 
+Default configs 2 workers in cluster, and if you have two works hardware, just run the default command:
+
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/autocore-ai/SDV/preview/sdv_demo.yaml
+$ kubectl apply -f https://raw.githubusercontent.com/autocore-ai/SDV/develop/sdv_demo.yaml
 ```
 
-### Use CloudViewer to display scene and send commands.
+And if you have other custom deployment, Just download sdv_demo.yaml and fix the `replicas: 2` to your worker count N:
 
-Just open [CloudViewer](https://autocore-ai.github.io/CloudViewer/)
+```diff
+spec:
+- replicas: 2
++ replicas: N
+  selector:
+```
+
+then use this config file:
+
+```bash
+$ kubectl apply -f sdv_demo.yaml
+```
+
+### Use [CloudViewer][cloudviewer] to display scene and send commands.
+
+Open [CloudViewer][cloudviewer] with [Chromium][chromium] based browser
+
+- Config IP Address to Host PC IP (defaults `127.0.0.1`)
+
+- Move viewer with key `WSAD` and mouse midde and right key.
+
+- Click on vehicle and traffic light to inspect and send commands.
+
+[autocore pcu]: https://github.com/autocore-ai/autocore_pcu_doc
+[sdv_demo.yaml]: https://raw.githubusercontent.com/autocore-ai/SDV/develop/sdv_demo.yaml
+[cloudviewer]: https://autocore-ai.github.io/CloudViewer/
+[chromium]: https://www.chromium.org/

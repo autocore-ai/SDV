@@ -79,7 +79,7 @@ spec:
             - name: volume
               mountPath: /volume
         - name: env
-          image: autocore/autoware-architecture-proposal-env:sdv
+          image: ghcr.io/autocore-ai/autoware-architecture-proposal-env:sdv
           imagePullPolicy: Always
           command: ["/bin/sh"]
           args: ["-c", "mv /AutowareArchitectureProposal/env /volume/"]
@@ -171,8 +171,10 @@ spec:
           image: autocore/autotest:sdv
           imagePullPolicy: Always
           env:
+            - name: RMW_IMPLEMENTATION
+              value: rmw_cyclonedds_cpp
             - name: ROS_DOMAIN_ID
-              value: 20
+              value: "20"
             - name: HOST_IP
               valueFrom:
                 fieldRef:
