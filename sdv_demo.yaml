@@ -110,7 +110,7 @@ spec:
         - name: storage
           image: eclipse/zenoh:latest
           command: ["/bin/sh"]
-          args: ["-c", "exec /zenohd --mem-storage=/**"]
+          args: ["-c", "exec /zenohd --mem-storage=/rsu/**"]
           ports:
             - name: http
               containerPort: 8000
@@ -179,3 +179,25 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: status.hostIP
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: monitor
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["list", "watch"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: monitor
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: sdv
+roleRef:
+  kind: ClusterRole
+  name: monitor
+  apiGroup: rbac.authorization.k8s.io
