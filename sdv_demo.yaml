@@ -22,6 +22,8 @@ spec:
         app: autoware
     spec:
       hostNetwork: true
+      nodeSelector:
+        app: autoware
       affinity:
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
