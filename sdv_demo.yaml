@@ -22,8 +22,16 @@ spec:
         app: autoware
     spec:
       hostNetwork: true
-      nodeSelector:
-        app: autoware
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - autoware
+              topologyKey: "kubernetes.io/hostname"
       volumes:
         - name: volume
           emptyDir: {}
