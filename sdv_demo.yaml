@@ -110,7 +110,7 @@ spec:
         app: host
       containers:
         - name: storage
-          image: eclipse/zenoh:latest
+          image: autocore/zenoh:sdv
           command: ["/bin/sh"]
           args: ["-c", "exec /zenohd --mem-storage=/rsu/**"]
           ports:
