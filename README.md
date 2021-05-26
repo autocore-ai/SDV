@@ -44,6 +44,7 @@ And the PCU Container runtime acts as the Domain controller in vehicle with the 
 
   - [AutoCore PCU][autocore pcu]
 
+    - Flash images from [Release](https://github.com/autocore-ai/SDV/releases/tag/v1.0-alpha) for k8s install
     - cable Ethernet
 
       **OR**
