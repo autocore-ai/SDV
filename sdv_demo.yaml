@@ -137,10 +137,16 @@ spec:
       hostNetwork: true
       nodeSelector:
         app: host
+      volumes:
+        - name: volume
+          emptyDir: {}
       containers:
         - name: rsu
-          image: autocore/rsu:develop
+          image: autocore/rsu-exe:fix-config
           imagePullPolicy: Always
+          volumeMounts:
+            - name: volume
+              mountPath: /config
           env:
             - name: HOST_IP
               valueFrom:
@@ -148,6 +154,15 @@ spec:
                   fieldPath: status.hostIP
             - name: RUST_LOG
               value: info
+      initContainers:
+        - name: cfg
+          image: autocore/rsu-cfg:fix-config
+          imagePullPolicy: Always
+          command: ["/bin/sh"]
+          args: ["-c", "mv /config/* /volume/"]
+          volumeMounts:
+            - name: volume
+              mountPath: /volume
 ---
 apiVersion: apps/v1
 kind: Deployment
