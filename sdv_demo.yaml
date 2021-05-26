@@ -142,7 +142,7 @@ spec:
           emptyDir: {}
       containers:
         - name: rsu
-          image: autocore/rsu-exe:fix-config
+          image: autocore/rsu-exe:develop
           imagePullPolicy: Always
           volumeMounts:
             - name: volume
@@ -156,7 +156,7 @@ spec:
               value: info
       initContainers:
         - name: cfg
-          image: autocore/rsu-cfg:fix-config
+          image: autocore/rsu-cfg:develop
           imagePullPolicy: Always
           command: ["/bin/sh"]
           args: ["-c", "mv /config/* /volume/"]
