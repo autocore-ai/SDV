@@ -118,7 +118,7 @@ Open [CloudViewer][cloudviewer] with [Chromium][chromium] based browser
 
 ## Video tutorial
 
-[![SDV demo on multi AutoCore PCUs](https://i9.ytimg.com/vi/Js2b5Xu01Lw/mqdefault.jpg?time=1622720100000&sqp=COT84oUG&rs=AOn4CLDvxmhhnu4um2Zt1nYKW3QI64DLag)](https://youtu.be/Js2b5Xu01Lw "SDV demo on multi AutoCore PCUs")
+[![SDV demo on multi AutoCore PCUs](https://i3.ytimg.com/vi/Js2b5Xu01Lw/hqdefault.jpg)](https://youtu.be/Js2b5Xu01Lw "SDV demo on multi AutoCore PCUs")
 
 [autocore pcu]: https://github.com/autocore-ai/autocore_pcu_doc
 [sdv_demo.yaml]: https://raw.githubusercontent.com/autocore-ai/SDV/develop/sdv_demo.yaml
