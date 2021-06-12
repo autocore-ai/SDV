@@ -17,11 +17,9 @@ The SDV software stack is based on open source Autoware/ROS2/DDS and Zenoh, wher
 
 The system architecture of SDV platform project is shown in the figure below:
 
-![Architecture](https://user-images.githubusercontent.com/7805397/112237928-a2cc5480-8c7e-11eb-8917-7a23a9f9acfb.png "Architecture")
-
 The software modules in host container runtime are as follows:
 
-![](https://user-images.githubusercontent.com/7805397/112241214-c98d8980-8c84-11eb-8115-91281f22ac07.png)
+![](https://user-images.githubusercontent.com/7805397/121767077-c1a8fb80-cb88-11eb-87f3-e412ccec417c.png)
 
 And the PCU Container runtime acts as the Domain controller in vehicle with the following software modules:
 
