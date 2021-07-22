@@ -1,0 +1,27 @@
+digraph nodes {
+    lanelet2_global_planner
+    pure_pursuit
+    simple_planning_simulator
+    subgraph cluster_planning {
+        style = "dashed";
+        behavior_planner;lane_planner;parking_planner;object_collision_estimator;
+        lane_planner,parking_planner->behavior_planner[label="trajectory"]
+        behavior_planner->lane_planner,parking_planner[label="start/goal"]
+        behavior_planner->object_collision_estimator[label="trajectory"]
+	}
+    node[shape = box, style = filled, color = "gray"]
+    map_file
+    goal_pose
+    v2x_traffic_light
+    v2x_objects
+    {rank="same";map_file;goal_pose;v2x_traffic_light;v2x_objects}
+    lanelet2_global_planner->behavior_planner[label="global_path"]
+    object_collision_estimator->pure_pursuit[label="trajectory"]
+    pure_pursuit->simple_planning_simulator[label="command"]
+    simple_planning_simulator->lanelet2_global_planner,behavior_planner,pure_pursuit[constraint=false,label="current_pose"]
+    edge[color=blue];
+    map_file->lanelet2_global_planner,behavior_planner
+    goal_pose->lanelet2_global_planner
+    v2x_traffic_light->behavior_planner
+    v2x_objects->object_collision_estimator
+}
