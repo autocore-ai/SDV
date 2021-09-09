@@ -6,6 +6,7 @@ edition = "2018"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+demo-types = { path = "../demo-types" }
 zenoh-flow = { git = "https://github.com/eclipse-zenoh/zenoh-flow.git", branch = "master" }
 async-std = { version = "=1.9.0", features = ["attributes"] }
 async-trait = "0.1.50"

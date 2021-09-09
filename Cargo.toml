@@ -1,6 +1,7 @@
 [workspace]
 
 members = [
+  "demo-types",
   "demo-source",
   "demo-sink"
 ]

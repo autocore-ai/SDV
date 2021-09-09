@@ -1,3 +1,5 @@
 .vscode
 target
 Cargo.lock
+computed-record.yaml
+output.dot

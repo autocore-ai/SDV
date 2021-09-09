@@ -1,3 +1,4 @@
+use async_std::sync::Arc;
 use async_trait::async_trait;
 use std::collections::HashMap;
 use zenoh_flow::runtime::message::ZFDataMessage;
@@ -7,10 +8,10 @@ use zenoh_flow::{
 };
 use zenoh_flow::{ZFContext, ZFSinkTrait};
 
-struct GenericSink;
+struct DemoSink;
 
 #[async_trait]
-impl ZFSinkTrait for GenericSink {
+impl ZFSinkTrait for DemoSink {
     async fn run(
         &self,
         _context: &mut ZFContext,
@@ -24,16 +25,19 @@ impl ZFSinkTrait for GenericSink {
     }
 }
 
-impl ZFComponent for GenericSink {
-    fn initial_state(
+impl ZFComponent for DemoSink {
+    fn initialize(
         &self,
         _configuration: &Option<HashMap<String, String>>,
     ) -> Box<dyn ZFStateTrait> {
         zf_empty_state!()
     }
+    fn clean(&self, _state: &mut Box<dyn ZFStateTrait>) -> ZFResult<()> {
+        Ok(())
+    }
 }
 
-impl ZFComponentInputRule for GenericSink {
+impl ZFComponentInputRule for DemoSink {
     fn input_rule(
         &self,
         _context: &mut ZFContext,
@@ -46,6 +50,6 @@ impl ZFComponentInputRule for GenericSink {
 
 export_sink!(register);
 
-fn register() -> ZFResult<Box<dyn ZFSinkTrait + Send>> {
-    Ok(Box::new(GenericSink) as Box<dyn ZFSinkTrait + Send>)
+fn register() -> ZFResult<Arc<dyn ZFSinkTrait>> {
+    Ok(Arc::new(DemoSink) as Arc<dyn ZFSinkTrait>)
 }
