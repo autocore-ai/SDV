@@ -3,5 +3,6 @@
 members = [
   "demo-types",
   "demo-source",
+  "demo-operator",
   "demo-sink"
 ]

@@ -1,0 +1,36 @@
+flow: Demo
+operators:
+  - id : DemoOperator
+    uri: file://./target/debug/libdemo_operator.so
+    inputs:
+      - id: input0
+        type: usize
+      - id: input1
+        type: usize
+    outputs:
+      - id: output
+        type: string
+sources:
+  - id : DemoSource0
+    uri: file://./target/debug/libdemo_source.so
+    output:
+        id: input
+        type: usize
+  - id : DemoSource1
+    uri: file://./target/debug/libdemo_source.so
+    output:
+        id: input
+        type: usize
+sinks:
+  - id : DemoSink
+    uri: file://./target/debug/libdemo_sink.so
+    input:
+        id: output
+        type: string
+links:
+- from: DemoSource0.input
+  to: DemoOperator.input0
+- from: DemoSource1.input
+  to: DemoOperator.input1
+- from: DemoOperator.output
+  to: DemoSink.output

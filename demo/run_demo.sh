@@ -2,4 +2,4 @@
 
 set -e
 
-runtime --graph-file demo/demo_source.yaml --runtime demo
+runtime --graph-file demo/demo.yaml --runtime demo

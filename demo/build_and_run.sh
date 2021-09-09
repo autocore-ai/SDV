@@ -2,8 +2,6 @@
 
 set -e
 
-cargo build \
---package demo-source \
---package demo-sink
+cargo build
 
 source ./demo/run_demo.sh
