@@ -1,6 +1,6 @@
 use async_std::sync::Arc;
 use async_trait::async_trait;
-use demo_types::ZFUsize;
+use demo_types::zf::ZFUsize;
 use std::collections::HashMap;
 use std::sync::atomic::{AtomicUsize, Ordering};
 use zenoh_flow::{

@@ -1,4 +1,7 @@
 .vscode
+build
+install
+log
 target
 Cargo.lock
 computed-record.yaml

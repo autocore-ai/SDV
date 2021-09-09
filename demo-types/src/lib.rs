@@ -1,72 +1,60 @@
-use std::convert::TryInto;
-use zenoh_flow::serde::{Deserialize, Serialize};
-use zenoh_flow::zenoh_flow_derive::{ZFData, ZFState};
-use zenoh_flow::{ZFDataTrait, ZFDeserializable, ZFError, ZFResult};
+pub mod zf;
+pub use r2r::*;
 
-#[derive(Debug, Clone, Serialize, Deserialize, ZFData)]
-pub struct ZFString(pub String);
+use autocxx::include_cpp;
 
-impl ZFDataTrait for ZFString {
-    fn try_serialize(&self) -> zenoh_flow::ZFResult<Vec<u8>> {
-        Ok(self.0.as_bytes().to_vec())
-    }
+include_cpp! {
+    // C++ headers we want to include.
+    #include "steam.h"
+    // Safety policy. We are marking that this whole C++ inclusion is unsafe
+    // which means the functions themselves do not need to be marked
+    // as unsafe. Other policies are possible.
+    safety!(unsafe)
+    // What types and functions we want to generate
+    generate!("GetSteamEngine")
+    generate!("IEngine")
 }
 
-impl From<String> for ZFString {
-    fn from(s: String) -> Self {
-        ZFString(s)
-    }
+pub fn run() {
+    // The "Steam" API gives us a void* on which we call virtual functions.
+    // This is a void*.
+    let steam_engine = ffi::GetSteamEngine();
+    // We need to know three things about this void*:
+    // 1. What is it? We know from the (fake) Steam documentation that it's
+    //    an IEngine*
+    // 2. Do we gain ownership of it? i.e. is it our responsibility to
+    //    destroy it?
+    // 3. If not, C++ presumably continues to own it. Does C++ ever destroy
+    //    it?
+    // None of these things are really encoded in the nature of a void*
+    // so you have to figure them out from the documentation.
+    //
+    // In this case, the first is easy:
+    let steam_engine = steam_engine as *mut ffi::IEngine;
+    //
+    // You then need to figure out how to expose it in Rust. Ideally, any
+    // such lifetime invariants would be handled by the compiler.
+    // If C++ is passing ownership of this object to us, and we have the
+    // prerogative to destroy it whenever we wish, then
+    // simply use [`cxx::UniquePtr::from_raw`]. If it goes out of scope in
+    // Rust the underlying C++ object will be deleted.
+    //
+    // Let's assume life is more complicated, and we must never destroy this
+    // object (because it's owned by C++). In that case, we ideally want
+    // to convert the pointer into a Rust reference with the lifetime of
+    // the program.
+    //
+    // We also have to promise to Rust that it'll never move in memory.
+    // C++ doesn't do that, so that's OK.
+    let mut steam_engine = unsafe { std::pin::Pin::new_unchecked(&mut *steam_engine) };
+    // Now we have steam_engine which is a Pin<&mut SteamEngine>
+    // Each time we call a method we need to add `as_mut()`
+    // as per the pattern explained in
+    // https://doc.rust-lang.org/std/pin/struct.Pin.html#method.as_mut
+    steam_engine
+        .as_mut()
+        .ConnectToGlobalUser(autocxx::c_int(12));
+    steam_engine
+        .as_mut()
+        .DisconnectGlobalUser(autocxx::c_int(12));
 }
-
-impl From<&str> for ZFString {
-    fn from(s: &str) -> Self {
-        ZFString(s.to_owned())
-    }
-}
-
-impl ZFDeserializable for ZFString {
-    fn try_deserialize(bytes: &[u8]) -> ZFResult<ZFString>
-    where
-        Self: Sized,
-    {
-        Ok(ZFString(
-            String::from_utf8(bytes.to_vec()).map_err(|_| ZFError::DeseralizationError)?,
-        ))
-    }
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize, ZFData)]
-pub struct ZFUsize(pub usize);
-
-impl ZFDataTrait for ZFUsize {
-    fn try_serialize(&self) -> ZFResult<Vec<u8>> {
-        Ok(self.0.to_ne_bytes().to_vec())
-    }
-}
-
-impl ZFDeserializable for ZFUsize {
-    fn try_deserialize(bytes: &[u8]) -> ZFResult<Self>
-    where
-        Self: Sized,
-    {
-        let value =
-            usize::from_ne_bytes(bytes.try_into().map_err(|_| ZFError::DeseralizationError)?);
-        Ok(ZFUsize(value))
-    }
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize, ZFState)]
-pub struct ZFEmptyState;
-
-#[derive(Serialize, Deserialize, Debug, Clone, ZFData)]
-pub struct RandomData {
-    pub d: u64,
-}
-
-#[derive(Serialize, Deserialize, Debug, Clone, ZFData)]
-pub struct ZFBytes {
-    pub bytes: Vec<u8>,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize, ZFData)]
-pub struct ZFDouble(pub f64);

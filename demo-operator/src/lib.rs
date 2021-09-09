@@ -1,5 +1,5 @@
 use async_std::sync::Arc;
-use demo_types::{ZFString, ZFUsize};
+use demo_types::zf::{ZFString, ZFUsize};
 use std::collections::HashMap;
 use zenoh_flow::runtime::message::ZFDataMessage;
 use zenoh_flow::{

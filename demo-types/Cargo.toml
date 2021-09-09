@@ -8,3 +8,10 @@ edition = "2018"
 [dependencies]
 zenoh-flow = { git = "https://github.com/eclipse-zenoh/zenoh-flow.git", branch = "master" }
 serde = { version = "1.0.55", features = ["derive"] }
+r2r = "0.5.2"
+
+cxx = "1.0.52"
+autocxx = "0.11.1"
+
+[build-dependencies]
+autocxx-build = "0.11.1"

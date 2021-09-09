@@ -4,9 +4,8 @@ use std::collections::HashMap;
 use zenoh_flow::runtime::message::ZFDataMessage;
 use zenoh_flow::{
     default_input_rule, export_sink, types::ZFResult, zf_empty_state, Token, ZFComponent,
-    ZFComponentInputRule, ZFStateTrait,
+    ZFComponentInputRule, ZFContext, ZFSinkTrait, ZFStateTrait,
 };
-use zenoh_flow::{ZFContext, ZFSinkTrait};
 
 struct DemoSink;
 
