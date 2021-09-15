@@ -15,3 +15,6 @@ autocxx = "0.11.1"
 
 [build-dependencies]
 autocxx-build = "0.11.1"
+r2r = "0.5.2"
+r2r_common = "0.2.0"
+r2r_msg_gen = "0.2.0"
