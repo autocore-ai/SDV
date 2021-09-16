@@ -1,9 +1,12 @@
 [workspace]
 
 members = [
+  "zenoh-flow-types",
   "demo-types",
+  "source-ticker",
   "demo-source",
   "demo-operator",
   "demo-sink",
-  "demo-run"
+  "demo-run",
+  "operator-simple-planning-simulator"
 ]

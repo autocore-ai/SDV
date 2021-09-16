@@ -8,7 +8,7 @@ private:
 public:
     CppToC(/* args */);
     ~CppToC();
-    void Time(void *src, void *dst);
+    void *Header(void *);
     void *CreateHeader(int count);
     void *CovHeader();
 };

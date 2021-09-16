@@ -10,15 +10,61 @@ CToCpp::~CToCpp()
     std::cout << "~CToCpp" << std::endl;
 }
 
-void CToCpp::Time(void *src, void *dst)
+void *CToCpp::Header(void *data)
 {
-    std::cout << "CToCpp::Time" << std::endl;
+    auto ret = std::make_shared<std_msgs::msg::Header>();
+    auto ptr = (std_msgs__msg__Header *)data;
+    ret->stamp = Get(ptr->stamp);
+    return ret.get();
 }
 
-// void CToCpp::Time1(int a, int b)
-// {
-//     std::cout << "CToCpp::Time" << a << ":" << b << std::endl;
-// }
+void CToCpp::SetValue(void *data)
+{
+    auto ptr = (std_msgs__msg__Header *)data;
+    std::cout << ptr->stamp.sec << std::endl;
+    ptr->stamp.sec = 233;
+}
+
+void CToCpp::PrintC(void *data)
+{
+    auto ptr = (std_msgs__msg__Header *)data;
+    std::cout << "print:::::::::" << ptr->stamp.sec << std::endl;
+}
+
+builtin_interfaces::msg::Time CToCpp::operator=(builtin_interfaces__msg__Time data)
+{
+    return Get(data);
+}
+
+builtin_interfaces::msg::Time CToCpp::Get(builtin_interfaces__msg__Time data)
+{
+    auto ret = builtin_interfaces::msg::Time{};
+    ret.sec = data.sec;
+    ret.nanosec = data.nanosec;
+    return ret;
+}
+
+std::string CToCpp::Get(rosidl_runtime_c__String data)
+{
+    std::string ret(data.data);
+    return ret;
+}
+
+std_msgs::msg::Header CToCpp::Get(std_msgs__msg__Header data)
+{
+    auto ret = std_msgs::msg::Header{};
+    ret.frame_id = Get(data.frame_id);
+    ret.stamp = Get(data.stamp);
+    return ret;
+}
+
+std::shared_ptr<std_msgs::msg::Header> CToCpp::Get(std::shared_ptr<std_msgs__msg__Header> data)
+{
+    auto ret = std::make_shared<std_msgs::msg::Header>();
+    ret->frame_id = Get(data->frame_id);
+    ret->stamp = Get(data->stamp);
+    return ret;
+}
 
 void *CToCpp::CreateHeader(int count)
 {

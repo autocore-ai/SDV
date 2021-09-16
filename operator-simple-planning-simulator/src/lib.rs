@@ -1,4 +1,5 @@
 use async_std::sync::Arc;
+use autocxx::include_cpp;
 use std::collections::HashMap;
 use zenoh_flow::runtime::message::ZFDataMessage;
 use zenoh_flow::{
@@ -8,13 +9,20 @@ use zenoh_flow::{
 };
 use zenoh_flow_types::{ZFString, ZFUsize};
 
-struct DemoOperator;
+include_cpp! {
+    #include "api.hpp"
+    safety!(unsafe)
+    generate!("Api")
+    generate!("GetApi")
+}
+
+struct OperatorSimplePlanningSimulator;
 
 static LINK_ID_INPUT0: &str = "input0";
 static LINK_ID_INPUT1: &str = "input1";
 static LINK_ID_OUTPUT: &str = "output";
 
-impl ZFComponentInputRule for DemoOperator {
+impl ZFComponentInputRule for OperatorSimplePlanningSimulator {
     fn input_rule(
         &self,
         _context: &mut ZFContext,
@@ -25,7 +33,7 @@ impl ZFComponentInputRule for DemoOperator {
     }
 }
 
-impl ZFComponent for DemoOperator {
+impl ZFComponent for OperatorSimplePlanningSimulator {
     fn initialize(
         &self,
         _configuration: &Option<HashMap<String, String>>,
@@ -38,7 +46,7 @@ impl ZFComponent for DemoOperator {
     }
 }
 
-impl ZFOperatorTrait for DemoOperator {
+impl ZFOperatorTrait for OperatorSimplePlanningSimulator {
     fn run(
         &self,
         _context: &mut ZFContext,
@@ -61,7 +69,7 @@ impl ZFOperatorTrait for DemoOperator {
     }
 }
 
-impl ZFComponentOutputRule for DemoOperator {
+impl ZFComponentOutputRule for OperatorSimplePlanningSimulator {
     fn output_rule(
         &self,
         _context: &mut ZFContext,
@@ -75,5 +83,5 @@ impl ZFComponentOutputRule for DemoOperator {
 export_operator!(register);
 
 fn register() -> ZFResult<Arc<dyn ZFOperatorTrait>> {
-    Ok(Arc::new(DemoOperator) as Arc<dyn ZFOperatorTrait>)
+    Ok(Arc::new(OperatorSimplePlanningSimulator) as Arc<dyn ZFOperatorTrait>)
 }

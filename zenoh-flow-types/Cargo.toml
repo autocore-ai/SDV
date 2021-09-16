@@ -1,16 +1,10 @@
 [package]
-name = "demo-operator"
+name = "zenoh-flow-types"
 version = "0.1.0"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-zenoh-flow-types = { path = "../zenoh-flow-types" }
 zenoh-flow = { git = "https://github.com/autocore-ai/zenoh-flow.git", branch = "master" }
-serde = { version = "1.0.55", features = ["derive"] }
-async-std = { version = "=1.9.0", features = ["attributes"] }
-async-trait = "0.1.50"
-
-[lib]
-crate-type = ["cdylib"]
+serde = { version = "1.0.130", features = ["derive"] }

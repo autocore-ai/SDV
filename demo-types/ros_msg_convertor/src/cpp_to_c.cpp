@@ -10,9 +10,11 @@ CppToC::~CppToC()
     std::cout << "~CppToC" << std::endl;
 }
 
-void CppToC::Time(void *src, void *dst)
+void* CppToC::Header(void *data)
 {
-    std::cout << "CppToC::Time" << std::endl;
+    auto sp = std::shared_ptr<std_msgs::msg::Header>((std_msgs::msg::Header *)data);
+    std::cout << "CppToC::Header" << sp->stamp.sec << std::endl;
+    return nullptr;
 }
 
 void *CppToC::CreateHeader(int count)

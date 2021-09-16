@@ -11,9 +11,9 @@ use zenoh_flow_types::ZFUsize;
 static COUNTER: AtomicUsize = AtomicUsize::new(0);
 
 #[derive(Debug)]
-struct DemoSource;
+struct SourceTicker;
 
-impl ZFComponent for DemoSource {
+impl ZFComponent for SourceTicker {
     fn initialize(
         &self,
         _configuration: &Option<HashMap<String, String>>,
@@ -25,7 +25,7 @@ impl ZFComponent for DemoSource {
     }
 }
 
-impl ZFComponentOutputRule for DemoSource {
+impl ZFComponentOutputRule for SourceTicker {
     fn output_rule(
         &self,
         _context: &mut ZFContext,
@@ -37,7 +37,7 @@ impl ZFComponentOutputRule for DemoSource {
 }
 
 #[async_trait]
-impl ZFSourceTrait for DemoSource {
+impl ZFSourceTrait for SourceTicker {
     async fn run(
         &self,
         _context: &mut ZFContext,
@@ -45,7 +45,7 @@ impl ZFSourceTrait for DemoSource {
     ) -> ZFResult<HashMap<ZFPortID, Arc<dyn ZFDataTrait>>> {
         let mut results: HashMap<ZFPortID, Arc<dyn ZFDataTrait>> = HashMap::with_capacity(1);
         results.insert(
-            String::from("input"),
+            String::from("tick"),
             zf_data!(ZFUsize(COUNTER.fetch_add(1, Ordering::AcqRel))),
         );
         async_std::task::sleep(std::time::Duration::from_millis(100)).await;
@@ -57,5 +57,5 @@ impl ZFSourceTrait for DemoSource {
 export_source!(register);
 
 fn register() -> ZFResult<Arc<dyn ZFSourceTrait>> {
-    Ok(Arc::new(DemoSource) as Arc<dyn ZFSourceTrait>)
+    Ok(Arc::new(SourceTicker) as Arc<dyn ZFSourceTrait>)
 }
