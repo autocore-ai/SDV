@@ -1,6 +1,6 @@
 flow: Demo
 operators:
-  - id : DemoOperator
+  - id: DemoOperator
     uri: file://./target/debug/libdemo_operator.so
     inputs:
       - id: input0
@@ -11,26 +11,38 @@ operators:
       - id: output
         type: string
 sources:
-  - id : DemoSource0
+  - id: DemoSource0
     uri: file://./target/debug/libdemo_source.so
     output:
-        id: input
-        type: usize
-  - id : DemoSource1
+      id: input
+      type: usize
+  - id: DemoSource1
     uri: file://./target/debug/libdemo_source.so
     output:
-        id: input
-        type: usize
+      id: input
+      type: usize
 sinks:
-  - id : DemoSink
+  - id: DemoSink
     uri: file://./target/debug/libdemo_sink.so
     input:
-        id: output
-        type: string
+      id: output
+      type: string
 links:
-- from: DemoSource0.input
-  to: DemoOperator.input0
-- from: DemoSource1.input
-  to: DemoOperator.input1
-- from: DemoOperator.output
-  to: DemoSink.output
+  - from:
+      component: DemoSource0
+      output: input
+    to:
+      component: DemoOperator
+      input: input0
+  - from:
+      component: DemoSource1
+      output: input
+    to:
+      component: DemoOperator
+      input: input1
+  - from:
+      component: DemoOperator
+      output: output
+    to:
+      component: DemoSink
+      input: output
