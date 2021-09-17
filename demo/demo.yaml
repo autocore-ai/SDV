@@ -1,22 +1,22 @@
 flow: Demo
 operators:
-  - id: DemoOperator
-    uri: file://./target/debug/libdemo_operator.so
+  - id: OperatorSimplePlanningSimulator
+    uri: file://./target/debug/liboperator_simple_planning_simulator.so
     inputs:
-      - id: input0
-        type: usize
+      - id: tick
+        type: u64
       - id: input1
         type: usize
     outputs:
       - id: output
         type: string
 sources:
-  - id: DemoSource0
-    uri: file://./target/debug/libdemo_source.so
+  - id: SourceTicke0
+    uri: file://./target/debug/libsource_ticker.so
     output:
-      id: input
-      type: usize
-  - id: DemoSource1
+      id: tick
+      type: u64
+  - id: DemoSource
     uri: file://./target/debug/libdemo_source.so
     output:
       id: input
@@ -29,19 +29,19 @@ sinks:
       type: string
 links:
   - from:
-      component: DemoSource0
-      output: input
+      component: SourceTicke0
+      output: tick
     to:
-      component: DemoOperator
-      input: input0
+      component: OperatorSimplePlanningSimulator
+      input: tick
   - from:
-      component: DemoSource1
+      component: DemoSource
       output: input
     to:
-      component: DemoOperator
+      component: OperatorSimplePlanningSimulator
       input: input1
   - from:
-      component: DemoOperator
+      component: OperatorSimplePlanningSimulator
       output: output
     to:
       component: DemoSink

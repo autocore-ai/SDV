@@ -1,14 +1,13 @@
 use async_std::sync::Arc;
 use async_trait::async_trait;
 use std::collections::HashMap;
-use std::sync::atomic::{AtomicUsize, Ordering};
 use zenoh_flow::{
     default_output_rule, export_source, zf_data, zf_empty_state, ZFComponent,
     ZFComponentOutputRule, ZFContext, ZFDataTrait, ZFPortID, ZFResult, ZFSourceTrait, ZFStateTrait,
 };
-use zenoh_flow_types::ZFUsize;
+use zenoh_flow_types::ZFU64;
 
-static COUNTER: AtomicUsize = AtomicUsize::new(0);
+static mut COUNT: u64 = 0;
 
 #[derive(Debug)]
 struct SourceTicker;
@@ -44,11 +43,12 @@ impl ZFSourceTrait for SourceTicker {
         _state: &mut Box<dyn zenoh_flow::ZFStateTrait>,
     ) -> ZFResult<HashMap<ZFPortID, Arc<dyn ZFDataTrait>>> {
         let mut results: HashMap<ZFPortID, Arc<dyn ZFDataTrait>> = HashMap::with_capacity(1);
-        results.insert(
-            String::from("tick"),
-            zf_data!(ZFUsize(COUNTER.fetch_add(1, Ordering::AcqRel))),
-        );
-        async_std::task::sleep(std::time::Duration::from_millis(100)).await;
+        unsafe {
+            COUNT = COUNT + 1;
+            println!("tick on {:?}", COUNT);
+            results.insert(String::from("tick"), zf_data!(ZFU64(COUNT)));
+        }
+        async_std::task::sleep(std::time::Duration::from_millis(20)).await;
         Ok(results)
     }
 }

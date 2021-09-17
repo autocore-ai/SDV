@@ -69,4 +69,23 @@ pub struct ZFBytes {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, ZFData)]
+pub struct ZFU64(pub u64);
+
+impl ZFDataTrait for ZFU64 {
+    fn try_serialize(&self) -> ZFResult<Vec<u8>> {
+        Ok(self.0.to_ne_bytes().to_vec())
+    }
+}
+
+impl ZFDeserializable for ZFU64 {
+    fn try_deserialize(bytes: &[u8]) -> ZFResult<Self>
+    where
+        Self: Sized,
+    {
+        let value = u64::from_ne_bytes(bytes.try_into().map_err(|_| ZFError::DeseralizationError)?);
+        Ok(ZFU64(value))
+    }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, ZFData)]
 pub struct ZFDouble(pub f64);
