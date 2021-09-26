@@ -85,26 +85,30 @@ SimplePlanningSimulator::SimplePlanningSimulator(const rclcpp::NodeOptions & opt
 
   using rclcpp::QoS;
   using std::placeholders::_1;
+  
+// 不使用ros2自带的订阅消息功能
+//   sub_init_pose_ = create_subscription<PoseWithCovarianceStamped>(
+//     "/initialpose", QoS{1},
+//     std::bind(&SimplePlanningSimulator::on_initialpose, this, _1));
+//   sub_vehicle_cmd_ = create_subscription<VehicleControlCommand>(
+//     "input/vehicle_control_command", QoS{1},
+//     std::bind(&SimplePlanningSimulator::on_vehicle_cmd, this, _1));
+//   sub_state_cmd_ = create_subscription<VehicleStateCommand>(
+//     "input/vehicle_state_command", QoS{1},
+//     std::bind(&SimplePlanningSimulator::on_state_cmd, this, _1));
 
-  sub_init_pose_ = create_subscription<PoseWithCovarianceStamped>(
-    "/initialpose", QoS{1},
-    std::bind(&SimplePlanningSimulator::on_initialpose, this, _1));
-  sub_vehicle_cmd_ = create_subscription<VehicleControlCommand>(
-    "input/vehicle_control_command", QoS{1},
-    std::bind(&SimplePlanningSimulator::on_vehicle_cmd, this, _1));
-  sub_state_cmd_ = create_subscription<VehicleStateCommand>(
-    "input/vehicle_state_command", QoS{1},
-    std::bind(&SimplePlanningSimulator::on_state_cmd, this, _1));
-
+// 保留pub，用来发送消息到rviz
+// topic名字可能需要修改
   pub_state_report_ = create_publisher<VehicleStateReport>("output/vehicle_state_report", QoS{1});
   pub_current_pose_ = create_publisher<geometry_msgs::msg::PoseStamped>("/current_pose", QoS{1});
   pub_kinematic_state_ = create_publisher<VehicleKinematicState>("output/kinematic_state", QoS{1});
   pub_tf_ = create_publisher<tf2_msgs::msg::TFMessage>("/tf", QoS{1});
 
-  timer_sampling_time_ms_ = static_cast<uint32_t>(declare_parameter("timer_sampling_time_ms", 25));
-  on_timer_ = create_wall_timer(
-    std::chrono::milliseconds(timer_sampling_time_ms_),
-    std::bind(&SimplePlanningSimulator::on_timer, this));
+// 不使用定时器
+//   timer_sampling_time_ms_ = static_cast<uint32_t>(declare_parameter("timer_sampling_time_ms", 25));
+//   on_timer_ = create_wall_timer(
+//     std::chrono::milliseconds(timer_sampling_time_ms_),
+//     std::bind(&SimplePlanningSimulator::on_timer, this));
 
 
   // set vehicle model type
@@ -183,7 +187,35 @@ void SimplePlanningSimulator::initialize_vehicle_model()
   }
 }
 
-void SimplePlanningSimulator::on_timer()
+// void SimplePlanningSimulator::on_timer()
+// {
+//   if (!is_initialized_) {
+//     RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 5000, "waiting initialization...");
+//     return;
+//   }
+
+//   // update vehicle dynamics
+//   {
+//     const float64_t dt = delta_time_.get_dt(get_clock()->now());
+//     vehicle_model_ptr_->update(dt);
+//   }
+
+//   // set current kinematic state
+//   current_kinematic_state_ = to_kinematic_state(vehicle_model_ptr_);
+
+//   if (add_measurement_noise_) {
+//     add_measurement_noise(current_kinematic_state_);
+//   }
+
+//   // publish vehicle state
+//   publish_kinematic_state(convert_baselink_to_com(current_kinematic_state_, cg_to_rear_m_));
+//   publish_state_report();
+//   publish_tf(current_kinematic_state_);
+// }
+
+// 不使用timer
+// 使用update_vehicle_model，虽然看起来跟on_timer一样
+void SimplePlanningSimulator::update_vehicle_model()
 {
   if (!is_initialized_) {
     RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 5000, "waiting initialization...");

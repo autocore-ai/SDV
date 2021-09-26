@@ -99,6 +99,24 @@ class PLANNING_SIMULATOR_PUBLIC SimplePlanningSimulator : public rclcpp::Node
 {
 public:
   explicit SimplePlanningSimulator(const rclcpp::NodeOptions & options);
+  
+ // 从private改为public
+ /**
+   * @brief set current_vehicle_cmd_ptr_ with received message
+   */
+  void on_vehicle_cmd(const VehicleControlCommand::ConstSharedPtr msg);
+
+  /**
+   * @brief set current_vehicle_state_ with received message
+   */
+  void on_state_cmd(const VehicleStateCommand::ConstSharedPtr msg);
+
+  /**
+   * @brief set initial pose for simulation with received message
+   */
+  void on_initialpose(const PoseWithCovarianceStamped::ConstSharedPtr msg);
+
+  void update_vehicle_model();
 
 private:
   /* ros system */
@@ -107,9 +125,9 @@ private:
   rclcpp::Publisher<tf2_msgs::msg::TFMessage>::SharedPtr pub_tf_;
   rclcpp::Publisher<PoseStamped>::SharedPtr pub_current_pose_;
 
-  rclcpp::Subscription<VehicleStateCommand>::SharedPtr sub_state_cmd_;
-  rclcpp::Subscription<VehicleControlCommand>::SharedPtr sub_vehicle_cmd_;
-  rclcpp::Subscription<PoseWithCovarianceStamped>::SharedPtr sub_init_pose_;
+//   rclcpp::Subscription<VehicleStateCommand>::SharedPtr sub_state_cmd_;
+//   rclcpp::Subscription<VehicleControlCommand>::SharedPtr sub_vehicle_cmd_;
+//   rclcpp::Subscription<PoseWithCovarianceStamped>::SharedPtr sub_init_pose_;
 
   uint32_t timer_sampling_time_ms_;  //!< @brief timer sampling time
   rclcpp::TimerBase::SharedPtr on_timer_;  //!< @brief timer for simulation
@@ -150,21 +168,6 @@ private:
   std::shared_ptr<SimModelInterface> vehicle_model_ptr_;  //!< @brief vehicle model pointer
 
   /**
-   * @brief set current_vehicle_cmd_ptr_ with received message
-   */
-  void on_vehicle_cmd(const VehicleControlCommand::ConstSharedPtr msg);
-
-  /**
-   * @brief set current_vehicle_state_ with received message
-   */
-  void on_state_cmd(const VehicleStateCommand::ConstSharedPtr msg);
-
-  /**
-   * @brief set initial pose for simulation with received message
-   */
-  void on_initialpose(const PoseWithCovarianceStamped::ConstSharedPtr msg);
-
-  /**
    * @brief get transform from two frame_ids
    * @param [in] parent_frame parent frame id
    * @param [in] child_frame child frame id
@@ -175,7 +178,7 @@ private:
   /**
    * @brief timer callback for simulation with loop_rate
    */
-  void on_timer();
+  // void on_timer();
 
   /**
    * @brief initialize vehicle_model_ptr
