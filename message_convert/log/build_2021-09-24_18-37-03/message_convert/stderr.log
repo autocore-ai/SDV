@@ -1,0 +1,24 @@
+CMake Error at /opt/ros/foxy/share/ament_cmake_auto/cmake/ament_auto_add_library.cmake:66 (add_library):
+  add_library cannot create target "message_convert" because another target
+  with the same name already exists.  The existing target is an interface
+  library created in source directory
+  "/home/shenmintao/work/autoware-zenoh-flow/workspace/message_convert".  See
+  documentation for policy CMP0002 for more details.
+Call Stack (most recent call first):
+  CMakeLists.txt:33 (ament_auto_add_library)
+
+
+CMake Error at /opt/ros/foxy/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:141 (target_include_directories):
+  target_include_directories may only set INTERFACE properties on INTERFACE
+  targets
+Call Stack (most recent call first):
+  CMakeLists.txt:40 (ament_target_dependencies)
+
+
+CMake Error at /opt/ros/foxy/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:145 (target_link_libraries):
+  INTERFACE library can only be used with the INTERFACE keyword of
+  target_link_libraries
+Call Stack (most recent call first):
+  CMakeLists.txt:40 (ament_target_dependencies)
+
+

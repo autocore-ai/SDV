@@ -1,0 +1,34 @@
+[0.042s] Invoking command in '/home/shenmintao/work/autoware-zenoh-flow/workspace/message_convert/build/message_convert': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake /home/shenmintao/work/autoware-zenoh-flow/workspace/message_convert -DCMAKE_INSTALL_PREFIX=/home/shenmintao/work/autoware-zenoh-flow/workspace/message_convert/install/message_convert
+[0.082s] -- Found ament_cmake_auto: 0.9.8 (/opt/ros/foxy/share/ament_cmake_auto/cmake)
+[0.125s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.388s] -- Found std_msgs: 2.0.4 (/opt/ros/foxy/share/std_msgs/cmake)
+[0.411s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.414s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.596s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.646s] -- Found autoware_auto_msgs: 1.0.0 (/opt/AutowareAuto/share/autoware_auto_msgs/cmake)
+[1.439s] CMake Error at /opt/ros/foxy/share/ament_cmake_auto/cmake/ament_auto_add_library.cmake:66 (add_library):
+[1.440s]   add_library cannot create target "message_convert" because another target
+[1.440s]   with the same name already exists.  The existing target is an interface
+[1.440s]   library created in source directory
+[1.440s]   "/home/shenmintao/work/autoware-zenoh-flow/workspace/message_convert".  See
+[1.440s]   documentation for policy CMP0002 for more details.
+[1.441s] Call Stack (most recent call first):
+[1.441s]   CMakeLists.txt:33 (ament_auto_add_library)
+[1.441s] 
+[1.441s] 
+[1.441s] -- Found ament_lint_auto: 0.9.6 (/opt/ros/foxy/share/ament_lint_auto/cmake)
+[1.448s] -- Added test 'copyright' to check source files copyright and LICENSE
+[1.454s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[1.454s] -- Configured cppcheck include dirs: $<BUILD_INTERFACE:/home/shenmintao/work/autoware-zenoh-flow/workspace/message_convert/include>
+[1.454s] -- Configured cppcheck exclude dirs and/or files: 
+[1.459s] -- Added test 'cpplint' to check C / C++ code against the Google style
+[1.460s] -- Configured cpplint exclude dirs and/or files: 
+[1.460s] -- Added test 'flake8' to check Python code syntax and style conventions
+[1.462s] -- Added test 'lint_cmake' to check CMake code style
+[1.463s] -- Added test 'pep257' to check Python code against some of the style conventions in PEP 257
+[1.468s] -- Added test 'uncrustify' to check C / C++ code style
+[1.468s] -- Configured uncrustify additional arguments: 
+[1.469s] -- Added test 'xmllint' to check XML markup files
+[1.471s] -- Configuring incomplete, errors occurred!
+[1.471s] See also "/home/shenmintao/work/autoware-zenoh-flow/workspace/message_convert/build/message_convert/CMakeFiles/CMakeOutput.log".
+[1.481s] Invoked command in '/home/shenmintao/work/autoware-zenoh-flow/workspace/message_convert/build/message_convert' returned '1': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake /home/shenmintao/work/autoware-zenoh-flow/workspace/message_convert -DCMAKE_INSTALL_PREFIX=/home/shenmintao/work/autoware-zenoh-flow/workspace/message_convert/install/message_convert
