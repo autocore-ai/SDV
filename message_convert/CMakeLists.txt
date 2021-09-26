@@ -22,8 +22,8 @@ find_package(autoware_auto_msgs REQUIRED)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
-include_directories(include)
 ament_auto_find_build_dependencies()
+
 ament_auto_add_library(${PROJECT_NAME} SHARED
   src/autoware_auto_msgs.cpp
   src/builtin_interfaces.cpp
@@ -31,20 +31,7 @@ ament_auto_add_library(${PROJECT_NAME} SHARED
   src/std_msgs.cpp
 )
 
-ament_target_dependencies(${PROJECT_NAME}
-  std_msgs autoware_auto_msgs)
-
-install(TARGETS ${PROJECT_NAME}
-  EXPORT "export_${PROJECT_NAME}"
-  ARCHIVE DESTINATION lib
-  LIBRARY DESTINATION lib
-  RUNTIME DESTINATION lib
-  INCLUDES DESTINATION include
-)
-
-install(DIRECTORY include/${PROJECT_NAME}/
-  DESTINATION include/${PROJECT_NAME}
-)
+autoware_set_compile_options(${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -57,4 +44,4 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-ament_package()
+ament_auto_package()
