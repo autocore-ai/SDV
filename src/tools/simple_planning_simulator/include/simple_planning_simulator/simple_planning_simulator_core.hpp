@@ -116,7 +116,7 @@ public:
    */
   void on_initialpose(const PoseWithCovarianceStamped::ConstSharedPtr msg);
 
-  void update_vehicle_model();
+  std::tuple<autoware_auto_msgs::msg::VehicleKinematicState, autoware_auto_msgs::msg::VehicleStateReport> update_vehicle_model();
 
 private:
   /* ros system */
@@ -208,12 +208,12 @@ private:
    * @brief publish pose and twist
    * @param [in] state The kinematic state to publish
    */
-  void publish_kinematic_state(const VehicleKinematicState & state);
+  VehicleKinematicState publish_kinematic_state(const VehicleKinematicState & state);
 
   /**
    * @brief publish vehicle state report
    */
-  void publish_state_report();
+  VehicleStateReport publish_state_report();
 
   /**
    * @brief publish tf

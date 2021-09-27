@@ -44,7 +44,18 @@ void SimplePlanningSimulatorWrapper::updateVehicleModel(autoware_auto_msgs__msg_
     // 更新车辆模型
     m_simple_planning_simulator_ptr->on_state_cmd(std::make_shared<autoware_auto_msgs::msg::VehicleStateCommand>(state_command));
     m_simple_planning_simulator_ptr->on_vehicle_cmd(std::make_shared<autoware_auto_msgs::msg::VehicleControlCommand>(control_command));
-    m_simple_planning_simulator_ptr->update_vehicle_model();
+    autoware_auto_msgs::msg::VehicleKinematicState vehicle_kinematic_state_msg;
+    autoware_auto_msgs::msg::VehicleStateReport vehicle_state_report_msg;
+    std::tie(vehicle_kinematic_state_msg, vehicle_state_report_msg) = m_simple_planning_simulator_ptr->update_vehicle_model();
+    m_vehicle_kinematic_state_msg = Convert(vehicle_kinematic_state_msg);
+    m_vehicle_state_report_msg = Convert(vehicle_state_report_msg);
+}
+
+autoware_auto_msgs__msg__VehicleKinematicState SimplePlanningSimulatorWrapper::getVehicleKinematicState() {
+    return this->m_vehicle_kinematic_state_msg;
+}
+autoware_auto_msgs__msg__VehicleStateReport SimplePlanningSimulatorWrapper::getVehicleStateReport() {
+    return this->m_vehicle_state_report_msg;
 }
 
 RCLCPP_COMPONENTS_REGISTER_NODE(simulation::simple_planning_simulator::SimplePlanningSimulator)

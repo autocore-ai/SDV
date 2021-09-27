@@ -22,6 +22,7 @@
 #include <utility>
 #include <chrono>
 #include <algorithm>
+#include <tuple>
 
 #include "simple_planning_simulator/simple_planning_simulator_core.hpp"
 
@@ -215,11 +216,13 @@ void SimplePlanningSimulator::initialize_vehicle_model()
 
 // 不使用timer
 // 使用update_vehicle_model，虽然看起来跟on_timer一样
-void SimplePlanningSimulator::update_vehicle_model()
+std::tuple<autoware_auto_msgs::msg::VehicleKinematicState, autoware_auto_msgs::msg::VehicleStateReport> SimplePlanningSimulator::update_vehicle_model()
 {
+  autoware_auto_msgs::msg::VehicleKinematicState kinematic_state_msg;
+  autoware_auto_msgs::msg::VehicleStateReport state_report_msg;
   if (!is_initialized_) {
     RCLCPP_INFO_THROTTLE(get_logger(), *get_clock(), 5000, "waiting initialization...");
-    return;
+    return std::make_tuple(kinematic_state_msg, state_report_msg);;
   }
 
   // update vehicle dynamics
@@ -236,9 +239,10 @@ void SimplePlanningSimulator::update_vehicle_model()
   }
 
   // publish vehicle state
-  publish_kinematic_state(convert_baselink_to_com(current_kinematic_state_, cg_to_rear_m_));
-  publish_state_report();
+  kinematic_state_msg = publish_kinematic_state(convert_baselink_to_com(current_kinematic_state_, cg_to_rear_m_));
+  state_report_msg = publish_state_report();
   publish_tf(current_kinematic_state_);
+  return std::make_tuple(kinematic_state_msg, state_report_msg);
 }
 
 void SimplePlanningSimulator::on_initialpose(
@@ -361,7 +365,7 @@ geometry_msgs::msg::TransformStamped SimplePlanningSimulator::get_transform_msg(
   return transform;
 }
 
-void SimplePlanningSimulator::publish_kinematic_state(
+VehicleKinematicState SimplePlanningSimulator::publish_kinematic_state(
   const VehicleKinematicState & state)
 {
   VehicleKinematicState msg = state;
@@ -369,9 +373,10 @@ void SimplePlanningSimulator::publish_kinematic_state(
   msg.header.stamp = get_clock()->now();
 
   pub_kinematic_state_->publish(msg);
+  return msg;
 }
 
-void SimplePlanningSimulator::publish_state_report()
+VehicleStateReport SimplePlanningSimulator::publish_state_report()
 {
   VehicleStateReport msg;
   msg.stamp = get_clock()->now();
@@ -380,6 +385,7 @@ void SimplePlanningSimulator::publish_state_report()
     msg.gear = current_vehicle_state_cmd_ptr_->gear;
   }
   pub_state_report_->publish(msg);
+  return msg;
 }
 
 void SimplePlanningSimulator::publish_tf(const VehicleKinematicState & state)
