@@ -31,6 +31,16 @@ ament_auto_add_library(${PROJECT_NAME} SHARED
   src/std_msgs.cpp
 )
 
+install(
+  DIRECTORY include/
+  DESTINATION /opt/AutowareAuto/include
+)
+
+install(
+  TARGETS ${PROJECT_NAME}
+  LIBRARY DESTINATION /opt/AutowareAuto/lib
+)
+
 autoware_set_compile_options(${PROJECT_NAME})
 
 if(BUILD_TESTING)

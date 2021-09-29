@@ -1,6 +1,19 @@
-cmake_minimum_required(VERSION 3.6)
-
+cmake_minimum_required(VERSION 3.5)
 project(simple_planning_simulator)
+
+# Default to C99
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
+
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
 ### Dependencies
 find_package(ament_cmake_auto REQUIRED)
@@ -10,9 +23,6 @@ ament_auto_find_build_dependencies()
 
 # Component
 ament_auto_add_library(${PROJECT_NAME} SHARED
-  include/simple_planning_simulator/simple_planning_simulator_core.hpp
-  include/simple_planning_simulator/simple_planning_simulator_wrapper.hpp
-  include/simple_planning_simulator/visibility_control.hpp
   src/simple_planning_simulator/simple_planning_simulator_core.cpp
   src/simple_planning_simulator/simple_planning_simulator_wrapper.cpp
   src/simple_planning_simulator/vehicle_model/sim_model_interface.cpp
@@ -22,12 +32,12 @@ ament_auto_add_library(${PROJECT_NAME} SHARED
   src/simple_planning_simulator/vehicle_model/sim_model_delay_steer_acc.cpp
   src/simple_planning_simulator/vehicle_model/sim_model_delay_steer_acc_geared.cpp
 )
+
 target_include_directories(${PROJECT_NAME} SYSTEM PUBLIC ${tf2_INCLUDE_DIRS})
 ament_target_dependencies(${PROJECT_NAME} message_convert)
 autoware_set_compile_options(${PROJECT_NAME})
-
+target_link_libraries(${PROJECT_NAME} /opt/AutowareAuto/lib/libmessage_convert.so)
 target_compile_options(${PROJECT_NAME} PRIVATE -Wno-old-style-cast) # RCLCPP_ERROR_THROTTLE() has built-in old-style casts.
-
 
 # Node executable
 # rclcpp_components_register_node(${PROJECT_NAME}
@@ -47,4 +57,15 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-ament_auto_package()
+ament_package()
+
+
+install(
+  DIRECTORY include/
+  DESTINATION /opt/AutowareAuto/include
+)
+
+install(
+  TARGETS ${PROJECT_NAME}
+  LIBRARY DESTINATION /opt/AutowareAuto/lib
+)

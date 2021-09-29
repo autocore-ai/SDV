@@ -2,5 +2,5 @@
 #include <std_msgs/msg/header.hpp>
 #include <std_msgs/msg/header.h>
 
-std_msgs::msg::Header Convert (std_msgs__msg__Header &source_msg);
-std_msgs__msg__Header Convert (std_msgs::msg::Header &source_msg);
+__attribute__((visibility("default"))) std_msgs::msg::Header Convert (std_msgs__msg__Header &source_msg);
+__attribute__((visibility("default"))) std_msgs__msg__Header Convert (std_msgs::msg::Header &source_msg);

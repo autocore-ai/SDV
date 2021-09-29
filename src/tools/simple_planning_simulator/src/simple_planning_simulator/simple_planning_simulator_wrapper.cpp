@@ -8,6 +8,8 @@
 #include <message_convert/geometry_msgs.hpp>
 #include <message_convert/autoware_auto_msgs.hpp>
 
+#include <cstdint>
+
 SimplePlanningSimulatorWrapper::SimplePlanningSimulatorWrapper() {
     // TODO：将options中的json内容解析成配置参数
     // 现阶段先写死
@@ -17,12 +19,22 @@ SimplePlanningSimulatorWrapper::SimplePlanningSimulatorWrapper() {
     rclcpp::NodeOptions options;
     // TODO: 参数需要换掉
     std::vector<rclcpp::Parameter> paramters = std::vector<rclcpp::Parameter>();
-    paramters.push_back(rclcpp::Parameter("map_osm_file", 1));
-    paramters.push_back(rclcpp::Parameter("origin_offset_lat", 1));
-    paramters.push_back(rclcpp::Parameter("origin_offset_lon", 1));
-    paramters.push_back(rclcpp::Parameter("latitude", 1));
-    paramters.push_back(rclcpp::Parameter("longitude", 1));
-    paramters.push_back(rclcpp::Parameter("elevation", 1));
+
+    paramters.push_back(rclcpp::Parameter("simulated_frame_id", "base_link"));
+    paramters.push_back(rclcpp::Parameter("origin_frame_id", "odom"));
+    paramters.push_back(rclcpp::Parameter("vehicle_model_type", "IDEAL_STEER_VEL"));
+    paramters.push_back(rclcpp::Parameter("initialize_source", "INITIAL_POSE_TOPIC"));
+    paramters.push_back(rclcpp::Parameter("timer_sampling_time_ms", 25));
+    paramters.push_back(rclcpp::Parameter("add_measurement_noise", false));
+    paramters.push_back(rclcpp::Parameter("vel_lim", 30.0));
+    paramters.push_back(rclcpp::Parameter("vel_rate_lim", 30.0));
+    paramters.push_back(rclcpp::Parameter("steer_lim", 0.6));
+    paramters.push_back(rclcpp::Parameter("steer_rate_lim", 6.28));
+    paramters.push_back(rclcpp::Parameter("acc_time_delay", 0.1));
+    paramters.push_back(rclcpp::Parameter("acc_time_constant", 0.1));
+    paramters.push_back(rclcpp::Parameter("steer_time_delay", 0.1));
+    paramters.push_back(rclcpp::Parameter("steer_time_constant", 0.1));
+
     options.parameter_overrides(paramters);
     m_simple_planning_simulator_ptr = std::make_shared<simulation::simple_planning_simulator::SimplePlanningSimulator>(options);
 }
@@ -58,4 +70,6 @@ autoware_auto_msgs__msg__VehicleStateReport SimplePlanningSimulatorWrapper::getV
     return this->m_vehicle_state_report_msg;
 }
 
-RCLCPP_COMPONENTS_REGISTER_NODE(simulation::simple_planning_simulator::SimplePlanningSimulator)
+void* getSimplePlanningSimulatorWrapper(){
+    return new SimplePlanningSimulatorWrapper();
+}
