@@ -1,0 +1,12 @@
+[package]
+name = "turtlesim_sink"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+cxx = "1.0"
+zenoh-flow = { git = "https://github.com/eclipse-zenoh/zenoh-flow.git", branch = "master" }
+async-trait = "0.1.50"
+
+[lib]
+crate-type = ["dylib"]

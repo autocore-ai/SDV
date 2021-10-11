@@ -1,0 +1,7 @@
+[workspace]
+
+members = [
+  "turtlesim_source",
+  "turtlesim_operator",
+  "turtlesim_sink"
+]
