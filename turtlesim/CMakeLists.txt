@@ -9,15 +9,10 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-find_package(ament_cmake REQUIRED)
-find_package(ament_index_cpp REQUIRED)
-find_package(geometry_msgs REQUIRED)
+find_package(ament_cmake_auto REQUIRED)
 find_package(Qt5 REQUIRED COMPONENTS Widgets)
-find_package(rclcpp REQUIRED)
-find_package(rclcpp_action REQUIRED)
-find_package(rosidl_default_generators REQUIRED)
-find_package(std_msgs REQUIRED)
-find_package(std_srvs REQUIRED)
+
+ament_auto_find_build_dependencies()
 
 include_directories(include ${Qt5Widgets_INCLUDE_DIRS})
 
@@ -42,26 +37,26 @@ set(turtlesim_node_HDRS
   include/turtlesim/turtle_frame.h
 )
 
-qt5_wrap_cpp(turtlesim_node_MOCS ${turtlesim_node_HDRS})
+# qt5_wrap_cpp(turtlesim_node_MOCS ${turtlesim_node_HDRS})
 
 
-add_executable(turtlesim_node ${turtlesim_node_SRCS} ${turtlesim_node_MOCS})
-target_link_libraries(turtlesim_node Qt5::Widgets)
-ament_target_dependencies(turtlesim_node ${dependencies})
-rosidl_target_interfaces(turtlesim_node ${PROJECT_NAME} "rosidl_typesupport_cpp")
+# add_executable(turtlesim_node ${turtlesim_node_SRCS} ${turtlesim_node_MOCS})
+# target_link_libraries(turtlesim_node Qt5::Widgets)
+# ament_target_dependencies(turtlesim_node ${dependencies})
+# rosidl_target_interfaces(turtlesim_node ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
-add_executable(turtle_teleop_key tutorials/teleop_turtle_key.cpp)
-ament_target_dependencies(turtle_teleop_key ${dependencies})
-rosidl_target_interfaces(turtle_teleop_key ${PROJECT_NAME} "rosidl_typesupport_cpp")
-add_executable(draw_square tutorials/draw_square.cpp)
-ament_target_dependencies(draw_square ${dependencies})
-rosidl_target_interfaces(draw_square ${PROJECT_NAME} "rosidl_typesupport_cpp")
-add_executable(mimic tutorials/mimic.cpp)
-ament_target_dependencies(mimic ${dependencies})
-rosidl_target_interfaces(mimic ${PROJECT_NAME} "rosidl_typesupport_cpp")
+ament_auto_add_executable(turtlesim_source_native_exe src/turtlesim_source.cpp)
+ament_auto_add_library(turtlesim_source_native SHARED src/turtlesim_source.cpp)
+rosidl_target_interfaces(turtlesim_source_native_exe ${PROJECT_NAME} "rosidl_typesupport_cpp")
+rosidl_target_interfaces(turtlesim_source_native ${PROJECT_NAME} "rosidl_typesupport_cpp")
 
-install(TARGETS turtlesim_node turtle_teleop_key draw_square mimic
-  DESTINATION lib/${PROJECT_NAME})
+ament_auto_add_executable(turtlesim_operator_native_exe src/turtlesim_operator.cpp)
+ament_auto_add_library(turtlesim_operator_native SHARED src/turtlesim_operator.cpp)
+
+ament_auto_add_executable(turtlesim_sink_native_exe src/turtlesim_sink.cpp)
+ament_auto_add_library(turtlesim_sink_native SHARED src/turtlesim_sink.cpp)
+target_link_libraries(turtlesim_sink_native_exe Qt5::Widgets)
+target_link_libraries(turtlesim_sink_native Qt5::Widgets)
 
 install(DIRECTORY images
   DESTINATION share/${PROJECT_NAME}
@@ -70,4 +65,4 @@ install(DIRECTORY images
 install(DIRECTORY launch
   DESTINATION share/${PROJECT_NAME})
 
-ament_package()
+ament_auto_package()

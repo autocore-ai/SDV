@@ -4,6 +4,8 @@ set -e
 
 source /opt/ros/foxy/setup.bash
 
-colcon build --merge-install --packages-select turtlesim_sink
+rm target/**/*.a
 
-cargo build
+colcon build --merge-install
+
+source ./scripts/run.bash

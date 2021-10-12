@@ -1,0 +1,37 @@
+flow: Demo
+operators:
+  - id: TurtleSimOperator
+    uri: file://./install/lib/libturtlesim_operator.so
+    inputs:
+      - id: tick
+        type: usize
+    outputs:
+      - id: count
+        type: usize
+sources:
+  - id: TurtleSimSource
+    uri: file://./install/lib/libturtlesim_source.so
+    output:
+      id: tick
+      type: usize
+sinks:
+  - id: TurtleSimSink
+    uri: file://./install/lib/libturtlesim_sink.so
+    input:
+      id: count
+      type: usize
+    configuration:
+      config1: test1
+links:
+  - from:
+      component: TurtleSimSource
+      output: tick
+    to:
+      component: TurtleSimOperator
+      input: tick
+  - from:
+      component: TurtleSimOperator
+      output: count
+    to:
+      component: TurtleSimSink
+      input: count

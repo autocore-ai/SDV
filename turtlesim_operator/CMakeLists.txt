@@ -14,12 +14,29 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake_auto REQUIRED)
-find_package(Qt5 REQUIRED COMPONENTS Gui)
-
-include_directories(include ${Qt5Gui_INCLUDE_DIRS})
 
 ament_auto_find_build_dependencies()
 
-ament_auto_add_library(${PROJECT_NAME} SHARED src/turtle.cpp)
+set(cxxwrapper_lib ${CMAKE_SOURCE_DIR}/../target/release/libturtlesim_operator.a)
+
+add_custom_target(WrapperLib ALL DEPENDS ${cxxwrapper_lib})
+add_custom_command(
+  OUTPUT ${cxxwrapper_lib}
+  COMMAND cargo build --release
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  # DEPENDS ${cxxbridge_in}
+  COMMENT "Generating Rust library:"
+  )
+
+add_library(CxxWrapper STATIC IMPORTED GLOBAL)
+add_dependencies(CxxWrapper WrapperLib)
+set_target_properties(CxxWrapper
+  PROPERTIES
+  IMPORTED_LOCATION ${cxxwrapper_lib}
+)
+
+ament_auto_add_library(${PROJECT_NAME} SHARED src/operator.cpp src/wrapper.cpp)
+# target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_link_libraries(${PROJECT_NAME} CxxWrapper)
 
 ament_auto_package()

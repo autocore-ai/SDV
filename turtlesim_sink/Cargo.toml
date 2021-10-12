@@ -9,4 +9,4 @@ zenoh-flow = { git = "https://github.com/eclipse-zenoh/zenoh-flow.git", branch =
 async-trait = "0.1.50"
 
 [lib]
-crate-type = ["dylib"]
+crate-type = ["staticlib"]

@@ -17,6 +17,26 @@ find_package(ament_cmake_auto REQUIRED)
 
 ament_auto_find_build_dependencies()
 
-ament_auto_add_library(${PROJECT_NAME} SHARED src/teleop_turtle_key.cpp)
+set(cxxwrapper_lib ${CMAKE_SOURCE_DIR}/../target/release/libturtlesim_source.a)
+
+add_custom_target(WrapperLib ALL DEPENDS ${cxxwrapper_lib})
+add_custom_command(
+  OUTPUT ${cxxwrapper_lib}
+  COMMAND cargo build --release
+  WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+  # DEPENDS ${cxxbridge_in}
+  COMMENT "Generating Rust library:"
+  )
+
+add_library(CxxWrapper STATIC IMPORTED GLOBAL)
+add_dependencies(CxxWrapper WrapperLib)
+set_target_properties(CxxWrapper
+  PROPERTIES
+  IMPORTED_LOCATION ${cxxwrapper_lib}
+)
+
+ament_auto_add_library(${PROJECT_NAME} SHARED src/source.cpp)
+# target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
+# target_link_libraries(${PROJECT_NAME} CxxWrapper turtlesim_source_native)
 
 ament_auto_package()
