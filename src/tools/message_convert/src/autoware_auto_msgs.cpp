@@ -4,7 +4,7 @@
 #include "message_convert/std_msgs.hpp"
 #include <rosidl_runtime_cpp/bounded_vector.hpp>
 #include <vector>
-autoware_auto_msgs::msg::VehicleStateCommand Convert (autoware_auto_msgs__msg__VehicleStateCommand &source_msg) {
+autoware_auto_msgs::msg::VehicleStateCommand Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleStateCommand &source_msg) {
     autoware_auto_msgs::msg::VehicleStateCommand dest_msg;
     dest_msg.stamp = Convert(source_msg.stamp);
     dest_msg.blinker = source_msg.blinker;
@@ -17,7 +17,7 @@ autoware_auto_msgs::msg::VehicleStateCommand Convert (autoware_auto_msgs__msg__V
     return dest_msg;
 }
 
-autoware_auto_msgs::msg::VehicleControlCommand Convert (autoware_auto_msgs__msg__VehicleControlCommand &source_msg) {
+autoware_auto_msgs::msg::VehicleControlCommand Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleControlCommand &source_msg) {
     autoware_auto_msgs::msg::VehicleControlCommand dest_msg;
     dest_msg.stamp = Convert(source_msg.stamp);
     dest_msg.front_wheel_angle_rad = source_msg.front_wheel_angle_rad;
@@ -27,15 +27,15 @@ autoware_auto_msgs::msg::VehicleControlCommand Convert (autoware_auto_msgs__msg_
     return dest_msg;
 }
 
-autoware_auto_msgs__msg__VehicleKinematicState Convert (autoware_auto_msgs::msg::VehicleKinematicState &source_msg) {
-    autoware_auto_msgs__msg__VehicleKinematicState dest_msg;
+zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleKinematicState Convert (autoware_auto_msgs::msg::VehicleKinematicState &source_msg) {
+    zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleKinematicState dest_msg;
     dest_msg.state = Convert(source_msg.state);
     dest_msg.header = Convert(source_msg.header);
     dest_msg.delta = Convert(source_msg.delta);
     return dest_msg;
 }
 
-autoware_auto_msgs::msg::VehicleKinematicState Convert (autoware_auto_msgs__msg__VehicleKinematicState &source_msg) {
+autoware_auto_msgs::msg::VehicleKinematicState Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleKinematicState &source_msg) {
     autoware_auto_msgs::msg::VehicleKinematicState dest_msg;
     dest_msg.state = Convert(source_msg.state);
     dest_msg.header = Convert(source_msg.header);
@@ -43,8 +43,8 @@ autoware_auto_msgs::msg::VehicleKinematicState Convert (autoware_auto_msgs__msg_
     return dest_msg;
 }
 
-autoware_auto_msgs__msg__VehicleStateReport Convert (autoware_auto_msgs::msg::VehicleStateReport &source_msg) {
-    autoware_auto_msgs__msg__VehicleStateReport dest_msg;
+zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleStateReport Convert (autoware_auto_msgs::msg::VehicleStateReport &source_msg) {
+    zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleStateReport dest_msg;
     dest_msg.stamp = Convert(source_msg.stamp);
     dest_msg.blinker = source_msg.blinker;
     dest_msg.fuel = source_msg.fuel;
@@ -57,8 +57,8 @@ autoware_auto_msgs__msg__VehicleStateReport Convert (autoware_auto_msgs::msg::Ve
     return dest_msg;
 }
 
-autoware_auto_msgs__msg__TrajectoryPoint Convert (autoware_auto_msgs::msg::TrajectoryPoint &source_msg) {
-    autoware_auto_msgs__msg__TrajectoryPoint dest_msg;
+zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint Convert (autoware_auto_msgs::msg::TrajectoryPoint &source_msg) {
+    zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint dest_msg;
     dest_msg.acceleration_mps2 = source_msg.acceleration_mps2;
     dest_msg.front_wheel_angle_rad = source_msg.front_wheel_angle_rad;
     dest_msg.heading = Convert(source_msg.heading);
@@ -72,7 +72,7 @@ autoware_auto_msgs__msg__TrajectoryPoint Convert (autoware_auto_msgs::msg::Traje
     return dest_msg;
 }
 
-autoware_auto_msgs::msg::TrajectoryPoint Convert (autoware_auto_msgs__msg__TrajectoryPoint &source_msg) {
+autoware_auto_msgs::msg::TrajectoryPoint Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint &source_msg) {
     autoware_auto_msgs::msg::TrajectoryPoint dest_msg;
     dest_msg.acceleration_mps2 = source_msg.acceleration_mps2;
     dest_msg.front_wheel_angle_rad = source_msg.front_wheel_angle_rad;
@@ -87,43 +87,40 @@ autoware_auto_msgs::msg::TrajectoryPoint Convert (autoware_auto_msgs__msg__Traje
     return dest_msg;
 }
 
-autoware_auto_msgs__msg__Complex32 Convert (autoware_auto_msgs::msg::Complex32 &source_msg) {
-    autoware_auto_msgs__msg__Complex32 dest_msg;
+zenoh_flow::autoware_auto::autoware_auto_msgs_Complex32 Convert (autoware_auto_msgs::msg::Complex32 &source_msg) {
+    zenoh_flow::autoware_auto::autoware_auto_msgs_Complex32 dest_msg;
     dest_msg.imag = source_msg.imag;
     dest_msg.real = source_msg.real;
     return dest_msg;
 }
 
-autoware_auto_msgs::msg::Complex32 Convert (autoware_auto_msgs__msg__Complex32 &source_msg) {
+autoware_auto_msgs::msg::Complex32 Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_Complex32 &source_msg) {
     autoware_auto_msgs::msg::Complex32 dest_msg;
     dest_msg.imag = source_msg.imag;
     dest_msg.real = source_msg.real;
     return dest_msg;
 }
 
-autoware_auto_msgs::msg::Trajectory Convert (autoware_auto_msgs__msg__Trajectory &source_msg) {
+autoware_auto_msgs::msg::Trajectory Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_Trajectory &source_msg) {
     autoware_auto_msgs::msg::Trajectory dest_msg;
     dest_msg.header = Convert(source_msg.header);
     dest_msg.points = rosidl_runtime_cpp::BoundedVector<autoware_auto_msgs::msg::TrajectoryPoint, 100>();
     std::vector<autoware_auto_msgs::msg::TrajectoryPoint> points;
-    for (size_t i = 0; i < source_msg.points.size; i++) {
-        dest_msg.points.push_back(Convert(source_msg.points.data[i]));
+    for (size_t i = 0; i < source_msg.points.size(); i++) {
+        dest_msg.points.push_back(Convert(source_msg.points.data()[i]));
     }
     return dest_msg;
 }
 
-autoware_auto_msgs__msg__Trajectory Convert (autoware_auto_msgs::msg::Trajectory &source_msg) {
-    autoware_auto_msgs__msg__Trajectory dest_msg;
+zenoh_flow::autoware_auto::autoware_auto_msgs_Trajectory Convert (autoware_auto_msgs::msg::Trajectory &source_msg) {
+    zenoh_flow::autoware_auto::autoware_auto_msgs_Trajectory dest_msg;
     
     dest_msg.header = Convert(source_msg.header);
-    std::vector<autoware_auto_msgs__msg__TrajectoryPoint> trajectory_points;
+     rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint> trajectory_points;
     for (size_t i = 0; i < source_msg.points.size(); i++) {
         trajectory_points.push_back(Convert(source_msg.points[i]));
     }
 
-    dest_msg.points.data = trajectory_points.data();
-    dest_msg.points.capacity = source_msg.points.capacity();
-    dest_msg.points.size = source_msg.points.size();
-
+    dest_msg.points = trajectory_points;
     return dest_msg;
 }

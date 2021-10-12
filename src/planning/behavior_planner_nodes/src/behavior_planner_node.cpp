@@ -122,27 +122,27 @@ void BehaviorPlannerNode::init()
   }
 
   // Setup subscribers
-  m_ego_state_sub = this->create_subscription<State>(
-    "vehicle_state", QoS{10},
-    [this](const State::SharedPtr msg) {on_ego_state(msg);});
-  m_route_sub = this->create_subscription<HADMapRoute>(
-    "route", QoS{10},
-    [this](const HADMapRoute::SharedPtr msg) {on_route(msg);});
-  m_vehicle_state_report_sub = this->create_subscription<VehicleStateReport>(
-    "vehicle_state_report", QoS{10},
-    [this](const VehicleStateReport::SharedPtr msg) {on_vehicle_state_report(msg);});
+//   m_ego_state_sub = this->create_subscription<State>(
+//     "vehicle_state", QoS{10},
+//     [this](const State::SharedPtr msg) {on_ego_state(msg);});
+//   m_route_sub = this->create_subscription<HADMapRoute>(
+//     "route", QoS{10},
+//     [this](const HADMapRoute::SharedPtr msg) {on_route(msg);});
+//   m_vehicle_state_report_sub = this->create_subscription<VehicleStateReport>(
+//     "vehicle_state_report", QoS{10},
+//     [this](const VehicleStateReport::SharedPtr msg) {on_vehicle_state_report(msg);});
 
   // Setup publishers
-  m_trajectory_pub =
-    this->create_publisher<Trajectory>("trajectory", QoS{10});
-  m_debug_trajectory_pub =
-    this->create_publisher<Trajectory>("debug/full_trajectory", QoS{10});
-  m_debug_checkpoints_pub =
-    this->create_publisher<Trajectory>("debug/checkpoints", QoS{10});
-  m_debug_subroute_pub =
-    this->create_publisher<HADMapRoute>("debug/current_subroute", QoS{10});
-  m_vehicle_state_command_pub =
-    this->create_publisher<VehicleStateCommand>("vehicle_state_command", QoS{10});
+//   m_trajectory_pub =
+//     this->create_publisher<Trajectory>("trajectory", QoS{10});
+//   m_debug_trajectory_pub =
+//     this->create_publisher<Trajectory>("debug/full_trajectory", QoS{10});
+//   m_debug_checkpoints_pub =
+//     this->create_publisher<Trajectory>("debug/checkpoints", QoS{10});
+//   m_debug_subroute_pub =
+//     this->create_publisher<HADMapRoute>("debug/current_subroute", QoS{10});
+//   m_vehicle_state_command_pub =
+//     this->create_publisher<VehicleStateCommand>("vehicle_state_command", QoS{10});
 }
 
 void BehaviorPlannerNode::goal_response_callback(

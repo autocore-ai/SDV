@@ -6,7 +6,7 @@
 #include <memory>
 #include <message_convert/geometry_msgs.hpp>
 #include <message_convert/autoware_auto_msgs.hpp>
-
+#include <message_convert/rust_msgs.hpp>
 #include <cstdint>
 
 SimplePlanningSimulatorWrapper::SimplePlanningSimulatorWrapper() {
@@ -38,13 +38,13 @@ SimplePlanningSimulatorWrapper::SimplePlanningSimulatorWrapper() {
     m_simple_planning_simulator_ptr = std::make_shared<simulation::simple_planning_simulator::SimplePlanningSimulator>(options);
 }
 // 当rviz指定起始点，初始化车辆模型
-void SimplePlanningSimulatorWrapper::initialPose(geometry_msgs__msg__PoseWithCovarianceStamped msg) {
+void SimplePlanningSimulatorWrapper::initialPose(zenoh_flow::autoware_auto::geometry_msgs_PoseWithCovarianceStamped msg) {
     geometry_msgs::msg::PoseWithCovarianceStamped initinal_pose_msg = Convert(msg);
     m_simple_planning_simulator_ptr->on_initialpose(std::make_shared<geometry_msgs::msg::PoseWithCovarianceStamped>(initinal_pose_msg));
 }
 // 更新车辆模型
-void SimplePlanningSimulatorWrapper::updateVehicleModel(autoware_auto_msgs__msg__VehicleControlCommand vehicle_control_command, 
-        autoware_auto_msgs__msg__VehicleStateCommand vehicle_state_command) {
+void SimplePlanningSimulatorWrapper::updateVehicleModel(zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleControlCommand vehicle_control_command, 
+        zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleStateCommand vehicle_state_command) {
     // 获得最新的消息
     rclcpp::spin_some(this->m_simple_planning_simulator_ptr);
 
@@ -62,10 +62,10 @@ void SimplePlanningSimulatorWrapper::updateVehicleModel(autoware_auto_msgs__msg_
     m_vehicle_state_report_msg = Convert(vehicle_state_report_msg);
 }
 
-autoware_auto_msgs__msg__VehicleKinematicState SimplePlanningSimulatorWrapper::getVehicleKinematicState() {
+zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleKinematicState SimplePlanningSimulatorWrapper::getVehicleKinematicState() {
     return this->m_vehicle_kinematic_state_msg;
 }
-autoware_auto_msgs__msg__VehicleStateReport SimplePlanningSimulatorWrapper::getVehicleStateReport() {
+zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleStateReport SimplePlanningSimulatorWrapper::getVehicleStateReport() {
     return this->m_vehicle_state_report_msg;
 }
 

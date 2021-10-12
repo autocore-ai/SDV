@@ -7,8 +7,8 @@ PurePursuitNodeWrapper::PurePursuitNodeWrapper() {
     m_pure_pursuit_node_ptr = std::make_shared<autoware::motion::control::pure_pursuit_nodes::PurePursuitNode>("pure_pursuit_node");
 }
 
-autoware_auto_msgs__msg__VehicleControlCommand PurePursuitNodeWrapper::updateCommand(autoware_auto_msgs__msg__Trajectory trajectory, 
-    autoware_auto_msgs__msg__VehicleKinematicState vehicle_kinematic_state) {
+zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleControlCommand PurePursuitNodeWrapper::updateCommand(zenoh_flow::autoware_auto::autoware_auto_msgs_Trajectory trajectory, 
+    zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleKinematicState vehicle_kinematic_state) {
     
     // 获得最新的消息
     rclcpp::spin_some(this->m_pure_pursuit_node_ptr);

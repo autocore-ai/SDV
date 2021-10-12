@@ -1,32 +1,28 @@
 #pragma once
 #include <autoware_auto_msgs/msg/vehicle_control_command.hpp>
-#include <autoware_auto_msgs/msg/vehicle_control_command.h>
 #include <autoware_auto_msgs/msg/vehicle_state_command.hpp>
-#include <autoware_auto_msgs/msg/vehicle_state_command.h>
 #include <autoware_auto_msgs/msg/vehicle_kinematic_state.hpp>
-#include <autoware_auto_msgs/msg/vehicle_kinematic_state.h>
 #include <autoware_auto_msgs/msg/vehicle_state_report.hpp>
-#include <autoware_auto_msgs/msg/vehicle_state_report.h>
 #include <autoware_auto_msgs/msg/complex32.hpp>
-#include <autoware_auto_msgs/msg/complex32.h>
 #include <autoware_auto_msgs/msg/trajectory.hpp>
-#include <autoware_auto_msgs/msg/trajectory.h>
 
-__attribute__((visibility("default"))) autoware_auto_msgs::msg::VehicleStateCommand Convert (autoware_auto_msgs__msg__VehicleStateCommand &source_msg);
+#include "message_convert/rust_msgs.hpp"
 
-__attribute__((visibility("default"))) autoware_auto_msgs::msg::VehicleControlCommand Convert (autoware_auto_msgs__msg__VehicleControlCommand &source_msg);
-__attribute__((visibility("default"))) autoware_auto_msgs__msg__VehicleControlCommand Convert (autoware_auto_msgs::msg::VehicleControlCommand &source_msg);
+__attribute__((visibility("default"))) autoware_auto_msgs::msg::VehicleStateCommand Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleStateCommand &source_msg);
 
-__attribute__((visibility("default"))) autoware_auto_msgs__msg__VehicleKinematicState Convert (autoware_auto_msgs::msg::VehicleKinematicState &source_msg);
-__attribute__((visibility("default"))) autoware_auto_msgs::msg::VehicleKinematicState Convert (autoware_auto_msgs__msg__VehicleKinematicState &source_msg);
+__attribute__((visibility("default"))) autoware_auto_msgs::msg::VehicleControlCommand Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleControlCommand &source_msg);
+__attribute__((visibility("default"))) zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleControlCommand Convert (autoware_auto_msgs::msg::VehicleControlCommand &source_msg);
 
-__attribute__((visibility("default"))) autoware_auto_msgs__msg__VehicleStateReport Convert (autoware_auto_msgs::msg::VehicleStateReport &source_msg);
+__attribute__((visibility("default"))) zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleKinematicState Convert (autoware_auto_msgs::msg::VehicleKinematicState &source_msg);
+__attribute__((visibility("default"))) autoware_auto_msgs::msg::VehicleKinematicState Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleKinematicState &source_msg);
 
-__attribute__((visibility("default"))) autoware_auto_msgs__msg__TrajectoryPoint Convert (autoware_auto_msgs::msg::TrajectoryPoint &source_msg);
-__attribute__((visibility("default"))) autoware_auto_msgs::msg::TrajectoryPoint Convert (autoware_auto_msgs__msg__TrajectoryPoint &source_msg);
+__attribute__((visibility("default"))) zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleStateReport Convert (autoware_auto_msgs::msg::VehicleStateReport &source_msg);
 
-__attribute__((visibility("default"))) autoware_auto_msgs__msg__Complex32 Convert (autoware_auto_msgs::msg::Complex32 &source_msg);
-__attribute__((visibility("default"))) autoware_auto_msgs::msg::Complex32 Convert (autoware_auto_msgs__msg__Complex32 &source_msg);
+__attribute__((visibility("default"))) zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint Convert (autoware_auto_msgs::msg::TrajectoryPoint &source_msg);
+__attribute__((visibility("default"))) autoware_auto_msgs::msg::TrajectoryPoint Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint &source_msg);
 
-__attribute__((visibility("default"))) autoware_auto_msgs::msg::Trajectory Convert (autoware_auto_msgs__msg__Trajectory &source_msg);
-__attribute__((visibility("default"))) autoware_auto_msgs__msg__Trajectory Convert (autoware_auto_msgs::msg::Trajectory &source_msg);
+__attribute__((visibility("default"))) zenoh_flow::autoware_auto::autoware_auto_msgs_Complex32 Convert (autoware_auto_msgs::msg::Complex32 &source_msg);
+__attribute__((visibility("default"))) autoware_auto_msgs::msg::Complex32 Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_Complex32 &source_msg);
+
+__attribute__((visibility("default"))) autoware_auto_msgs::msg::Trajectory Convert (zenoh_flow::autoware_auto::autoware_auto_msgs_Trajectory &source_msg);
+__attribute__((visibility("default"))) zenoh_flow::autoware_auto::autoware_auto_msgs_Trajectory Convert (autoware_auto_msgs::msg::Trajectory &source_msg);
