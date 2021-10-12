@@ -20,5 +20,9 @@ __attribute__((visibility("default"))) geometry_msgs::msg::Quaternion Convert (g
 __attribute__((visibility("default"))) geometry_msgs__msg__Quaternion Convert (geometry_msgs::msg::Quaternion &source_msg);
 __attribute__((visibility("default"))) geometry_msgs::msg::Point Convert (geometry_msgs__msg__Point &source_msg);
 __attribute__((visibility("default"))) geometry_msgs::msg::Pose Convert (geometry_msgs__msg__Pose &source_msg);
+
 __attribute__((visibility("default"))) geometry_msgs__msg__Transform Convert(geometry_msgs::msg::Transform &source_msg);
+__attribute__((visibility("default"))) geometry_msgs::msg::Transform Convert(geometry_msgs__msg__Transform &source_msg);
+
 __attribute__((visibility("default"))) geometry_msgs__msg__Vector3 Convert(geometry_msgs::msg::Vector3 &source_msg);
+__attribute__((visibility("default"))) geometry_msgs::msg::Vector3 Convert(geometry_msgs__msg__Vector3 &source_msg);

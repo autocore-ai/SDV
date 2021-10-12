@@ -2,7 +2,6 @@
 #include <rclcpp/rclcpp.hpp>
 #include <rclcpp/node_options.hpp>
 #include <rclcpp/time_source.hpp>
-#include <rclcpp_components/register_node_macro.hpp>
 #include <array>
 #include <memory>
 #include <message_convert/geometry_msgs.hpp>

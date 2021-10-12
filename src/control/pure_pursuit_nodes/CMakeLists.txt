@@ -26,14 +26,16 @@ ament_auto_find_build_dependencies()
 
 ament_auto_add_library(${PROJECT_NAME} SHARED
   include/pure_pursuit_nodes/pure_pursuit_node.hpp
+  include/pure_pursuit_nodes/pure_pursuit_wrapper.hpp
   include/pure_pursuit_nodes/visibility_control.hpp
   src/pure_pursuit_node.cpp
+  src/pure_pursuit_wrapper.cpp
 )
 autoware_set_compile_options(${PROJECT_NAME})
 
-set(PURE_PURSUIT_NODE_EXE pure_pursuit_node_exe)
-ament_auto_add_executable(${PURE_PURSUIT_NODE_EXE} src/pure_pursuit_node_main.cpp)
-autoware_set_compile_options(${PURE_PURSUIT_NODE_EXE})
+## set(PURE_PURSUIT_NODE_EXE pure_pursuit_node_exe)
+## ament_auto_add_executable(${PURE_PURSUIT_NODE_EXE} src/pure_pursuit_node_main.cpp)
+## autoware_set_compile_options(${PURE_PURSUIT_NODE_EXE})
 
 if(BUILD_TESTING)
   # run common linters
@@ -54,4 +56,14 @@ endif()
 ## install stuff
 ament_auto_package(
   INSTALL_TO_SHARE param
+)
+
+install(
+  DIRECTORY include/
+  DESTINATION /opt/AutowareAuto/include
+)
+
+install(
+  TARGETS ${PROJECT_NAME}
+  LIBRARY DESTINATION /opt/AutowareAuto/lib
 )

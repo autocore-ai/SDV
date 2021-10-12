@@ -75,11 +75,11 @@ public:
   : ControllerBaseNode{
       "test_controller_base_node_tf",
       "",
-      cmd_topic,
-      state_topic,
+    //   cmd_topic,
+    //   state_topic,
       tf_topic,
-      traj_topic,
-      "",
+    //   traj_topic,
+    //   "",
       static_tf_topic
   }
   {

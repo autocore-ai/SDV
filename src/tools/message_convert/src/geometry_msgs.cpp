@@ -54,8 +54,23 @@ geometry_msgs__msg__Transform Convert(geometry_msgs::msg::Transform &source_msg)
     return dest_msg;
 }
 
+geometry_msgs::msg::Transform Convert(geometry_msgs__msg__Transform &source_msg) {
+    geometry_msgs::msg::Transform dest_msg;
+    dest_msg.rotation = Convert(source_msg.rotation);
+    dest_msg.translation = Convert(source_msg.translation);
+    return dest_msg;
+}
+
 geometry_msgs__msg__Vector3 Convert(geometry_msgs::msg::Vector3 &source_msg) {
     geometry_msgs__msg__Vector3 dest_msg;
+    dest_msg.x = source_msg.x;
+    dest_msg.y = source_msg.y;
+    dest_msg.z = source_msg.z;
+    return dest_msg;
+}
+
+geometry_msgs::msg::Vector3 Convert(geometry_msgs__msg__Vector3 &source_msg) {
+    geometry_msgs::msg::Vector3 dest_msg;
     dest_msg.x = source_msg.x;
     dest_msg.y = source_msg.y;
     dest_msg.z = source_msg.z;

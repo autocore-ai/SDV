@@ -33,3 +33,13 @@ if(BUILD_TESTING)
 endif()
 
 ament_auto_package()
+
+install(
+  DIRECTORY include/
+  DESTINATION /opt/AutowareAuto/include
+)
+
+install(
+  TARGETS ${PROJECT_NAME}
+  LIBRARY DESTINATION /opt/AutowareAuto/lib
+)

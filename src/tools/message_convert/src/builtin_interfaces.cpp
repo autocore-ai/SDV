@@ -20,3 +20,10 @@ builtin_interfaces__msg__Duration Convert (builtin_interfaces::msg::Duration &so
     dest_msg.sec = source_msg.sec;
     return dest_msg;
 }
+
+builtin_interfaces::msg::Duration Convert (builtin_interfaces__msg__Duration &source_msg) {
+    builtin_interfaces::msg::Duration dest_msg;
+    dest_msg.nanosec = source_msg.nanosec;
+    dest_msg.sec = source_msg.sec;
+    return dest_msg;
+}

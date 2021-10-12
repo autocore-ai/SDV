@@ -8,3 +8,4 @@ __attribute__((visibility("default"))) builtin_interfaces::msg::Time Convert (bu
 __attribute__((visibility("default"))) builtin_interfaces__msg__Time Convert (builtin_interfaces::msg::Time &source_msg);
 
 __attribute__((visibility("default"))) builtin_interfaces__msg__Duration Convert(builtin_interfaces::msg::Duration &source_msg);
+__attribute__((visibility("default"))) builtin_interfaces::msg::Duration Convert(builtin_interfaces__msg__Duration &source_msg);

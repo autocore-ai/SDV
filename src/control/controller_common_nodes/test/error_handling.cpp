@@ -94,11 +94,11 @@ public:
   : ControllerBaseNode{
       "test_error_controller_node",
       "",
-      cmd_topic,
+    //   cmd_topic,
       state_topic,
       tf_topic,
-      traj_topic,
-      diagnostic_topic
+    //   traj_topic,
+    //   diagnostic_topic
   }
   {
     ControllerBaseNode::set_controller(std::make_unique<ErrorController>());

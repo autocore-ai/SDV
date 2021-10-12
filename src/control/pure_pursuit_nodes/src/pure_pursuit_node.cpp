@@ -38,24 +38,36 @@ namespace pure_pursuit_nodes
 PurePursuitNode::PurePursuitNode(
   const std::string & node_name,
   const std::string & node_namespace)
-: ControllerBaseNode{node_name, node_namespace, "ctrl_cmd", "current_pose",
-    "tf", "trajectory", "ctrl_diag"}
+: ControllerBaseNode{node_name, node_namespace,
+    "tf"}
 {
-  pure_pursuit::Config cfg{
-    static_cast<float32_t>(declare_parameter(
-      "controller.minimum_lookahead_distance").get<float64_t>()),
-    static_cast<float32_t>(declare_parameter(
-      "controller.maximum_lookahead_distance").get<float64_t>()),
-    static_cast<float32_t>(
-      declare_parameter("controller.speed_to_lookahead_ratio").get<float64_t>()),
-    declare_parameter("controller.is_interpolate_lookahead_point").get<bool8_t>(),
-    declare_parameter("controller.is_delay_compensation").get<bool8_t>(),
-    static_cast<float32_t>(declare_parameter(
-      "controller.emergency_stop_distance").get<float64_t>()),
-    static_cast<float32_t>(declare_parameter(
-      "controller.speed_thres_traveling_direction").get<float64_t>()),
-    static_cast<float32_t>(declare_parameter(
-      "controller.dist_front_rear_wheels").get<float64_t>())};
+    // 写死config入参
+    pure_pursuit::Config cfg{
+        float(6.0),
+        float(100.0),
+        float(2.0),
+        true,
+        false,
+        float(0.1),
+        float(0.3),
+        float(2.7)
+    };
+
+//   pure_pursuit::Config cfg{
+//     static_cast<float32_t>(declare_parameter(
+//       "controller.minimum_lookahead_distance").get<float64_t>()),
+//     static_cast<float32_t>(declare_parameter(
+//       "controller.maximum_lookahead_distance").get<float64_t>()),
+//     static_cast<float32_t>(
+//       declare_parameter("controller.speed_to_lookahead_ratio").get<float64_t>()),
+//     declare_parameter("controller.is_interpolate_lookahead_point").get<bool8_t>(),
+//     declare_parameter("controller.is_delay_compensation").get<bool8_t>(),
+//     static_cast<float32_t>(declare_parameter(
+//       "controller.emergency_stop_distance").get<float64_t>()),
+//     static_cast<float32_t>(declare_parameter(
+//       "controller.speed_thres_traveling_direction").get<float64_t>()),
+//     static_cast<float32_t>(declare_parameter(
+//       "controller.dist_front_rear_wheels").get<float64_t>())};
   set_controller(std::make_unique<pure_pursuit::PurePursuit>(cfg));
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -63,8 +75,8 @@ PurePursuitNode::PurePursuitNode(
   const std::string & node_name,
   const pure_pursuit::Config & cfg,
   const std::string & node_namespace)
-: ControllerBaseNode{node_name, node_namespace, "ctrl_cmd", "current_pose",
-    "tf", "trajectory", "ctrl_diag"}
+: ControllerBaseNode{node_name, node_namespace,
+    "tf"}
 {
   set_controller(std::make_unique<pure_pursuit::PurePursuit>(cfg));
 }

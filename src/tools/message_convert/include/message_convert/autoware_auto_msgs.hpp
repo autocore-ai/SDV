@@ -9,15 +9,24 @@
 #include <autoware_auto_msgs/msg/vehicle_state_report.h>
 #include <autoware_auto_msgs/msg/complex32.hpp>
 #include <autoware_auto_msgs/msg/complex32.h>
+#include <autoware_auto_msgs/msg/trajectory.hpp>
+#include <autoware_auto_msgs/msg/trajectory.h>
 
 __attribute__((visibility("default"))) autoware_auto_msgs::msg::VehicleStateCommand Convert (autoware_auto_msgs__msg__VehicleStateCommand &source_msg);
 
 __attribute__((visibility("default"))) autoware_auto_msgs::msg::VehicleControlCommand Convert (autoware_auto_msgs__msg__VehicleControlCommand &source_msg);
+__attribute__((visibility("default"))) autoware_auto_msgs__msg__VehicleControlCommand Convert (autoware_auto_msgs::msg::VehicleControlCommand &source_msg);
 
 __attribute__((visibility("default"))) autoware_auto_msgs__msg__VehicleKinematicState Convert (autoware_auto_msgs::msg::VehicleKinematicState &source_msg);
+__attribute__((visibility("default"))) autoware_auto_msgs::msg::VehicleKinematicState Convert (autoware_auto_msgs__msg__VehicleKinematicState &source_msg);
 
 __attribute__((visibility("default"))) autoware_auto_msgs__msg__VehicleStateReport Convert (autoware_auto_msgs::msg::VehicleStateReport &source_msg);
 
 __attribute__((visibility("default"))) autoware_auto_msgs__msg__TrajectoryPoint Convert (autoware_auto_msgs::msg::TrajectoryPoint &source_msg);
+__attribute__((visibility("default"))) autoware_auto_msgs::msg::TrajectoryPoint Convert (autoware_auto_msgs__msg__TrajectoryPoint &source_msg);
 
 __attribute__((visibility("default"))) autoware_auto_msgs__msg__Complex32 Convert (autoware_auto_msgs::msg::Complex32 &source_msg);
+__attribute__((visibility("default"))) autoware_auto_msgs::msg::Complex32 Convert (autoware_auto_msgs__msg__Complex32 &source_msg);
+
+__attribute__((visibility("default"))) autoware_auto_msgs::msg::Trajectory Convert (autoware_auto_msgs__msg__Trajectory &source_msg);
+__attribute__((visibility("default"))) autoware_auto_msgs__msg__Trajectory Convert (autoware_auto_msgs::msg::Trajectory &source_msg);

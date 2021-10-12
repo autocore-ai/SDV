@@ -35,54 +35,54 @@ ControllerBaseNode::ControllerBaseNode(const std::string & name, const std::stri
   using rclcpp::ParameterValue;
   using std::string;
   init(
-    declare_parameter("command_topic", ParameterValue{""}, ParameterDescriptor{}).get<string>(),
-    declare_parameter("state_topic", ParameterValue{""}, ParameterDescriptor{}).get<string>(),
-    declare_parameter("tf_topic", ParameterValue{""}, ParameterDescriptor{}).get<string>(),
-    declare_parameter("static_tf_topic", ParameterValue{""}, ParameterDescriptor{}).get<string>(),
-    declare_parameter("trajectory_topic", ParameterValue{""}, ParameterDescriptor{}).get<string>(),
-    declare_parameter("diagnostic_topic", ParameterValue{""}, ParameterDescriptor{}).get<string>());
+      "/tf",
+      "/tf_static"
+  );
+    // declare_parameter("tf_topic", ParameterValue{""}, ParameterDescriptor{}).get<string>(),
+    // declare_parameter("static_tf_topic", ParameterValue{""}, ParameterDescriptor{}).get<string>(),
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 ControllerBaseNode::ControllerBaseNode(
   const std::string & name,
   const std::string & ns,
-  const std::string & command_topic,
-  const std::string & state_topic,
+//   const std::string & command_topic,
+//   const std::string & state_topic,
   const std::string & tf_topic,
-  const std::string & trajectory_topic,
-  const std::string & diagnostic_topic,
+//   const std::string & trajectory_topic,
+//   const std::string & diagnostic_topic,
   const std::string & static_tf_topic)
 : Node{name, ns, rclcpp::NodeOptions{rcl_get_default_allocator()}}
 {
-  init(command_topic, state_topic, tf_topic, static_tf_topic, trajectory_topic, diagnostic_topic);
+  init(tf_topic, static_tf_topic);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void ControllerBaseNode::init(
-  const std::string & command_topic,
-  const std::string & state_topic,
+//   const std::string & command_topic,
+//   const std::string & state_topic,
   const std::string & tf_topic,
-  const std::string & static_tf_topic,
-  const std::string & trajectory_topic,
-  const std::string & diagnostic_topic)
+  const std::string & static_tf_topic
+//   const std::string & trajectory_topic,
+//   const std::string & diagnostic_topic
+)
 {
   // Common error checking
-  if (command_topic.empty()) {
-    throw std::domain_error{"Command topic not set"};
-  }
-  if (state_topic.empty()) {
-    throw std::domain_error{"State topic not set"};
-  }
+//   if (command_topic.empty()) {
+//     throw std::domain_error{"Command topic not set"};
+//   }
+//   if (state_topic.empty()) {
+//     throw std::domain_error{"State topic not set"};
+//   }
   if (tf_topic.empty()) {
     throw std::domain_error{"TF topic not set"};
   }
   if (static_tf_topic.empty()) {
     throw std::domain_error{"Static TF topic not set"};
-  }
-  if (trajectory_topic.empty()) {
-    throw std::domain_error{"Trajectory topic not set"};
-  }
+//   }
+//   if (trajectory_topic.empty()) {
+//     throw std::domain_error{"Trajectory topic not set"};
+//   }
   using rclcpp::QoS;
   // Subs
   using SubAllocT = rclcpp::SubscriptionOptionsWithAllocator<std::allocator<void>>;
@@ -91,25 +91,31 @@ void ControllerBaseNode::init(
   // a StaticBroadcasterQoS which has transient_local durability. If the subscriber
   // isn't also transient_local, it will often miss the static transform message.
   const QoS static_tf_qos = QoS{10}.transient_local();
-  m_state_sub = create_subscription<State>(
-    state_topic, QoS{10},
-    [this](const State::SharedPtr msg) {on_state(msg);}, SubAllocT{});
-  m_trajectory_sub = create_subscription<Trajectory>(
-    trajectory_topic, QoS{10},
-    [this](const Trajectory::SharedPtr msg) {on_trajectory(msg);}, SubAllocT{});
+
+// 消息接收自zenoh-flow
+//   m_state_sub = create_subscription<State>(
+//     state_topic, QoS{10},
+//     [this](const State::SharedPtr msg) {on_state(msg);}, SubAllocT{});
+//   m_trajectory_sub = create_subscription<Trajectory>(
+//     trajectory_topic, QoS{10},
+//     [this](const Trajectory::SharedPtr msg) {on_trajectory(msg);}, SubAllocT{});
+
+    
   m_tf_sub = create_subscription<TFMessage>(
     tf_topic, QoS{10},
     [this](const TFMessage::SharedPtr msg) {on_tf(msg);}, SubAllocT{});
   m_static_tf_sub = create_subscription<TFMessage>(
     static_tf_topic, static_tf_qos,
     [this](const TFMessage::SharedPtr msg) {on_static_tf(msg);}, SubAllocT{});
+
+// 消息发往zenoh-flow
   // Pubs
-  using PubAllocT = rclcpp::PublisherOptionsWithAllocator<std::allocator<void>>;
-  m_command_pub = create_publisher<Command>(command_topic, QoS{10}, PubAllocT{});
-  // Diagnostics are not strictly needed for proper running
-  if (!diagnostic_topic.empty()) {
-    m_diagnostic_pub = create_publisher<Diagnostic>(diagnostic_topic, QoS{10}, PubAllocT{});
-  }
+//   using PubAllocT = rclcpp::PublisherOptionsWithAllocator<std::allocator<void>>;
+//   m_command_pub = create_publisher<Command>(command_topic, QoS{10}, PubAllocT{});
+//   // Diagnostics are not strictly needed for proper running
+//   if (!diagnostic_topic.empty()) {
+//     m_diagnostic_pub = create_publisher<Diagnostic>(diagnostic_topic, QoS{10}, PubAllocT{})
+    }
 }
 ////////////////////////////////////////////////////////////////////////////////
 void ControllerBaseNode::retry_compute()
@@ -132,7 +138,7 @@ void ControllerBaseNode::on_tf(const TFMessage::SharedPtr & msg)
       RCLCPP_WARN(get_logger(), "Warning: tf2::BufferCore::setTransform failed");
     }
   }
-  retry_compute();
+  // retry_compute();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -196,47 +202,49 @@ bool ControllerBaseNode::try_compute(const State & state)
   auto state_tf = state;
   motion_common::doTransform(state, state_tf, tf);
   // Diagnostic stuff: should maybe be different functions
-  const auto start = std::chrono::system_clock::now();
-  Diagnostic diag;
-  if (m_diagnostic_pub) {
-    diag.diag_header.computation_start = time_utils::to_message(start);
-    if (m_controller->get_reference_trajectory().points.empty()) {
-      diag.new_trajectory = false;
-    } else {
-      const auto ref_idx = m_controller->get_base_config().is_temporal_reference() ?
-        m_controller->get_current_state_temporal_index() :
-        m_controller->get_current_state_spatial_index();
-      diag.new_trajectory = ref_idx == decltype(ref_idx) {};
-    }
-  }
-  const auto diagnostic_fn = [this, start, &state, &diag]() -> void {
-      if (m_diagnostic_pub) {
-        diag.diag_header.runtime = time_utils::to_message(std::chrono::system_clock::now() - start);
-        compute_diagnostic(
-          *m_controller,
-          state,
-          m_controller->get_base_config().is_temporal_reference(),
-          diag);
-        m_diagnostic_pub->publish(diag);
-      }
-    };
+  // 没有调试信息
+//  const auto start = std::chrono::system_clock::now();
+//   Diagnostic diag;
+//   if (m_diagnostic_pub) {
+//     diag.diag_header.computation_start = time_utils::to_message(start);
+//     if (m_controller->get_reference_trajectory().points.empty()) {
+//       diag.new_trajectory = false;
+//     } else {
+//       const auto ref_idx = m_controller->get_base_config().is_temporal_reference() ?
+//         m_controller->get_current_state_temporal_index() :
+//         m_controller->get_current_state_spatial_index();
+//       diag.new_trajectory = ref_idx == decltype(ref_idx) {};
+//     }
+//   }
+//   const auto diagnostic_fn = [this, start, &state, &diag]() -> void {
+//       if (m_diagnostic_pub) {
+//         diag.diag_header.runtime = time_utils::to_message(std::chrono::system_clock::now() - start);
+//         compute_diagnostic(
+//           *m_controller,
+//           state,
+//           m_controller->get_base_config().is_temporal_reference(),
+//           diag);
+//         m_diagnostic_pub->publish(diag);
+//       }
+//     };
   // Compute result
   try {
     const auto cmd{m_controller->compute_command(state_tf)};
-    publish(cmd);
-    diagnostic_fn();
+    // publish(cmd);
+    command = cmd;
+    //diagnostic_fn();
   } catch (...) {
-    diagnostic_fn();
+    //diagnostic_fn();
     on_bad_compute(std::current_exception());
   }
   return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void ControllerBaseNode::publish(const Command & msg)
-{
-  m_command_pub->publish(msg);
-}
+// void ControllerBaseNode::publish(const Command & msg)
+// {
+//   m_command_pub->publish(msg);
+// }
 
 ////////////////////////////////////////////////////////////////////////////////
 void ControllerBaseNode::set_controller(ControllerPtr && controller) noexcept
