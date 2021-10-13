@@ -24,6 +24,17 @@ extern crate zenoh_flow;
 
 #[cxx::bridge(namespace = "zenoh::flow")]
 pub mod ffi {
+    pub struct GeometryMsgsVector3 {
+        pub x: f64,
+        pub y: f64,
+        pub z: f64,
+    }
+
+    pub struct GeometryMsgsTwist {
+        pub linear: GeometryMsgsVector3,
+        pub angular: GeometryMsgsVector3,
+    }
+
     pub struct Context {
         pub mode: usize,
     }
@@ -59,10 +70,12 @@ pub mod ffi {
     pub struct Output {
         pub port_id: String,
         pub data: Vec<u8>,
+        pub cmd_vel: GeometryMsgsTwist,
     }
 
     pub struct Data {
         pub bytes: Vec<u8>,
+        pub cmd_vel: GeometryMsgsTwist,
     }
 
     pub struct Configuration {
@@ -120,12 +133,6 @@ impl Debug for StateWrapper {
     }
 }
 
-impl ffi::Data {
-    pub fn new(bytes: Vec<u8>) -> Self {
-        Self { bytes }
-    }
-}
-
 impl Debug for ffi::Data {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("Data").field("bytes", &self.bytes).finish()
@@ -139,6 +146,28 @@ impl DowncastAny for ffi::Data {
 
     fn as_mut_any(&mut self) -> &mut dyn std::any::Any {
         self
+    }
+}
+
+impl DowncastAny for ffi::GeometryMsgsTwist {
+    fn as_any(&self) -> &dyn std::any::Any {
+        self
+    }
+
+    fn as_mut_any(&mut self) -> &mut dyn std::any::Any {
+        self
+    }
+}
+
+impl Debug for ffi::GeometryMsgsTwist {
+    fn fmt(&self, _: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
+        todo!()
+    }
+}
+
+impl Data for ffi::GeometryMsgsTwist {
+    fn try_serialize(&self) -> std::result::Result<std::vec::Vec<u8>, zenoh_flow::ZFError> {
+        todo!()
     }
 }
 

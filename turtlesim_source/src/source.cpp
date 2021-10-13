@@ -24,30 +24,43 @@ namespace zenoh
 
     State::State()
     {
-      native_ptr = std::make_shared<TurtleSimSource>();
+      native_ptr = std::make_shared<TurtleSimSource>(0, nullptr);
     }
 
-    // std::unique_ptr<State>
-    // initialize(const ConfigurationMap &configuration)
-    // {
-    //   return std::make_unique<State>();
-    // }
+    int State::Run()
+    {
+      auto ret = native_ptr->Run();
+      if (ret <= 0)
+      {
+        native_ptr->Quit();
+      }
+      return ret;
+    }
 
-    // rust::Vec<Output>
-    // run(Context &context, std::unique_ptr<State> &state)
-    // {
-    //   std::string input;
+    geometry_msgs::msg::Twist State::Data()
+    {
+      return native_ptr->twist;
+    }
 
-    //   std::cout << "Press ENTER.";
-    //   std::getline(std::cin, input);
-    //   std::cout << std::endl;
+    std::unique_ptr<State>
+    initialize(const ConfigurationMap &configuration)
+    {
+      return std::make_unique<State>();
+    }
 
-    //   rust::Vec<byte_t> tick = {1};
+    rust::Vec<Output>
+    run(Context &context, std::unique_ptr<State> &state)
+    {
+      state->Run();
 
-    //   Output output{"tick", tick};
+      state->Data();
 
-    //   rust::Vec<Output> results{output};
-    //   return results;
-    // }
+      rust::Vec<byte_t> tick = {1};
+
+      Output output{"tick", tick};
+
+      rust::Vec<Output> results{output};
+      return results;
+    }
   } // namespace flow
 } // namespace zenoh

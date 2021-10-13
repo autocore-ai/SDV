@@ -35,8 +35,7 @@ set_target_properties(CxxWrapper
   IMPORTED_LOCATION ${cxxwrapper_lib}
 )
 
-ament_auto_add_library(${PROJECT_NAME} SHARED src/source.cpp)
-# target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
-# target_link_libraries(${PROJECT_NAME} CxxWrapper turtlesim_source_native)
+ament_auto_add_library(${PROJECT_NAME} SHARED src/source.cpp src/wrapper.cpp)
+target_link_libraries(${PROJECT_NAME} CxxWrapper)
 
 ament_auto_package()

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>turtlesim</name>
+  <name>zf_turtlesim_msgs</name>
   <version>1.2.5</version>
   <description>
     turtlesim is a tool made for teaching ROS and ROS packages.
@@ -16,22 +16,17 @@
   <author>Josh Faust</author>
   <author email="dthomas@osrfoundation.org">Dirk Thomas</author>
 
-  <build_depend>qt5-qmake</build_depend>
-  <build_depend>qtbase5-dev</build_depend>
-
   <buildtool_depend>ament_cmake_auto</buildtool_depend>
-  <buildtool_depend>rosidl_default_generators</buildtool_depend>
+  <build_depend>rosidl_default_generators</build_depend>
 
-  <exec_depend>libqt5-core</exec_depend>
-  <exec_depend>libqt5-gui</exec_depend>
   <exec_depend>rosidl_default_runtime</exec_depend>
 
-  <depend>ament_index_cpp</depend>
   <depend>geometry_msgs</depend>
-  <depend>rclcpp</depend>
-  <depend>rclcpp_action</depend>
   <depend>std_msgs</depend>
   <depend>std_srvs</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
 
   <member_of_group>rosidl_interface_packages</member_of_group>
 

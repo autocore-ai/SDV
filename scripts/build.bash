@@ -4,8 +4,6 @@ set -e
 
 source /opt/ros/foxy/setup.bash
 
-rm target/**/*.a
+find target/** -name "*.a" |xargs rm -rf
 
 colcon build --merge-install
-
-source ./scripts/run.bash

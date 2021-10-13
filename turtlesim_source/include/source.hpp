@@ -15,6 +15,7 @@
 #pragma once
 #include <wrapper.hpp>
 #include <turtlesim_source.hpp>
+#include <geometry_msgs/msg/twist.hpp>
 
 namespace zenoh
 {
@@ -27,11 +28,13 @@ namespace zenoh
       std::shared_ptr<TurtleSimSource> native_ptr;
     public:
       State();
+      int Run();
+      geometry_msgs::msg::Twist Data();
     };
 
-    // std::unique_ptr<State>
-    // initialize(const ConfigurationMap &configuration);
-    // rust::Vec<Output> run(Context &context, std::unique_ptr<State> &state);
+    std::unique_ptr<State>
+    initialize(const ConfigurationMap &configuration);
+    rust::Vec<Output> run(Context &context, std::unique_ptr<State> &state);
 
   } // namespace flow
 } // namespace zenoh
