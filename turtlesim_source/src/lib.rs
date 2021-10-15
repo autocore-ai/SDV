@@ -16,7 +16,7 @@ use async_trait::async_trait;
 use cxx::UniquePtr;
 use std::{collections::HashMap, fmt::Debug, sync::Arc};
 use zenoh_flow::{
-    downcast_mut, zf_data_raw, Component, ComponentOutput, Context, Data, DowncastAny, OutputRule,
+    downcast_mut, zf_data_raw, zf_data, Component, ComponentOutput, Context, Data, DowncastAny, OutputRule,
     PortId, SerDeData, Source, State, ZFError, ZFResult,
 };
 
@@ -24,15 +24,22 @@ extern crate zenoh_flow;
 
 #[cxx::bridge(namespace = "zenoh::flow")]
 pub mod ffi {
-    pub struct GeometryMsgsVector3 {
+    pub struct geometry_msgs_Vector3 {
         pub x: f64,
         pub y: f64,
         pub z: f64,
     }
 
-    pub struct GeometryMsgsTwist {
-        pub linear: GeometryMsgsVector3,
-        pub angular: GeometryMsgsVector3,
+    pub struct geometry_msgs_Quaternion {
+        pub x: f64,
+        pub y: f64,
+        pub z: f64,
+        pub w: f64,
+    }
+
+    pub struct geometry_msgs_Twist {
+        pub linear: geometry_msgs_Vector3,
+        pub angular: geometry_msgs_Vector3,
     }
 
     pub struct Context {
@@ -70,12 +77,10 @@ pub mod ffi {
     pub struct Output {
         pub port_id: String,
         pub data: Vec<u8>,
-        pub cmd_vel: GeometryMsgsTwist,
     }
 
     pub struct Data {
         pub bytes: Vec<u8>,
-        pub cmd_vel: GeometryMsgsTwist,
     }
 
     pub struct Configuration {
@@ -94,6 +99,8 @@ pub mod ffi {
         fn initialize(configuration: &ConfigurationMap) -> UniquePtr<State>;
 
         fn run(context: &mut Context, state: &mut UniquePtr<State>) -> Result<Vec<Output>>;
+
+        fn Data() -> geometry_msgs_Twist;
     }
 }
 impl From<HashMap<String, String>> for ffi::ConfigurationMap {
@@ -149,7 +156,7 @@ impl DowncastAny for ffi::Data {
     }
 }
 
-impl DowncastAny for ffi::GeometryMsgsTwist {
+impl DowncastAny for ffi::geometry_msgs_Twist {
     fn as_any(&self) -> &dyn std::any::Any {
         self
     }
@@ -159,13 +166,13 @@ impl DowncastAny for ffi::GeometryMsgsTwist {
     }
 }
 
-impl Debug for ffi::GeometryMsgsTwist {
+impl Debug for ffi::geometry_msgs_Twist {
     fn fmt(&self, _: &mut std::fmt::Formatter<'_>) -> std::result::Result<(), std::fmt::Error> {
         todo!()
     }
 }
 
-impl Data for ffi::GeometryMsgsTwist {
+impl Data for ffi::geometry_msgs_Twist {
     fn try_serialize(&self) -> std::result::Result<std::vec::Vec<u8>, zenoh_flow::ZFError> {
         todo!()
     }
@@ -214,7 +221,7 @@ impl OutputRule for TurtlesimSource {
         _context: &mut Context,
         _dyn_state: &mut Box<dyn State>,
         outputs: HashMap<PortId, SerDeData>,
-    ) -> ZFResult<HashMap<zenoh_flow::PortId, zenoh_flow::ComponentOutput>> {
+    ) -> ZFResult<HashMap<zenoh_flow::PortId, SerDeData>> {
         let mut results = HashMap::with_capacity(outputs.len());
         // NOTE: default output rule for now.
         for (port_id, data) in outputs {
@@ -242,10 +249,16 @@ impl Source for TurtlesimSource {
             }
         };
 
-        let mut result: HashMap<PortId, SerDeData> = HashMap::with_capacity(cxx_outputs.len());
+        let mut result: HashMap<PortId, SerDeData> = HashMap::with_capacity(cxx_outputs.len+1);
         for cxx_output in cxx_outputs.into_iter() {
             result.insert(cxx_output.port_id.into(), zf_data_raw!(cxx_output.data));
         }
+        
+        #[allow(unused_unsafe)]
+            unsafe {
+                let geometry_msgs_twist = ffi::Data();
+                result.insert(String::from("geometry_msgs_twist"), zf_data!(geometry_msgs_twist));
+            }
 
         Ok(result)
     }
