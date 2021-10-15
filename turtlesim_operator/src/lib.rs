@@ -15,17 +15,51 @@
 use cxx::UniquePtr;
 use std::{collections::HashMap, fmt::Debug, sync::Arc};
 use zenoh_flow::{
-    downcast_mut, Component, ComponentOutput, SerDeData, DowncastAny,
-    InputRule, Operator, OutputRule, State, Token, TokenAction, ZFError, ZFResult, Data,
-    zf_data_raw,
+    downcast_mut, zf_data, Node, NodeOutput, Operator, SerDeData, State, Token, TokenAction,
+    ZFError, ZFResult, DowncastAny, Data
 };
 
 extern crate zenoh_flow;
 
 #[cxx::bridge(namespace = "zenoh::flow")]
 pub mod ffi {
+
+    pub struct geometry_msgs_Vector3 {
+        pub x: f64,
+        pub y: f64,
+        pub z: f64,
+    }
+
+    pub struct geometry_msgs_Quaternion {
+        pub x: f64,
+        pub y: f64,
+        pub z: f64,
+        pub w: f64,
+    }
+
+    pub struct geometry_msgs_Twist {
+        pub linear: geometry_msgs_Vector3,
+        pub angular: geometry_msgs_Vector3,
+    }
+    
     pub struct Context {
         pub mode: usize,
+    }
+
+    pub struct Configuration {
+        pub key: String,
+        pub value: String,
+    }
+
+    pub struct Input {
+        pub port_id: String,
+        pub data: Vec<u8>,
+        pub timestamp: u64,
+    }
+
+    pub struct Output {
+        pub port_id: String,
+        pub data: Vec<u8>,
     }
 
     pub enum TokenStatus {
@@ -50,35 +84,12 @@ pub mod ffi {
         pub timestamp: u64,
     }
 
-    pub struct Input {
-        pub port_id: String,
-        pub data: Vec<u8>,
-        pub timestamp: u64,
-    }
-
-    pub struct Output {
-        pub port_id: String,
-        pub data: Vec<u8>,
-    }
-
-    pub struct Data {
-        pub bytes: Vec<u8>,
-    }
-
-    pub struct Configuration {
-        pub key: String,
-        pub value: String,
-    }
-
-    pub struct ConfigurationMap {
-        pub map: Vec<Configuration>,
-    }
     unsafe extern "C++" {
         include!("operator.hpp");
 
         type State;
 
-        fn initialize(configuration: &ConfigurationMap) -> UniquePtr<State>;
+        fn initialize(configuration: &Vec<Configuration>) -> UniquePtr<State>;
 
         fn input_rule(
             context: &mut Context,
@@ -89,24 +100,56 @@ pub mod ffi {
         fn run(
             context: &mut Context,
             state: &mut UniquePtr<State>,
-            inputs: Vec<Input>,
-        ) -> Result<Vec<Output>>;
-    }
-}
-impl From<HashMap<String, String>> for ffi::ConfigurationMap {
-    fn from(configuration: HashMap<String, String>) -> Self {
-        ffi::ConfigurationMap {
-            map: configuration
-                .iter()
-                .map(|(key, value)| ffi::Configuration {
-                    key: key.clone(),
-                    value: value.clone(),
-                })
-                .collect(),
-        }
+            twist: &geometry_msgs_Twist,
+        ) -> Result<geometry_msgs_Twist>;
     }
 }
 
+impl Data for ffi::geometry_msgs_Twist {
+    fn try_serialize(&self) -> zenoh_flow::ZFResult<Vec<u8>> {
+        Ok(Vec::new())
+    }
+}
+
+impl DowncastAny for ffi::geometry_msgs_Twist {
+    fn as_any(&self) -> &dyn std::any::Any {
+        self
+    }
+
+    fn as_mut_any(&mut self) -> &mut dyn std::any::Any {
+        self
+    }
+}
+
+impl Debug for ffi::geometry_msgs_Vector3 {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("geometry_msgs__msg__Vector3")
+        .field("x", &self.x)
+        .field("y", &self.y)
+        .field("z", &self.z)
+        .finish()
+    }
+}
+
+impl Debug for ffi::geometry_msgs_Quaternion {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("geometry_msgs__msg__Quaternion")
+        .field("x", &self.x)
+        .field("y", &self.y)
+        .field("z", &self.z)
+        .field("w", &self.w)
+        .finish()
+    }
+}
+
+impl Debug for ffi::geometry_msgs_Twist {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("geometry_msgs__msg__Twist")
+        .field("linear", &self.linear)
+        .field("angular", &self.angular)
+        .finish()
+    }
+}
 unsafe impl Send for ffi::State {}
 unsafe impl Sync for ffi::State {}
 
@@ -130,19 +173,28 @@ impl Debug for StateWrapper {
     }
 }
 
-impl ffi::Data {
-    pub fn new(bytes: Vec<u8>) -> Self {
-        Self { bytes }
-    }
+
+
+pub struct TwistWrapper {
+    pub twist: ffi::geometry_msgs_Twist,
 }
 
-impl Debug for ffi::Data {
+// impl Data for TwistWrapper {
+//     fn try_serialize(&self) -> zenoh_flow::ZFResult<Vec<u8>> {
+//         // Ok(self.0.as_bytes().to_vec())
+//         Ok(vec![0])
+//     }
+// }
+
+impl Debug for TwistWrapper {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct("Data").field("bytes", &self.bytes).finish()
+        f.debug_struct("TwistWrapper")
+        .field("twist", &self.twist)
+        .finish()
     }
 }
 
-impl DowncastAny for ffi::Data {
+impl DowncastAny for TwistWrapper {
     fn as_any(&self) -> &dyn std::any::Any {
         self
     }
@@ -152,17 +204,13 @@ impl DowncastAny for ffi::Data {
     }
 }
 
-impl Data for ffi::Data {
-    fn try_serialize(&self) -> ZFResult<Vec<u8>> {
-        Ok(self.bytes.clone())
-    }
-}
 
 impl From<&mut zenoh_flow::Context> for ffi::Context {
     fn from(context: &mut zenoh_flow::Context) -> Self {
         Self { mode: context.mode }
     }
 }
+
 impl ffi::Token {
     pub fn from_token(token: &Token, port_id: &str) -> ZFResult<Self> {
         match token {
@@ -222,22 +270,30 @@ impl ffi::Input {
     }
 }
 
-pub struct MyOperator;
+static TWIST: &str = "twist";
 
-impl Component for MyOperator {
+pub struct TurtlesimOperator;
+
+impl Node for TurtlesimOperator {
     fn initialize(
         &self,
         configuration: &Option<std::collections::HashMap<String, String>>,
     ) -> Box<dyn zenoh_flow::State> {
-        let configuration = match configuration {
-            Some(config) => ffi::ConfigurationMap::from(config.clone()),
-            None => ffi::ConfigurationMap { map: Vec::new() },
+        let cxx_configuration = match configuration {
+            Some(config) => config
+                .iter()
+                .map(|(key, value)| ffi::Configuration {
+                    key: key.clone(),
+                    value: value.clone(),
+                })
+                .collect(),
+            None => vec![],
         };
 
         let state = {
             #[allow(unused_unsafe)]
             unsafe {
-                ffi::initialize(&configuration)
+                ffi::initialize(&cxx_configuration)
             }
         };
         Box::new(StateWrapper { state })
@@ -248,7 +304,7 @@ impl Component for MyOperator {
     }
 }
 
-impl InputRule for MyOperator {
+impl Operator for TurtlesimOperator {
     fn input_rule(
         &self,
         context: &mut zenoh_flow::Context,
@@ -271,26 +327,7 @@ impl InputRule for MyOperator {
             }
         }
     }
-}
 
-impl OutputRule for MyOperator {
-    fn output_rule(
-        &self,
-        _context: &mut zenoh_flow::Context,
-        _dyn_state: &mut Box<dyn zenoh_flow::State>,
-        outputs: HashMap<zenoh_flow::PortId, SerDeData>,
-    ) -> ZFResult<HashMap<zenoh_flow::PortId, zenoh_flow::ComponentOutput>> {
-        let mut results = HashMap::with_capacity(outputs.len());
-        // NOTE: default output rule for now.
-        for (port_id, data) in outputs {
-            results.insert(port_id, ComponentOutput::Data(data));
-        }
-
-        Ok(results)
-    }
-}
-
-impl Operator for MyOperator {
     fn run(
         &self,
         context: &mut zenoh_flow::Context,
@@ -299,35 +336,64 @@ impl Operator for MyOperator {
     ) -> ZFResult<HashMap<zenoh_flow::PortId, SerDeData>> {
         let mut cxx_context = ffi::Context::from(context);
         let wrapper = downcast_mut!(StateWrapper, dyn_state).unwrap();
-        let result_cxx_inputs: Result<Vec<ffi::Input>, ZFError> = inputs
-            .iter()
-            .map(|(port_id, data_message)| ffi::Input::from_data_message(port_id, data_message))
-            .collect();
-        let cxx_inputs = result_cxx_inputs?;
+        let (_, pose_with_cov_stamped_wrapper) = autocore_get_input!(TwistWrapper, String::from(TWIST), inputs)?;
 
-        let cxx_outputs = {
+        let cxx_output = {
             #[allow(unused_unsafe)]
             unsafe {
-                ffi::run(&mut cxx_context, &mut wrapper.state, cxx_inputs)
+                ffi::run(&mut cxx_context, &mut wrapper.state, &pose_with_cov_stamped_wrapper.twist)
                     .map_err(|_| ZFError::GenericError)?
             }
         };
 
         let mut result: HashMap<zenoh_flow::PortId, SerDeData> =
-            HashMap::with_capacity(cxx_outputs.len());
-        for cxx_output in cxx_outputs.into_iter() {
-            result.insert(
-                cxx_output.port_id.into(),
-                zf_data_raw!(cxx_output.data),
-            );
-        }
+            HashMap::with_capacity(1);
+        result.insert(
+            TWIST.into(),
+            zf_data!(cxx_output),
+        );
 
         Ok(result)
+    }
+
+    fn output_rule(
+        &self,
+        _context: &mut zenoh_flow::Context,
+        _dyn_state: &mut Box<dyn zenoh_flow::State>,
+        outputs: HashMap<zenoh_flow::PortId, SerDeData>,
+    ) -> ZFResult<HashMap<zenoh_flow::PortId, zenoh_flow::NodeOutput>> {
+        let mut results = HashMap::with_capacity(outputs.len());
+        // NOTE: default output rule for now.
+        for (port_id, data) in outputs {
+            results.insert(port_id, NodeOutput::Data(data));
+        }
+
+        Ok(results)
     }
 }
 
 zenoh_flow::export_operator!(register);
 
 fn register() -> ZFResult<Arc<dyn Operator>> {
-    Ok(Arc::new(MyOperator) as Arc<dyn Operator>)
+    Ok(Arc::new(TurtlesimOperator) as Arc<dyn Operator>)
+}
+
+#[macro_export]
+macro_rules! autocore_get_input {
+    ($ident : ident, $index : expr, $map : expr) => {
+        match $map.get_mut::<str>(&$index) {
+            Some(data_message) => match &data_message.data {
+                zenoh_flow::SerDeData::Deserialized(de) => {
+                    match zenoh_flow::downcast!($ident, de) {
+                        Some(data) => Ok((data_message.timestamp.clone(), data.clone())),
+                        None => Err(zenoh_flow::types::ZFError::InvalidData($index)),
+                    }
+                }
+                zenoh_flow::SerDeData::Serialized(_) => {
+                    Err(zenoh_flow::types::ZFError::InvalidData($index))
+                }
+            },
+            None => Err(zenoh_flow::types::ZFError::MissingInput($index)),
+        }
+    };
 }
