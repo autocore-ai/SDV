@@ -17,6 +17,7 @@ __attribute__((visibility("default"))) geometry_msgs::msg::Quaternion Convert (z
 __attribute__((visibility("default"))) zenoh_flow::autoware_auto::geometry_msgs_Quaternion Convert (geometry_msgs::msg::Quaternion &source_msg);
 
 __attribute__((visibility("default"))) geometry_msgs::msg::Point Convert (zenoh_flow::autoware_auto::geometry_msgs_Point &source_msg);
+__attribute__((visibility("default"))) zenoh_flow::autoware_auto::geometry_msgs_Point Convert (geometry_msgs::msg::Point &source_msg);
 
 __attribute__((visibility("default"))) geometry_msgs::msg::Pose Convert (zenoh_flow::autoware_auto::geometry_msgs_Pose &source_msg);
 

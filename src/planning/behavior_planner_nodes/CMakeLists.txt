@@ -15,16 +15,34 @@ cmake_minimum_required(VERSION 3.5)
 
 project(behavior_planner_nodes)
 
+# Default to C99
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
+
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
+
+
 # dependencies
 find_package(ament_cmake_auto REQUIRED)
+find_package(message_convert REQUIRED)
 ament_auto_find_build_dependencies()
 
 set(BEHAVIOR_PLANNER_NODE_SRC
   src/behavior_planner_node.cpp
+  src/behavior_planner_node_wrapper.cpp
 )
 
 set(BEHAVIOR_PLANNER_NODE_HEADERS
   include/behavior_planner_nodes/behavior_planner_node.hpp
+  include/behavior_planner_nodes/behavior_planner_node_wrapper.hpp
   include/behavior_planner_nodes/visibility_control.hpp
 )
 
@@ -33,11 +51,15 @@ ament_auto_add_library(behavior_planner_node SHARED
   ${BEHAVIOR_PLANNER_NODE_SRC}
   ${BEHAVIOR_PLANNER_NODE_HEADERS}
 )
+
+ament_target_dependencies(behavior_planner_node message_convert)
+
 autoware_set_compile_options(behavior_planner_node)
-rclcpp_components_register_node(behavior_planner_node
-  PLUGIN "autoware::behavior_planner_nodes::BehaviorPlannerNode"
-  EXECUTABLE behavior_planner_node_exe
-)
+target_link_libraries(behavior_planner_node /opt/AutowareAuto/lib/libmessage_convert.so)
+# rclcpp_components_register_node(behavior_planner_node
+#   PLUGIN "autoware::behavior_planner_nodes::BehaviorPlannerNode"
+#   EXECUTABLE behavior_planner_node_exe
+# )
 
 # Testing
 if(BUILD_TESTING)
@@ -58,7 +80,20 @@ if(BUILD_TESTING)
 endif()
 
 # ament package generation and installing
-ament_auto_package(
-  INSTALL_TO_SHARE
-    param
+# ament_auto_package(
+#   INSTALL_TO_SHARE
+#     param
+# )
+
+
+ament_package()
+
+install(
+  DIRECTORY include/
+  DESTINATION /opt/AutowareAuto/include
+)
+
+install(
+  TARGETS behavior_planner_node
+  LIBRARY DESTINATION /opt/AutowareAuto/lib
 )

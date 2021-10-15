@@ -23,3 +23,7 @@ zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleControlCommand PurePursuitN
     m_pure_pursuit_node_ptr->retry_compute();
     return Convert(m_pure_pursuit_node_ptr->command);
 }
+
+void* getPurePursuitNodeWrapper(){
+    return new PurePursuitNodeWrapper();
+}

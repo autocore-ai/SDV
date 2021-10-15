@@ -78,6 +78,19 @@ public:
   /// \brief default constructor, starts the planner
   /// \param[in] options name of the node for rclcpp internals
   explicit BehaviorPlannerNode(const rclcpp::NodeOptions & options);
+  void on_ego_state(const State::SharedPtr & msg);
+  void on_route(const HADMapRoute::SharedPtr & msg);
+  void on_lane_trajectory(const Trajectory::SharedPtr & msg);
+  // on_parking_trajectory没有实现？？
+  // void on_parking_trajectory(const Trajectory::SharedPtr & msg);
+  void on_vehicle_state_report(const VehicleStateReport::SharedPtr & msg);
+
+  // 增加报文存储
+  Trajectory m_trajectory_msg;
+  Trajectory m_debug_trajectory_msg;
+  Trajectory m_debug_checkpoints_msg;
+  HADMapRoute m_debug_subroute_msg;
+  VehicleStateCommand m_vehicle_state_command_msg;
 
 private:
   //  ROS Interface
@@ -86,17 +99,18 @@ private:
   rclcpp::Client<HADMapService>::SharedPtr m_map_client;
   // May be nullptr if disabled
   rclcpp::Client<ModifyTrajectory>::SharedPtr m_modify_trajectory_client;
-  rclcpp::Subscription<State>::SharedPtr m_ego_state_sub{};
-  rclcpp::Subscription<HADMapRoute>::SharedPtr m_route_sub{};
-  rclcpp::Subscription<Trajectory>::SharedPtr m_lane_trajectory_sub{};
-  rclcpp::Subscription<Trajectory>::SharedPtr m_parking_trajectory_sub{};
-  rclcpp::Subscription<VehicleStateReport>::SharedPtr m_vehicle_state_report_sub{};
-  rclcpp::Publisher<Trajectory>::SharedPtr m_trajectory_pub{};
-  rclcpp::Publisher<Trajectory>::SharedPtr m_debug_trajectory_pub{};
-  rclcpp::Publisher<Trajectory>::SharedPtr m_debug_checkpoints_pub{};
-  rclcpp::Publisher<HADMapRoute>::SharedPtr m_debug_subroute_pub{};
-  rclcpp::Publisher<VehicleStateCommand>::SharedPtr m_vehicle_state_command_pub{};
+  
+//   rclcpp::Subscription<State>::SharedPtr m_ego_state_sub{};
+//   rclcpp::Subscription<HADMapRoute>::SharedPtr m_route_sub{};
+//   rclcpp::Subscription<Trajectory>::SharedPtr m_lane_trajectory_sub{};
+//   rclcpp::Subscription<Trajectory>::SharedPtr m_parking_trajectory_sub{};
+//   rclcpp::Subscription<VehicleStateReport>::SharedPtr m_vehicle_state_report_sub{};
 
+//   rclcpp::Publisher<Trajectory>::SharedPtr m_trajectory_pub{};
+//   rclcpp::Publisher<Trajectory>::SharedPtr m_debug_trajectory_pub{};
+//   rclcpp::Publisher<Trajectory>::SharedPtr m_debug_checkpoints_pub{};
+//   rclcpp::Publisher<HADMapRoute>::SharedPtr m_debug_subroute_pub{};
+//   rclcpp::Publisher<VehicleStateCommand>::SharedPtr m_vehicle_state_command_pub{};
   //  planner
   std::unique_ptr<behavior_planner::BehaviorPlanner> m_planner;
 
@@ -114,11 +128,6 @@ private:
   std::shared_ptr<tf2_ros::TransformListener> m_tf_listener;
 
   // callbacks
-  void on_ego_state(const State::SharedPtr & msg);
-  void on_route(const HADMapRoute::SharedPtr & msg);
-  void on_lane_trajectory(const Trajectory::SharedPtr & msg);
-  void on_parking_trajectory(const Trajectory::SharedPtr & msg);
-  void on_vehicle_state_report(const VehicleStateReport::SharedPtr & msg);
   void map_response(rclcpp::Client<HADMapService>::SharedFuture future);
   void modify_trajectory_response(rclcpp::Client<ModifyTrajectory>::SharedFuture future);
   void clear_trajectory_cache();

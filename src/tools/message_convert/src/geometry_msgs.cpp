@@ -40,6 +40,14 @@ geometry_msgs::msg::Point Convert (zenoh_flow::autoware_auto::geometry_msgs_Poin
     return dest_msg;
 }
 
+zenoh_flow::autoware_auto::geometry_msgs_Point Convert (geometry_msgs::msg::Point &source_msg) {
+    zenoh_flow::autoware_auto::geometry_msgs_Point dest_msg;
+    dest_msg.x = source_msg.x;
+    dest_msg.y = source_msg.y;
+    dest_msg.z = source_msg.z;
+    return dest_msg;
+}
+
 geometry_msgs::msg::Pose Convert (zenoh_flow::autoware_auto::geometry_msgs_Pose &source_msg) {
     geometry_msgs::msg::Pose dest_msg;
     dest_msg.orientation = Convert(source_msg.orientation);

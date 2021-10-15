@@ -16,3 +16,5 @@ public:
 private:
     std::shared_ptr<autoware::motion::control::pure_pursuit_nodes::PurePursuitNode> m_pure_pursuit_node_ptr;
 };
+
+PURE_PURSUIT_NODES_PUBLIC void* getPurePursuitNodeWrapper();

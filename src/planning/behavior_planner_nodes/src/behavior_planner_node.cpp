@@ -47,9 +47,11 @@ void BehaviorPlannerNode::init()
     static_cast<float32_t>(declare_parameter("vehicle.front_overhang_m").get<float64_t>());
   const auto rear_overhang_m =
     static_cast<float32_t>(declare_parameter("vehicle.rear_overhang_m").get<float64_t>());
+    
   const auto cg_to_vehicle_center =
     ( (cg_to_front_m + front_overhang_m) - (rear_overhang_m + cg_to_rear_m) ) * 0.5F;
 
+  const auto enable_object_collision_estimator = static_cast<float32_t>(declare_parameter("enable_object_collision_estimator").get<bool>());;
   const behavior_planner::PlannerConfig config{
     static_cast<float32_t>(declare_parameter("goal_distance_thresh").get<float64_t>()),
     static_cast<float32_t>(declare_parameter("stop_velocity_thresh").get<float64_t>()),
@@ -109,7 +111,7 @@ void BehaviorPlannerNode::init()
     RCLCPP_INFO(get_logger(), "Waiting for service...");
   }
 
-  if (declare_parameter("enable_object_collision_estimator").get<bool>()) {
+  if (enable_object_collision_estimator) {
     m_modify_trajectory_client = this->create_client<ModifyTrajectory>("estimate_collision");
     while (!m_modify_trajectory_client->wait_for_service(1s)) {
       if (!rclcpp::ok()) {
@@ -179,7 +181,8 @@ void BehaviorPlannerNode::result_callback(const PlanTrajectoryGoalHandle::Wrappe
 
   auto trajectory = result.result->trajectory;
   trajectory.header.frame_id = "map";
-  m_debug_trajectory_pub->publish(trajectory);
+  // m_debug_trajectory_pub->publish(trajectory);
+  m_debug_trajectory_msg = trajectory;
 
   m_planner->set_trajectory(result.result->trajectory);
 
@@ -239,7 +242,8 @@ void BehaviorPlannerNode::request_trajectory(const RouteWithType & route_with_ty
     default:
       break;
   }
-  m_debug_subroute_pub->publish(route);
+  // m_debug_subroute_pub->publish(route);
+  m_debug_subroute_msg = route;
 }
 
 void BehaviorPlannerNode::on_ego_state(const State::SharedPtr & msg)
@@ -303,14 +307,15 @@ void BehaviorPlannerNode::on_ego_state(const State::SharedPtr & msg)
     gear_command.gear = desired_gear;
     gear_command.mode = VehicleStateCommand::MODE_AUTONOMOUS;
     gear_command.stamp = msg->header.stamp;
-    m_vehicle_state_command_pub->publish(gear_command);
-
+    // m_vehicle_state_command_pub->publish(gear_command);
+    m_vehicle_state_command_msg = gear_command;
     // send trajectory with current state so that velocity will be zero in order to change gear
     Trajectory trajectory;
     trajectory.header.frame_id = "map";
     trajectory.header.stamp = msg->header.stamp;
     trajectory.points.push_back(msg->state);
-    m_trajectory_pub->publish(trajectory);
+    // m_trajectory_pub->publish(trajectory);
+    m_trajectory_msg = trajectory;
   } else {
     auto trajectory = m_planner->get_trajectory(m_ego_state);
     // trajectory.header = m_ego_state.header;
@@ -328,7 +333,8 @@ void BehaviorPlannerNode::on_ego_state(const State::SharedPtr & msg)
           &BehaviorPlannerNode::modify_trajectory_response,
           this, std::placeholders::_1));
     } else {
-      m_trajectory_pub->publish(trajectory);
+      // m_trajectory_pub->publish(trajectory);
+      m_trajectory_msg = trajectory;
     }
   }
 }
@@ -381,7 +387,8 @@ void BehaviorPlannerNode::modify_trajectory_response(
     stopping_point.longitudinal_velocity_mps = 0.0;
     trajectory.points.push_back(stopping_point);
   }
-  m_trajectory_pub->publish(trajectory);
+  // m_trajectory_pub->publish(trajectory);
+  m_trajectory_msg = trajectory;
 }
 
 void BehaviorPlannerNode::map_response(rclcpp::Client<HADMapService>::SharedFuture future)
@@ -411,8 +418,12 @@ void BehaviorPlannerNode::map_response(rclcpp::Client<HADMapService>::SharedFutu
     checkpoints.points.push_back(trajectory_start_point);
     checkpoints.points.push_back(trajectory_goal_point);
   }
-  m_debug_checkpoints_pub->publish(checkpoints);
+  // m_debug_checkpoints_pub->publish(checkpoints);
+  m_debug_checkpoints_msg = checkpoints;
 }
+
+
+
 }  // namespace behavior_planner_nodes
 }  // namespace autoware
 

@@ -47,7 +47,6 @@ void SimplePlanningSimulatorWrapper::updateVehicleModel(zenoh_flow::autoware_aut
         zenoh_flow::autoware_auto::autoware_auto_msgs_VehicleStateCommand vehicle_state_command) {
     // 获得最新的消息
     rclcpp::spin_some(this->m_simple_planning_simulator_ptr);
-
     // 转换从rust来的消息
     autoware_auto_msgs::msg::VehicleControlCommand control_command = Convert(vehicle_control_command);
     autoware_auto_msgs::msg::VehicleStateCommand state_command = Convert(vehicle_state_command);
