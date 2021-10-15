@@ -15,31 +15,24 @@
 use async_trait::async_trait;
 use cxx::UniquePtr;
 use std::{collections::HashMap, fmt::Debug, sync::Arc};
+use zenoh_flow::Context;
 use zenoh_flow::{
-    downcast_mut, zf_data_raw, zf_data, Node, Data, DowncastAny, 
-    PortId, SerDeData, Source, State, ZFResult,
+    downcast_mut, zf_data, Data, DowncastAny, Node, SerDeData, Source, State, ZFError, ZFResult,
 };
 
 extern crate zenoh_flow;
 
 #[cxx::bridge(namespace = "zenoh::flow")]
 pub mod ffi {
-    pub struct geometry_msgs_Vector3 {
+    pub struct GeometryMsgsVector3 {
         pub x: f64,
         pub y: f64,
         pub z: f64,
     }
 
-    pub struct geometry_msgs_Quaternion {
-        pub x: f64,
-        pub y: f64,
-        pub z: f64,
-        pub w: f64,
-    }
-
-    pub struct geometry_msgs_Twist {
-        pub linear: geometry_msgs_Vector3,
-        pub angular: geometry_msgs_Vector3,
+    pub struct GeometryMsgsTwist {
+        pub linear: GeometryMsgsVector3,
+        pub angular: GeometryMsgsVector3,
     }
 
     pub struct Context {
@@ -98,9 +91,7 @@ pub mod ffi {
 
         fn initialize(configuration: &ConfigurationMap) -> UniquePtr<State>;
 
-        fn run(context: &mut Context, state: &mut UniquePtr<State>) -> Result<Vec<Output>>;
-
-        fn Data() -> geometry_msgs_Twist;
+        fn run(context: &mut Context, state: &mut UniquePtr<State>) -> GeometryMsgsTwist;
     }
 }
 impl From<HashMap<String, String>> for ffi::ConfigurationMap {
@@ -156,7 +147,7 @@ impl DowncastAny for ffi::Data {
     }
 }
 
-impl DowncastAny for ffi::geometry_msgs_Twist {
+impl DowncastAny for ffi::GeometryMsgsTwist {
     fn as_any(&self) -> &dyn std::any::Any {
         self
     }
@@ -166,39 +157,28 @@ impl DowncastAny for ffi::geometry_msgs_Twist {
     }
 }
 
-impl Debug for ffi::geometry_msgs_Vector3 {
+impl Debug for ffi::GeometryMsgsVector3 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct("geometry_msgs__msg__Vector3")
-        .field("x", &self.x)
-        .field("y", &self.y)
-        .field("z", &self.z)
-        .finish()
+        f.debug_struct("GeometryMsgsVector3")
+            .field("x", &self.x)
+            .field("y", &self.y)
+            .field("z", &self.z)
+            .finish()
     }
 }
 
-impl Debug for ffi::geometry_msgs_Quaternion {
+impl Debug for ffi::GeometryMsgsTwist {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct("geometry_msgs__msg__Quaternion")
-        .field("x", &self.x)
-        .field("y", &self.y)
-        .field("z", &self.z)
-        .field("w", &self.w)
-        .finish()
+        f.debug_struct("GeometryMsgsTwist")
+            .field("linear", &self.linear)
+            .field("angular", &self.angular)
+            .finish()
     }
 }
 
-impl Debug for ffi::geometry_msgs_Twist {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct("geometry_msgs__msg__Twist")
-        .field("linear", &self.linear)
-        .field("angular", &self.angular)
-        .finish()
-    }
-}
-
-impl Data for ffi::geometry_msgs_Twist {
+impl Data for ffi::GeometryMsgsTwist {
     fn try_serialize(&self) -> std::result::Result<std::vec::Vec<u8>, zenoh_flow::ZFError> {
-        todo!()
+        Ok(vec![0])
     }
 }
 
@@ -239,21 +219,22 @@ impl Node for TurtlesimSource {
     }
 }
 
-
 #[async_trait]
 impl Source for TurtlesimSource {
     async fn run(
         &self,
-        _context: &mut zenoh_flow::Context,
-        _dyn_state: &mut Box<dyn zenoh_flow::State>,
+        context: &mut Context,
+        dyn_state: &mut Box<dyn State>,
     ) -> ZFResult<SerDeData> {
-        
-        #[allow(unused_unsafe)]
-        unsafe {
-            let geometry_msgs_twist = ffi::Data();
-            Ok(zf_data!(geometry_msgs_twist))
-        }
-
+        let mut cxx_context = ffi::Context::from(context);
+        let wrapper = downcast_mut!(StateWrapper, dyn_state).unwrap();
+        let cxx_output = {
+            #[allow(unused_unsafe)]
+            unsafe {
+                ffi::run(&mut cxx_context, &mut wrapper.state)
+            }
+        };
+        Ok(zf_data!(cxx_output))
     }
 }
 

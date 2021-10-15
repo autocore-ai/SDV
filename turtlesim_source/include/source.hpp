@@ -26,15 +26,16 @@ namespace zenoh
     {
     private:
       std::shared_ptr<TurtleSimSource> native_ptr;
-    public:
-      State();
+      // zenoh::flow::GeometryMsgsTwist& operator()(const zenoh::flow::GeometryMsgsTwist& twist);
+      // zenoh::flow::GeometryMsgsTwist& operator()(const zenoh::flow::GeometryMsgsTwist& twist);
+    public : State();
       int Run();
       geometry_msgs::msg::Twist Data();
     };
 
     std::unique_ptr<State>
     initialize(const ConfigurationMap &configuration);
-    rust::Vec<Output> run(Context &context, std::unique_ptr<State> &state);
+    zenoh::flow::GeometryMsgsTwist run(Context &context, std::unique_ptr<State> &state);
 
   } // namespace flow
 } // namespace zenoh

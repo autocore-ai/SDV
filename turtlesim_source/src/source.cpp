@@ -19,7 +19,6 @@ namespace zenoh
 {
   namespace flow
   {
-
     using byte_t = unsigned char;
 
     State::State()
@@ -48,19 +47,15 @@ namespace zenoh
       return std::make_unique<State>();
     }
 
-    rust::Vec<Output>
-    run(Context &context, std::unique_ptr<State> &state)
+    zenoh::flow::GeometryMsgsTwist run(Context &context, std::unique_ptr<State> &state)
     {
       state->Run();
-
-      state->Data();
-
-      rust::Vec<byte_t> tick = {1};
-
-      Output output{"tick", tick};
-
-      rust::Vec<Output> results{output};
-      return results;
+      // auto data = state->Data();
+      // zenoh::flow::GeometryMsgsTwist ret{
+      //   linear : data.linear,
+      //   angular : data.angular
+      // };
+      return zenoh::flow::GeometryMsgsTwist{};
     }
   } // namespace flow
 } // namespace zenoh

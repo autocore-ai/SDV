@@ -35,8 +35,8 @@ set_target_properties(CxxWrapper
   IMPORTED_LOCATION ${cxxwrapper_lib}
 )
 
-ament_auto_add_library(${PROJECT_NAME} SHARED src/operator.cpp src/wrapper.cpp)
+# ament_auto_add_library(${PROJECT_NAME} SHARED src/operator.cpp src/wrapper.cpp)
 # target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_SOURCE_DIR}/include)
-target_link_libraries(${PROJECT_NAME} CxxWrapper)
+# target_link_libraries(${PROJECT_NAME} CxxWrapper)
 
 ament_auto_package()
