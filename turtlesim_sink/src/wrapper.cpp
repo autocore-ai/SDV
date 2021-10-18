@@ -1,4 +1,4 @@
-#include "source.hpp"
+#include "sink.hpp"
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -733,43 +733,50 @@ const char *cxxbridge1$exception(const char *, ::std::size_t);
 
 namespace zenoh {
   namespace flow {
-    struct GeometryMsgsVector3;
-    struct GeometryMsgsTwist;
+    struct geometry_msgs_Vector3;
+    struct geometry_msgs_Quaternion;
+    struct geometry_msgs_Twist;
     struct Context;
-    enum class TokenStatus : ::std::uint8_t;
-    enum class TokenAction : ::std::uint8_t;
-    struct Token;
-    struct Input;
-    struct Output;
-    struct Data;
     struct Configuration;
-    struct ConfigurationMap;
+    struct Input;
     using State = ::zenoh::flow::State;
   }
 }
 
 namespace zenoh {
 namespace flow {
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsVector3
-#define CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsVector3
-struct GeometryMsgsVector3 final {
+#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Vector3
+#define CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Vector3
+struct geometry_msgs_Vector3 final {
   double x;
   double y;
   double z;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsVector3
+#endif // CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Vector3
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsTwist
-#define CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsTwist
-struct GeometryMsgsTwist final {
-  ::zenoh::flow::GeometryMsgsVector3 linear;
-  ::zenoh::flow::GeometryMsgsVector3 angular;
+#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Quaternion
+#define CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Quaternion
+struct geometry_msgs_Quaternion final {
+  double x;
+  double y;
+  double z;
+  double w;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsTwist
+#endif // CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Quaternion
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Twist
+#define CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Twist
+struct geometry_msgs_Twist final {
+  ::zenoh::flow::geometry_msgs_Vector3 linear;
+  ::zenoh::flow::geometry_msgs_Vector3 angular;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Twist
 
 #ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Context
 #define CXXBRIDGE1_STRUCT_zenoh$flow$Context
@@ -779,69 +786,6 @@ struct Context final {
   using IsRelocatable = ::std::true_type;
 };
 #endif // CXXBRIDGE1_STRUCT_zenoh$flow$Context
-
-#ifndef CXXBRIDGE1_ENUM_zenoh$flow$TokenStatus
-#define CXXBRIDGE1_ENUM_zenoh$flow$TokenStatus
-enum class TokenStatus : ::std::uint8_t {
-  Pending = 0,
-  Ready = 1,
-  DeadlineMiss = 2,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh$flow$TokenStatus
-
-#ifndef CXXBRIDGE1_ENUM_zenoh$flow$TokenAction
-#define CXXBRIDGE1_ENUM_zenoh$flow$TokenAction
-enum class TokenAction : ::std::uint8_t {
-  Consume = 0,
-  Drop = 1,
-  Keep = 2,
-  Postpone = 3,
-  Wait = 4,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh$flow$TokenAction
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Token
-#define CXXBRIDGE1_STRUCT_zenoh$flow$Token
-struct Token final {
-  ::zenoh::flow::TokenStatus status;
-  ::zenoh::flow::TokenAction action;
-  ::rust::String port_id;
-  ::rust::Vec<::std::uint8_t> data;
-  ::std::uint64_t timestamp;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Token
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Input
-#define CXXBRIDGE1_STRUCT_zenoh$flow$Input
-struct Input final {
-  ::rust::String port_id;
-  ::rust::Vec<::std::uint8_t> data;
-  ::std::uint64_t timestamp;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Input
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Output
-#define CXXBRIDGE1_STRUCT_zenoh$flow$Output
-struct Output final {
-  ::rust::String port_id;
-  ::rust::Vec<::std::uint8_t> data;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Output
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Data
-#define CXXBRIDGE1_STRUCT_zenoh$flow$Data
-struct Data final {
-  ::rust::Vec<::std::uint8_t> bytes;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Data
 
 #ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Configuration
 #define CXXBRIDGE1_STRUCT_zenoh$flow$Configuration
@@ -853,27 +797,28 @@ struct Configuration final {
 };
 #endif // CXXBRIDGE1_STRUCT_zenoh$flow$Configuration
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$ConfigurationMap
-#define CXXBRIDGE1_STRUCT_zenoh$flow$ConfigurationMap
-struct ConfigurationMap final {
-  ::rust::Vec<::zenoh::flow::Configuration> map;
+#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Input
+#define CXXBRIDGE1_STRUCT_zenoh$flow$Input
+struct Input final {
+  ::rust::Vec<::std::uint8_t> data;
+  ::std::uint64_t timestamp;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$ConfigurationMap
+#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Input
 
 extern "C" {
-::zenoh::flow::State *zenoh$flow$cxxbridge1$initialize(const ::zenoh::flow::ConfigurationMap &configuration) noexcept {
-  ::std::unique_ptr<::zenoh::flow::State> (*initialize$)(const ::zenoh::flow::ConfigurationMap &) = ::zenoh::flow::initialize;
+::zenoh::flow::State *zenoh$flow$cxxbridge1$initialize(const ::rust::Vec<::zenoh::flow::Configuration> &configuration) noexcept {
+  ::std::unique_ptr<::zenoh::flow::State> (*initialize$)(const ::rust::Vec<::zenoh::flow::Configuration> &) = ::zenoh::flow::initialize;
   return initialize$(configuration).release();
 }
 
-::rust::repr::PtrLen zenoh$flow$cxxbridge1$run(::zenoh::flow::Context &context, ::std::unique_ptr<::zenoh::flow::State> &state, ::zenoh::flow::GeometryMsgsTwist *return$) noexcept {
-  ::zenoh::flow::GeometryMsgsTwist (*run$)(::zenoh::flow::Context &, ::std::unique_ptr<::zenoh::flow::State> &) = ::zenoh::flow::run;
+::rust::repr::PtrLen zenoh$flow$cxxbridge1$run(::zenoh::flow::Context &context, ::std::unique_ptr<::zenoh::flow::State> &state, ::zenoh::flow::Input *input) noexcept {
+  void (*run$)(::zenoh::flow::Context &, ::std::unique_ptr<::zenoh::flow::State> &, ::zenoh::flow::Input) = ::zenoh::flow::run;
   ::rust::repr::PtrLen throw$;
   ::rust::behavior::trycatch(
       [&] {
-        new (return$) ::zenoh::flow::GeometryMsgsTwist(run$(context, state));
+        run$(context, state, ::std::move(*input));
         throw$.ptr = nullptr;
       },
       [&](const char *catch$) noexcept {

@@ -24,14 +24,14 @@ sinks:
       config1: test1
 links:
   - from:
-      component: TurtleSimSource
+      node: TurtleSimSource
       output: tick
     to:
-      component: TurtleSimOperator
+      node: TurtleSimOperator
       input: tick
   - from:
-      component: TurtleSimOperator
+      node: TurtleSimOperator
       output: count
     to:
-      component: TurtleSimSink
+      node: TurtleSimSink
       input: count

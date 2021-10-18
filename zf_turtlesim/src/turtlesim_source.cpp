@@ -83,6 +83,7 @@ TurtleSimSource::TurtleSimSource(int argc = 0, char **argv = nullptr) : linear_(
 
   twist_pub_ = nh_->create_publisher<geometry_msgs::msg::Twist>("turtle1/cmd_vel", 1);
   rotate_absolute_client_ = rclcpp_action::create_client<zf_turtlesim_msgs::action::RotateAbsolute>(nh_, "turtle1/rotate_absolute");
+  clear_srv_ = nh_->create_service<std_srvs::srv::Empty>("clear", std::bind(&TurtleSimSource::clearCallback, this, std::placeholders::_1, std::placeholders::_2));
 
   std::thread{std::bind(&TurtleSimSource::spin, this)}.detach();
 
@@ -93,6 +94,11 @@ TurtleSimSource::TurtleSimSource(int argc = 0, char **argv = nullptr) : linear_(
   puts("Use arrow keys to move the turtle.");
   puts("Use G|B|V|C|D|E|R|T keys to rotate to absolute orientations. 'F' to cancel a rotation.");
   puts("'Q' to quit.");
+}
+bool TurtleSimSource::clearCallback(const std_srvs::srv::Empty::Request::SharedPtr, std_srvs::srv::Empty::Response::SharedPtr)
+{
+  RCLCPP_INFO(nh_->get_logger(), "XXXXXXXXXXXXXXX::::Clearing turtlesim.");
+  return true;
 }
 
 TurtleSimSource::~TurtleSimSource()

@@ -15,23 +15,22 @@
 #pragma once
 #include <wrapper.hpp>
 
-namespace zenoh {
-namespace flow {
+namespace zenoh
+{
+  namespace flow
+  {
 
-class State {
-public:
-  State();
-};
+    class State
+    {
+    public:
+      State();
+    };
 
-std::unique_ptr<State> initialize(const ConfigurationMap &configuration);
+    std::unique_ptr<State> initialize(const rust::Vec<Configuration> &configuration);
 
-bool input_rule(Context                &context,
-                std::unique_ptr<State> &state,
-                rust::Vec<Token>       &tokens);
+    void run(Context &context,
+             std::unique_ptr<State> &state,
+             Input input);
 
-void run(Context                &context,
-         std::unique_ptr<State> &state,
-         rust::Vec<Input>        inputs);
-
-} // namespace flow
+  } // namespace flow
 } // namespace zenoh

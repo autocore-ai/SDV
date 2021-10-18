@@ -42,9 +42,9 @@ namespace zenoh
     }
 
     std::unique_ptr<State>
-    initialize(const ConfigurationMap &configuration)
+    initialize(const rust::Vec<Configuration> &configuration)
     {
-      for (auto config : configuration.map)
+      for (auto config : configuration)
       {
         std::cout << "turtlesim_operator config : " << config.key.c_str() << " : " << config.value.c_str() << std::endl;
       }

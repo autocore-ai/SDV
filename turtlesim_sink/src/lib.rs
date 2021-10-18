@@ -16,8 +16,8 @@ use async_trait::async_trait;
 use cxx::UniquePtr;
 use std::{fmt::Debug, sync::Arc};
 use zenoh_flow::{
-    downcast_mut, runtime::message::DataMessage, Context, Node, SerDeData, Sink, State, ZFError,
-    ZFResult, DowncastAny
+    downcast_mut, runtime::message::DataMessage, Context, DowncastAny, Node, SerDeData, Sink,
+    State, ZFError, ZFResult,
 };
 
 extern crate zenoh_flow;
@@ -64,14 +64,9 @@ pub mod ffi {
 
         fn initialize(configuration: &Vec<Configuration>) -> UniquePtr<State>;
 
-        // fn run(
-        //     context: &mut Context,
-        //     state: &mut UniquePtr<State>,
-        //     input: Input,
-        // ) -> Result<()>;
+        fn run(context: &mut Context, state: &mut UniquePtr<State>, input: Input) -> Result<()>;
     }
 }
-
 
 unsafe impl Send for ffi::State {}
 unsafe impl Sync for ffi::State {}
@@ -118,34 +113,33 @@ impl ffi::Input {
     }
 }
 
-
 impl Debug for ffi::geometry_msgs_Vector3 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("geometry_msgs__msg__Vector3")
-        .field("x", &self.x)
-        .field("y", &self.y)
-        .field("z", &self.z)
-        .finish()
+            .field("x", &self.x)
+            .field("y", &self.y)
+            .field("z", &self.z)
+            .finish()
     }
 }
 
 impl Debug for ffi::geometry_msgs_Quaternion {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("geometry_msgs__msg__Quaternion")
-        .field("x", &self.x)
-        .field("y", &self.y)
-        .field("z", &self.z)
-        .field("w", &self.w)
-        .finish()
+            .field("x", &self.x)
+            .field("y", &self.y)
+            .field("z", &self.z)
+            .field("w", &self.w)
+            .finish()
     }
 }
 
 impl Debug for ffi::geometry_msgs_Twist {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("geometry_msgs__msg__Twist")
-        .field("linear", &self.linear)
-        .field("angular", &self.angular)
-        .finish()
+            .field("linear", &self.linear)
+            .field("angular", &self.angular)
+            .finish()
     }
 }
 
@@ -163,8 +157,8 @@ pub struct TwistWrapper {
 impl Debug for TwistWrapper {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("TwistWrapper")
-        .field("twist", &self.twist)
-        .finish()
+            .field("twist", &self.twist)
+            .finish()
     }
 }
 
@@ -177,8 +171,6 @@ impl DowncastAny for TwistWrapper {
         self
     }
 }
-
-static TWIST: &str = "twist";
 
 pub struct TurtlesimSink;
 
@@ -216,15 +208,21 @@ impl Node for TurtlesimSink {
 impl Sink for TurtlesimSink {
     async fn run(
         &self,
-        _context: &mut Context,
-        _dyn_state: &mut Box<dyn State>,
+        context: &mut Context,
+        dyn_state: &mut Box<dyn State>,
         input: DataMessage,
     ) -> ZFResult<()> {
-        // let mut cxx_context = ffi::Context::from(context);
-        // let wrapper = downcast_mut!(StateWrapper, dyn_state).unwrap();
-        let (_, pose_with_cov_stamped_wrapper) = autocore_sink_get_input!(TwistWrapper, String::from(TWIST), input)?;
-        println!("{:?}", pose_with_cov_stamped_wrapper);
-        Ok(())
+        let mut cxx_context = ffi::Context::from(context);
+        let wrapper = downcast_mut!(StateWrapper, dyn_state).unwrap();
+        let cxx_input = ffi::Input::from_data_message(&input)?;
+
+        {
+            #[allow(unused_unsafe)]
+            unsafe {
+                Ok(ffi::run(&mut cxx_context, &mut wrapper.state, cxx_input)
+                    .map_err(|_| ZFError::GenericError)?)
+            }
+        }
     }
 }
 
@@ -232,22 +230,4 @@ zenoh_flow::export_sink!(register);
 
 fn register() -> ZFResult<Arc<dyn Sink>> {
     Ok(Arc::new(TurtlesimSink) as Arc<dyn Sink>)
-}
-
-
-#[macro_export]
-macro_rules! autocore_sink_get_input {
-    ($ident : ident, $index : expr, $data_message : expr) => {
-        match &$data_message.data {
-                zenoh_flow::SerDeData::Deserialized(de) => {
-                    match zenoh_flow::downcast!($ident, de) {
-                        Some(data) => Ok(($data_message.timestamp.clone(), data.clone())),
-                        None => Err(zenoh_flow::types::ZFError::InvalidData($index)),
-                    }
-                }
-                zenoh_flow::SerDeData::Serialized(_) => {
-                    Err(zenoh_flow::types::ZFError::InvalidData($index))
-                }
-            };
-        }
 }

@@ -15,8 +15,8 @@
 use cxx::UniquePtr;
 use std::{collections::HashMap, fmt::Debug, sync::Arc};
 use zenoh_flow::{
-    downcast_mut, zf_data, Node, NodeOutput, Operator, SerDeData, State, Token, TokenAction,
-    ZFError, ZFResult, DowncastAny, Data
+    downcast_mut, zf_data_raw, Data, DowncastAny, Node, NodeOutput, Operator, SerDeData, State,
+    Token, TokenAction, ZFError, ZFResult,
 };
 
 extern crate zenoh_flow;
@@ -41,7 +41,6 @@ pub mod ffi {
         pub linear: geometry_msgs_Vector3,
         pub angular: geometry_msgs_Vector3,
     }
-    
     pub struct Context {
         pub mode: usize,
     }
@@ -100,8 +99,8 @@ pub mod ffi {
         fn run(
             context: &mut Context,
             state: &mut UniquePtr<State>,
-            twist: &geometry_msgs_Twist,
-        ) -> Result<geometry_msgs_Twist>;
+            inputs: Vec<Input>,
+        ) -> Result<Vec<Output>>;
     }
 }
 
@@ -124,30 +123,30 @@ impl DowncastAny for ffi::geometry_msgs_Twist {
 impl Debug for ffi::geometry_msgs_Vector3 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("geometry_msgs__msg__Vector3")
-        .field("x", &self.x)
-        .field("y", &self.y)
-        .field("z", &self.z)
-        .finish()
+            .field("x", &self.x)
+            .field("y", &self.y)
+            .field("z", &self.z)
+            .finish()
     }
 }
 
 impl Debug for ffi::geometry_msgs_Quaternion {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("geometry_msgs__msg__Quaternion")
-        .field("x", &self.x)
-        .field("y", &self.y)
-        .field("z", &self.z)
-        .field("w", &self.w)
-        .finish()
+            .field("x", &self.x)
+            .field("y", &self.y)
+            .field("z", &self.z)
+            .field("w", &self.w)
+            .finish()
     }
 }
 
 impl Debug for ffi::geometry_msgs_Twist {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("geometry_msgs__msg__Twist")
-        .field("linear", &self.linear)
-        .field("angular", &self.angular)
-        .finish()
+            .field("linear", &self.linear)
+            .field("angular", &self.angular)
+            .finish()
     }
 }
 unsafe impl Send for ffi::State {}
@@ -173,8 +172,6 @@ impl Debug for StateWrapper {
     }
 }
 
-
-
 pub struct TwistWrapper {
     pub twist: ffi::geometry_msgs_Twist,
 }
@@ -189,8 +186,8 @@ pub struct TwistWrapper {
 impl Debug for TwistWrapper {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct("TwistWrapper")
-        .field("twist", &self.twist)
-        .finish()
+            .field("twist", &self.twist)
+            .finish()
     }
 }
 
@@ -203,7 +200,6 @@ impl DowncastAny for TwistWrapper {
         self
     }
 }
-
 
 impl From<&mut zenoh_flow::Context> for ffi::Context {
     fn from(context: &mut zenoh_flow::Context) -> Self {
@@ -270,8 +266,6 @@ impl ffi::Input {
     }
 }
 
-static TWIST: &str = "twist";
-
 pub struct TurtlesimOperator;
 
 impl Node for TurtlesimOperator {
@@ -336,22 +330,25 @@ impl Operator for TurtlesimOperator {
     ) -> ZFResult<HashMap<zenoh_flow::PortId, SerDeData>> {
         let mut cxx_context = ffi::Context::from(context);
         let wrapper = downcast_mut!(StateWrapper, dyn_state).unwrap();
-        let (_, pose_with_cov_stamped_wrapper) = autocore_get_input!(TwistWrapper, String::from(TWIST), inputs)?;
+        let result_cxx_inputs: Result<Vec<ffi::Input>, ZFError> = inputs
+            .iter()
+            .map(|(port_id, data_message)| ffi::Input::from_data_message(port_id, data_message))
+            .collect();
+        let cxx_inputs = result_cxx_inputs?;
 
-        let cxx_output = {
+        let cxx_outputs = {
             #[allow(unused_unsafe)]
             unsafe {
-                ffi::run(&mut cxx_context, &mut wrapper.state, &pose_with_cov_stamped_wrapper.twist)
+                ffi::run(&mut cxx_context, &mut wrapper.state, cxx_inputs)
                     .map_err(|_| ZFError::GenericError)?
             }
         };
 
         let mut result: HashMap<zenoh_flow::PortId, SerDeData> =
-            HashMap::with_capacity(1);
-        result.insert(
-            TWIST.into(),
-            zf_data!(cxx_output),
-        );
+            HashMap::with_capacity(cxx_outputs.len());
+        for cxx_output in cxx_outputs.into_iter() {
+            result.insert(cxx_output.port_id.into(), zf_data_raw!(cxx_output.data));
+        }
 
         Ok(result)
     }

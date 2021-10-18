@@ -27,7 +27,7 @@ public:
   std::uint8_t getCounter ();
 };
 
-std::unique_ptr<State> initialize(const ConfigurationMap &configuration);
+std::unique_ptr<State> initialize(const rust::Vec<Configuration> &configuration);
 bool input_rule(Context &context, std::unique_ptr<State> &state,
                 rust::Vec<Token> &tokens);
 rust::Vec<Output> run(Context &context,

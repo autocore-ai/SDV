@@ -1,4 +1,4 @@
-#include "source.hpp"
+#include "operator.hpp"
 #include <algorithm>
 #include <array>
 #include <cassert>
@@ -394,6 +394,11 @@ struct unsafe_bitcopy_t final {
 };
 #endif // CXXBRIDGE1_RUST_BITCOPY_T
 
+#ifndef CXXBRIDGE1_RUST_BITCOPY
+#define CXXBRIDGE1_RUST_BITCOPY
+constexpr unsafe_bitcopy_t unsafe_bitcopy{};
+#endif // CXXBRIDGE1_RUST_BITCOPY
+
 #ifndef CXXBRIDGE1_RUST_VEC
 #define CXXBRIDGE1_RUST_VEC
 template <typename T>
@@ -733,43 +738,54 @@ const char *cxxbridge1$exception(const char *, ::std::size_t);
 
 namespace zenoh {
   namespace flow {
-    struct GeometryMsgsVector3;
-    struct GeometryMsgsTwist;
+    struct geometry_msgs_Vector3;
+    struct geometry_msgs_Quaternion;
+    struct geometry_msgs_Twist;
     struct Context;
+    struct Configuration;
+    struct Input;
+    struct Output;
     enum class TokenStatus : ::std::uint8_t;
     enum class TokenAction : ::std::uint8_t;
     struct Token;
-    struct Input;
-    struct Output;
-    struct Data;
-    struct Configuration;
-    struct ConfigurationMap;
     using State = ::zenoh::flow::State;
   }
 }
 
 namespace zenoh {
 namespace flow {
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsVector3
-#define CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsVector3
-struct GeometryMsgsVector3 final {
+#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Vector3
+#define CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Vector3
+struct geometry_msgs_Vector3 final {
   double x;
   double y;
   double z;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsVector3
+#endif // CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Vector3
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsTwist
-#define CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsTwist
-struct GeometryMsgsTwist final {
-  ::zenoh::flow::GeometryMsgsVector3 linear;
-  ::zenoh::flow::GeometryMsgsVector3 angular;
+#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Quaternion
+#define CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Quaternion
+struct geometry_msgs_Quaternion final {
+  double x;
+  double y;
+  double z;
+  double w;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$GeometryMsgsTwist
+#endif // CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Quaternion
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Twist
+#define CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Twist
+struct geometry_msgs_Twist final {
+  ::zenoh::flow::geometry_msgs_Vector3 linear;
+  ::zenoh::flow::geometry_msgs_Vector3 angular;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh$flow$geometry_msgs_Twist
 
 #ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Context
 #define CXXBRIDGE1_STRUCT_zenoh$flow$Context
@@ -779,6 +795,37 @@ struct Context final {
   using IsRelocatable = ::std::true_type;
 };
 #endif // CXXBRIDGE1_STRUCT_zenoh$flow$Context
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Configuration
+#define CXXBRIDGE1_STRUCT_zenoh$flow$Configuration
+struct Configuration final {
+  ::rust::String key;
+  ::rust::String value;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Configuration
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Input
+#define CXXBRIDGE1_STRUCT_zenoh$flow$Input
+struct Input final {
+  ::rust::String port_id;
+  ::rust::Vec<::std::uint8_t> data;
+  ::std::uint64_t timestamp;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Input
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Output
+#define CXXBRIDGE1_STRUCT_zenoh$flow$Output
+struct Output final {
+  ::rust::String port_id;
+  ::rust::Vec<::std::uint8_t> data;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Output
 
 #ifndef CXXBRIDGE1_ENUM_zenoh$flow$TokenStatus
 #define CXXBRIDGE1_ENUM_zenoh$flow$TokenStatus
@@ -813,67 +860,33 @@ struct Token final {
 };
 #endif // CXXBRIDGE1_STRUCT_zenoh$flow$Token
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Input
-#define CXXBRIDGE1_STRUCT_zenoh$flow$Input
-struct Input final {
-  ::rust::String port_id;
-  ::rust::Vec<::std::uint8_t> data;
-  ::std::uint64_t timestamp;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Input
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Output
-#define CXXBRIDGE1_STRUCT_zenoh$flow$Output
-struct Output final {
-  ::rust::String port_id;
-  ::rust::Vec<::std::uint8_t> data;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Output
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Data
-#define CXXBRIDGE1_STRUCT_zenoh$flow$Data
-struct Data final {
-  ::rust::Vec<::std::uint8_t> bytes;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Data
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$Configuration
-#define CXXBRIDGE1_STRUCT_zenoh$flow$Configuration
-struct Configuration final {
-  ::rust::String key;
-  ::rust::String value;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$Configuration
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh$flow$ConfigurationMap
-#define CXXBRIDGE1_STRUCT_zenoh$flow$ConfigurationMap
-struct ConfigurationMap final {
-  ::rust::Vec<::zenoh::flow::Configuration> map;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh$flow$ConfigurationMap
-
 extern "C" {
-::zenoh::flow::State *zenoh$flow$cxxbridge1$initialize(const ::zenoh::flow::ConfigurationMap &configuration) noexcept {
-  ::std::unique_ptr<::zenoh::flow::State> (*initialize$)(const ::zenoh::flow::ConfigurationMap &) = ::zenoh::flow::initialize;
+::zenoh::flow::State *zenoh$flow$cxxbridge1$initialize(const ::rust::Vec<::zenoh::flow::Configuration> &configuration) noexcept {
+  ::std::unique_ptr<::zenoh::flow::State> (*initialize$)(const ::rust::Vec<::zenoh::flow::Configuration> &) = ::zenoh::flow::initialize;
   return initialize$(configuration).release();
 }
 
-::rust::repr::PtrLen zenoh$flow$cxxbridge1$run(::zenoh::flow::Context &context, ::std::unique_ptr<::zenoh::flow::State> &state, ::zenoh::flow::GeometryMsgsTwist *return$) noexcept {
-  ::zenoh::flow::GeometryMsgsTwist (*run$)(::zenoh::flow::Context &, ::std::unique_ptr<::zenoh::flow::State> &) = ::zenoh::flow::run;
+::rust::repr::PtrLen zenoh$flow$cxxbridge1$input_rule(::zenoh::flow::Context &context, ::std::unique_ptr<::zenoh::flow::State> &state, ::rust::Vec<::zenoh::flow::Token> &tokens, bool *return$) noexcept {
+  bool (*input_rule$)(::zenoh::flow::Context &, ::std::unique_ptr<::zenoh::flow::State> &, ::rust::Vec<::zenoh::flow::Token> &) = ::zenoh::flow::input_rule;
   ::rust::repr::PtrLen throw$;
   ::rust::behavior::trycatch(
       [&] {
-        new (return$) ::zenoh::flow::GeometryMsgsTwist(run$(context, state));
+        new (return$) bool(input_rule$(context, state, tokens));
+        throw$.ptr = nullptr;
+      },
+      [&](const char *catch$) noexcept {
+        throw$.len = ::std::strlen(catch$);
+        throw$.ptr = const_cast<char *>(::cxxbridge1$exception(catch$, throw$.len));
+      });
+  return throw$;
+}
+
+::rust::repr::PtrLen zenoh$flow$cxxbridge1$run(::zenoh::flow::Context &context, ::std::unique_ptr<::zenoh::flow::State> &state, const ::rust::Vec<::zenoh::flow::Input> *inputs, ::rust::Vec<::zenoh::flow::Output> *return$) noexcept {
+  ::rust::Vec<::zenoh::flow::Output> (*run$)(::zenoh::flow::Context &, ::std::unique_ptr<::zenoh::flow::State> &, ::rust::Vec<::zenoh::flow::Input>) = ::zenoh::flow::run;
+  ::rust::repr::PtrLen throw$;
+  ::rust::behavior::trycatch(
+      [&] {
+        new (return$) ::rust::Vec<::zenoh::flow::Output>(run$(context, state, ::rust::Vec<::zenoh::flow::Input>(::rust::unsafe_bitcopy, *inputs)));
         throw$.ptr = nullptr;
       },
       [&](const char *catch$) noexcept {
@@ -913,6 +926,30 @@ const ::zenoh::flow::State *cxxbridge1$unique_ptr$zenoh$flow$State$get(const ::s
 void cxxbridge1$unique_ptr$zenoh$flow$State$drop(::std::unique_ptr<::zenoh::flow::State> *ptr) noexcept {
   ::rust::deleter_if<::rust::detail::is_complete<::zenoh::flow::State>::value>{}(ptr);
 }
+
+void cxxbridge1$rust_vec$zenoh$flow$Token$new(const ::rust::Vec<::zenoh::flow::Token> *ptr) noexcept;
+void cxxbridge1$rust_vec$zenoh$flow$Token$drop(::rust::Vec<::zenoh::flow::Token> *ptr) noexcept;
+::std::size_t cxxbridge1$rust_vec$zenoh$flow$Token$len(const ::rust::Vec<::zenoh::flow::Token> *ptr) noexcept;
+::std::size_t cxxbridge1$rust_vec$zenoh$flow$Token$capacity(const ::rust::Vec<::zenoh::flow::Token> *ptr) noexcept;
+const ::zenoh::flow::Token *cxxbridge1$rust_vec$zenoh$flow$Token$data(const ::rust::Vec<::zenoh::flow::Token> *ptr) noexcept;
+void cxxbridge1$rust_vec$zenoh$flow$Token$reserve_total(::rust::Vec<::zenoh::flow::Token> *ptr, ::std::size_t new_cap) noexcept;
+void cxxbridge1$rust_vec$zenoh$flow$Token$set_len(::rust::Vec<::zenoh::flow::Token> *ptr, ::std::size_t len) noexcept;
+
+void cxxbridge1$rust_vec$zenoh$flow$Input$new(const ::rust::Vec<::zenoh::flow::Input> *ptr) noexcept;
+void cxxbridge1$rust_vec$zenoh$flow$Input$drop(::rust::Vec<::zenoh::flow::Input> *ptr) noexcept;
+::std::size_t cxxbridge1$rust_vec$zenoh$flow$Input$len(const ::rust::Vec<::zenoh::flow::Input> *ptr) noexcept;
+::std::size_t cxxbridge1$rust_vec$zenoh$flow$Input$capacity(const ::rust::Vec<::zenoh::flow::Input> *ptr) noexcept;
+const ::zenoh::flow::Input *cxxbridge1$rust_vec$zenoh$flow$Input$data(const ::rust::Vec<::zenoh::flow::Input> *ptr) noexcept;
+void cxxbridge1$rust_vec$zenoh$flow$Input$reserve_total(::rust::Vec<::zenoh::flow::Input> *ptr, ::std::size_t new_cap) noexcept;
+void cxxbridge1$rust_vec$zenoh$flow$Input$set_len(::rust::Vec<::zenoh::flow::Input> *ptr, ::std::size_t len) noexcept;
+
+void cxxbridge1$rust_vec$zenoh$flow$Output$new(const ::rust::Vec<::zenoh::flow::Output> *ptr) noexcept;
+void cxxbridge1$rust_vec$zenoh$flow$Output$drop(::rust::Vec<::zenoh::flow::Output> *ptr) noexcept;
+::std::size_t cxxbridge1$rust_vec$zenoh$flow$Output$len(const ::rust::Vec<::zenoh::flow::Output> *ptr) noexcept;
+::std::size_t cxxbridge1$rust_vec$zenoh$flow$Output$capacity(const ::rust::Vec<::zenoh::flow::Output> *ptr) noexcept;
+const ::zenoh::flow::Output *cxxbridge1$rust_vec$zenoh$flow$Output$data(const ::rust::Vec<::zenoh::flow::Output> *ptr) noexcept;
+void cxxbridge1$rust_vec$zenoh$flow$Output$reserve_total(::rust::Vec<::zenoh::flow::Output> *ptr, ::std::size_t new_cap) noexcept;
+void cxxbridge1$rust_vec$zenoh$flow$Output$set_len(::rust::Vec<::zenoh::flow::Output> *ptr, ::std::size_t len) noexcept;
 } // extern "C"
 
 namespace rust {
@@ -944,6 +981,90 @@ void Vec<::zenoh::flow::Configuration>::reserve_total(::std::size_t new_cap) noe
 template <>
 void Vec<::zenoh::flow::Configuration>::set_len(::std::size_t len) noexcept {
   return cxxbridge1$rust_vec$zenoh$flow$Configuration$set_len(this, len);
+}
+template <>
+Vec<::zenoh::flow::Token>::Vec() noexcept {
+  cxxbridge1$rust_vec$zenoh$flow$Token$new(this);
+}
+template <>
+void Vec<::zenoh::flow::Token>::drop() noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Token$drop(this);
+}
+template <>
+::std::size_t Vec<::zenoh::flow::Token>::size() const noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Token$len(this);
+}
+template <>
+::std::size_t Vec<::zenoh::flow::Token>::capacity() const noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Token$capacity(this);
+}
+template <>
+const ::zenoh::flow::Token *Vec<::zenoh::flow::Token>::data() const noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Token$data(this);
+}
+template <>
+void Vec<::zenoh::flow::Token>::reserve_total(::std::size_t new_cap) noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Token$reserve_total(this, new_cap);
+}
+template <>
+void Vec<::zenoh::flow::Token>::set_len(::std::size_t len) noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Token$set_len(this, len);
+}
+template <>
+Vec<::zenoh::flow::Input>::Vec() noexcept {
+  cxxbridge1$rust_vec$zenoh$flow$Input$new(this);
+}
+template <>
+void Vec<::zenoh::flow::Input>::drop() noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Input$drop(this);
+}
+template <>
+::std::size_t Vec<::zenoh::flow::Input>::size() const noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Input$len(this);
+}
+template <>
+::std::size_t Vec<::zenoh::flow::Input>::capacity() const noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Input$capacity(this);
+}
+template <>
+const ::zenoh::flow::Input *Vec<::zenoh::flow::Input>::data() const noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Input$data(this);
+}
+template <>
+void Vec<::zenoh::flow::Input>::reserve_total(::std::size_t new_cap) noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Input$reserve_total(this, new_cap);
+}
+template <>
+void Vec<::zenoh::flow::Input>::set_len(::std::size_t len) noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Input$set_len(this, len);
+}
+template <>
+Vec<::zenoh::flow::Output>::Vec() noexcept {
+  cxxbridge1$rust_vec$zenoh$flow$Output$new(this);
+}
+template <>
+void Vec<::zenoh::flow::Output>::drop() noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Output$drop(this);
+}
+template <>
+::std::size_t Vec<::zenoh::flow::Output>::size() const noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Output$len(this);
+}
+template <>
+::std::size_t Vec<::zenoh::flow::Output>::capacity() const noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Output$capacity(this);
+}
+template <>
+const ::zenoh::flow::Output *Vec<::zenoh::flow::Output>::data() const noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Output$data(this);
+}
+template <>
+void Vec<::zenoh::flow::Output>::reserve_total(::std::size_t new_cap) noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Output$reserve_total(this, new_cap);
+}
+template <>
+void Vec<::zenoh::flow::Output>::set_len(::std::size_t len) noexcept {
+  return cxxbridge1$rust_vec$zenoh$flow$Output$set_len(this, len);
 }
 } // namespace cxxbridge1
 } // namespace rust

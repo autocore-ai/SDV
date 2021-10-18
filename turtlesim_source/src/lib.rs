@@ -91,7 +91,7 @@ pub mod ffi {
 
         fn initialize(configuration: &ConfigurationMap) -> UniquePtr<State>;
 
-        fn run(context: &mut Context, state: &mut UniquePtr<State>) -> GeometryMsgsTwist;
+        fn run(context: &mut Context, state: &mut UniquePtr<State>) -> Result<GeometryMsgsTwist>;
     }
 }
 impl From<HashMap<String, String>> for ffi::ConfigurationMap {
@@ -231,7 +231,7 @@ impl Source for TurtlesimSource {
         let cxx_output = {
             #[allow(unused_unsafe)]
             unsafe {
-                ffi::run(&mut cxx_context, &mut wrapper.state)
+                ffi::run(&mut cxx_context, &mut wrapper.state).map_err(|_| ZFError::GenericError)?
             }
         };
         Ok(zf_data!(cxx_output))
