@@ -694,98 +694,99 @@ std::size_t align_of() {
 
 namespace zenoh_flow {
   namespace autoware_auto {
-    struct builtin_interfaces_Time;
-    struct autoware_auto_msgs_HighLevelControlCommand;
-    struct autoware_auto_msgs_VehicleStateReport;
-    struct autoware_auto_msgs_StationaryLockingCommand;
-    struct autoware_auto_msgs_VehicleOdometry;
-    struct geometry_msgs_Point;
-    struct autoware_auto_msgs_VehicleKinematicState;
-    enum class autoware_auto_msgs_VehicleStateCommand_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_DetectedObjects;
-    enum class autoware_auto_msgs_VehicleStateReport_Constants : ::std::uint8_t;
-    struct geometry_msgs_PoseWithCovarianceStamped;
-    enum class autoware_auto_msgs_Trajectory_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_HADMapRoute;
-    struct autoware_auto_msgs_DiagnosticHeader;
-    struct autoware_auto_msgs_HazardLightsReport;
-    struct autoware_auto_msgs_TrackedObjectKinematics;
-    struct autoware_auto_msgs_WipersCommand;
-    struct autoware_auto_msgs_RawControlCommand;
-    struct autoware_auto_msgs_TrajectoryPoint;
-    struct std_msgs_Header;
-    struct autoware_auto_msgs_Trajectory;
-    struct autoware_auto_msgs_GearReport;
-    enum class autoware_auto_msgs_TurnIndicatorsReport_Constants : ::std::uint8_t;
-    struct geometry_msgs_Point32;
-    enum class autoware_auto_msgs_HazardLightsCommand_Constants : ::std::uint8_t;
-    enum class autoware_auto_msgs_WipersReport_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_AckermannLateralCommand;
-    struct builtin_interfaces_Duration;
-    struct geometry_msgs_Accel;
-    struct autoware_auto_msgs_RelativePositionWithCovarianceStamped;
-    struct autoware_auto_msgs_Complex32;
-    struct autoware_auto_msgs_ObjectClassification;
-    struct autoware_auto_msgs_TurnIndicatorsReport;
-    enum class autoware_auto_msgs_DetectedObjectKinematics_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_HandBrakeCommand;
-    struct autoware_auto_msgs_PointXYZIF;
-    enum class autoware_auto_msgs_TurnIndicatorsCommand_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_HADMapBin;
-    struct autoware_auto_msgs_RoutePoint;
-    struct autoware_auto_msgs_PredictedObjectKinematics;
-    enum class autoware_auto_msgs_HazardLightsReport_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_TurnIndicatorsCommand;
-    struct autoware_auto_msgs_TrackedObjects;
-    struct autoware_auto_msgs_MapPrimitive;
-    struct autoware_auto_msgs_HandBrakeReport;
-    struct autoware_auto_msgs_HornReport;
-    struct geometry_msgs_Vector3;
-    struct autoware_auto_msgs_PredictedObject;
-    struct geometry_msgs_Polygon;
-    struct geometry_msgs_Twist;
-    struct autoware_auto_msgs_PredictedPath;
-    struct autoware_auto_msgs_Quaternion32;
-    struct autoware_auto_msgs_PointClusters;
-    struct geometry_msgs_TwistWithCovariance;
-    struct geometry_msgs_Pose;
-    struct geometry_msgs_Transform;
-    struct autoware_auto_msgs_ClassifiedRoi;
-    struct autoware_auto_msgs_HazardLightsCommand;
-    struct autoware_auto_msgs_Shape;
-    struct autoware_auto_msgs_Route;
     struct autoware_auto_msgs_HeadlightsReport;
-    struct autoware_auto_msgs_AckermannControlCommand;
-    struct geometry_msgs_Quaternion;
-    enum class autoware_auto_msgs_ObjectClassification_Constants : ::std::uint8_t;
-    enum class autoware_auto_msgs_Route_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_HADMapSegment;
-    struct autoware_auto_msgs_ControlDiagnostic;
-    struct autoware_auto_msgs_BoundingBoxArray;
-    struct geometry_msgs_PoseWithCovariance;
-    enum class autoware_auto_msgs_BoundingBox_Constants : ::std::uint8_t;
-    enum class autoware_auto_msgs_HADMapBin_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_VehicleStateCommand;
-    enum class autoware_auto_msgs_HeadlightsReport_Constants : ::std::uint8_t;
-    struct geometry_msgs_AccelWithCovariance;
-    struct autoware_auto_msgs_DetectedObject;
-    enum class autoware_auto_msgs_HeadlightsCommand_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_WheelEncoder;
-    struct autoware_auto_msgs_HornCommand;
-    enum class autoware_auto_msgs_TrackedObjectKinematics_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_VehicleControlCommand;
-    struct autoware_auto_msgs_LongitudinalCommand;
-    enum class autoware_auto_msgs_BoundingBoxArray_Constants : ::std::uint16_t;
-    struct autoware_auto_msgs_TrackedObject;
-    struct autoware_auto_msgs_PredictedObjects;
-    struct autoware_auto_msgs_BoundingBox;
-    enum class autoware_auto_msgs_GearReport_Constants : ::std::uint8_t;
+    struct autoware_auto_msgs_AckermannLateralCommand;
+    struct std_msgs_Header;
     enum class autoware_auto_msgs_PointXYZIF_Constants : ::std::uint16_t;
-    struct autoware_auto_msgs_WipersReport;
-    struct autoware_auto_msgs_DetectedObjectKinematics;
-    enum class autoware_auto_msgs_WipersCommand_Constants : ::std::uint8_t;
-    struct autoware_auto_msgs_HeadlightsCommand;
+    struct geometry_msgs_Point;
+    enum class autoware_auto_msgs_ObjectClassification_Constants : ::std::uint8_t;
+    struct geometry_msgs_PoseWithCovariance;
+    struct autoware_auto_msgs_WheelEncoder;
+    struct autoware_auto_msgs_RelativePositionWithCovarianceStamped;
+    struct autoware_auto_msgs_StationaryLockingCommand;
+    enum class autoware_auto_msgs_BoundingBoxArray_Constants : ::std::uint16_t;
+    struct autoware_auto_msgs_HADMapBin;
+    struct autoware_auto_msgs_MapPrimitive;
+    struct geometry_msgs_Twist;
+    enum class autoware_auto_msgs_TrackedObjectKinematics_Constants : ::std::uint8_t;
+    struct geometry_msgs_Point32;
+    enum class autoware_auto_msgs_VehicleStateReport_Constants : ::std::uint8_t;
+    struct autoware_auto_msgs_TurnIndicatorsReport;
+    enum class autoware_auto_msgs_HeadlightsCommand_Constants : ::std::uint8_t;
+    struct autoware_auto_msgs_DetectedObject;
+    struct autoware_auto_msgs_BoundingBoxArray;
+    struct autoware_auto_msgs_TrajectoryPoint;
+    struct autoware_auto_msgs_ClassifiedRoi;
+    struct autoware_auto_msgs_TrackedObject;
     struct autoware_auto_msgs_ClassifiedRoiArray;
+    struct autoware_auto_msgs_PointClusters;
+    struct autoware_auto_msgs_HazardLightsCommand;
+    struct geometry_msgs_PoseWithCovarianceStamped;
+    enum class autoware_auto_msgs_GearReport_Constants : ::std::uint8_t;
+    struct autoware_auto_msgs_PredictedObject;
+    struct autoware_auto_msgs_VehicleStateReport;
+    struct autoware_auto_msgs_Trajectory;
+    struct autoware_auto_msgs_HADMapRoute;
+    struct autoware_auto_msgs_VehicleStateCommand;
+    enum class autoware_auto_msgs_BoundingBox_Constants : ::std::uint8_t;
+    struct autoware_auto_msgs_Quaternion32;
+    struct geometry_msgs_Polygon;
+    struct autoware_auto_msgs_WipersReport;
+    struct autoware_auto_msgs_Complex32;
+    struct autoware_auto_msgs_LongitudinalCommand;
+    struct autoware_auto_msgs_VehicleControlCommand;
+    struct builtin_interfaces_Time;
+    enum class autoware_auto_msgs_TurnIndicatorsCommand_Constants : ::std::uint8_t;
+    struct geometry_msgs_Transform;
+    struct autoware_auto_msgs_RawControlCommand;
+    struct builtin_interfaces_Duration;
+    struct autoware_auto_msgs_Shape;
+    struct autoware_auto_msgs_VehicleOdometry;
+    struct autoware_auto_msgs_DetectedObjects;
+    struct autoware_auto_msgs_TrackedObjects;
+    struct geometry_msgs_Pose;
+    enum class autoware_auto_msgs_Trajectory_Constants : ::std::uint8_t;
+    enum class autoware_auto_msgs_TurnIndicatorsReport_Constants : ::std::uint8_t;
+    enum class autoware_auto_msgs_HazardLightsReport_Constants : ::std::uint8_t;
+    enum class autoware_auto_msgs_HeadlightsReport_Constants : ::std::uint8_t;
+    struct autoware_auto_msgs_HeadlightsCommand;
+    enum class autoware_auto_msgs_Route_Constants : ::std::uint8_t;
+    enum class autoware_auto_msgs_VehicleStateCommand_Constants : ::std::uint8_t;
+    struct autoware_auto_msgs_PredictedPath;
+    struct autoware_auto_msgs_AckermannControlCommand;
+    struct autoware_auto_msgs_WipersCommand;
+    enum class autoware_auto_msgs_HADMapBin_Constants : ::std::uint8_t;
+    struct autoware_auto_msgs_DetectedObjectKinematics;
+    struct autoware_auto_msgs_PredictedObjectKinematics;
+    struct autoware_auto_msgs_TurnIndicatorsCommand;
+    enum class autoware_auto_msgs_DetectedObjectKinematics_Constants : ::std::uint8_t;
+    struct geometry_msgs_AccelWithCovariance;
+    struct autoware_auto_msgs_VehicleKinematicState;
+    struct autoware_auto_msgs_DiagnosticHeader;
+    struct geometry_msgs_TwistWithCovariance;
+    struct autoware_auto_msgs_PredictedObjects;
+    struct autoware_auto_msgs_GearReport;
+    struct geometry_msgs_Accel;
+    enum class autoware_auto_msgs_WipersReport_Constants : ::std::uint8_t;
+    struct autoware_auto_msgs_ObjectClassification;
+    struct geometry_msgs_Vector3;
+    struct geometry_msgs_PoseStamped;
+    struct autoware_auto_msgs_HighLevelControlCommand;
+    struct geometry_msgs_Quaternion;
+    struct autoware_auto_msgs_HazardLightsReport;
+    struct autoware_auto_msgs_HandBrakeReport;
+    enum class autoware_auto_msgs_HazardLightsCommand_Constants : ::std::uint8_t;
+    struct autoware_auto_msgs_HADMapSegment;
+    struct autoware_auto_msgs_BoundingBox;
+    struct autoware_auto_msgs_RoutePoint;
+    struct autoware_auto_msgs_HornCommand;
+    struct autoware_auto_msgs_HornReport;
+    struct autoware_auto_msgs_PointXYZIF;
+    struct autoware_auto_msgs_ControlDiagnostic;
+    struct autoware_auto_msgs_Route;
+    struct autoware_auto_msgs_TrackedObjectKinematics;
+    struct autoware_auto_msgs_HandBrakeCommand;
+    enum class autoware_auto_msgs_WipersCommand_Constants : ::std::uint8_t;
   }
 }
 
@@ -801,55 +802,43 @@ struct builtin_interfaces_Time final {
 };
 #endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$builtin_interfaces_Time
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HighLevelControlCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HighLevelControlCommand
-struct autoware_auto_msgs_HighLevelControlCommand final {
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport
+struct autoware_auto_msgs_HeadlightsReport final {
   ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  float velocity_mps;
-  float curvature;
+  ::std::uint8_t report;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HighLevelControlCommand
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport
-struct autoware_auto_msgs_VehicleStateReport final {
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannLateralCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannLateralCommand
+struct autoware_auto_msgs_AckermannLateralCommand final {
   ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint8_t fuel;
-  ::std::uint8_t blinker;
-  ::std::uint8_t headlight;
-  ::std::uint8_t wiper;
-  ::std::uint8_t gear;
-  ::std::uint8_t mode;
-  bool hand_brake;
-  bool horn;
+  float steering_tire_angle;
+  float steering_tire_rotation_rate;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannLateralCommand
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_StationaryLockingCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_StationaryLockingCommand
-struct autoware_auto_msgs_StationaryLockingCommand final {
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$std_msgs_Header
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$std_msgs_Header
+struct std_msgs_Header final {
   ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  bool avoid_stationary_locking;
+  ::rust::String frame_id;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_StationaryLockingCommand
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$std_msgs_Header
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleOdometry
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleOdometry
-struct autoware_auto_msgs_VehicleOdometry final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  float velocity_mps;
-  float front_wheel_angle_rad;
-  float rear_wheel_angle_rad;
-
-  using IsRelocatable = ::std::true_type;
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF_Constants
+enum class autoware_auto_msgs_PointXYZIF_Constants : ::std::uint16_t {
+  END_OF_SCAN_ID = 65535,
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleOdometry
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF_Constants
 
 #ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Point
 #define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Point
@@ -862,15 +851,266 @@ struct geometry_msgs_Point final {
 };
 #endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Point
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$std_msgs_Header
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$std_msgs_Header
-struct std_msgs_Header final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::rust::String frame_id;
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification_Constants
+enum class autoware_auto_msgs_ObjectClassification_Constants : ::std::uint8_t {
+  UNKNOWN = 0,
+  CAR = 1,
+  TRUCK = 2,
+  TRAILER = 3,
+  MOTORCYCLE = 4,
+  BICYCLE = 5,
+  PEDESTRIAN = 6,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Quaternion
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Quaternion
+struct geometry_msgs_Quaternion final {
+  double x;
+  double y;
+  double z;
+  double w;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$std_msgs_Header
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Quaternion
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Pose
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Pose
+struct geometry_msgs_Pose final {
+  ::zenoh_flow::autoware_auto::geometry_msgs_Point position;
+  ::zenoh_flow::autoware_auto::geometry_msgs_Quaternion orientation;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Pose
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovariance
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovariance
+struct geometry_msgs_PoseWithCovariance final {
+  ::zenoh_flow::autoware_auto::geometry_msgs_Pose pose;
+  ::std::array<double, 36> covariance;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovariance
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WheelEncoder
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WheelEncoder
+struct autoware_auto_msgs_WheelEncoder final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  float speed_mps;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WheelEncoder
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RelativePositionWithCovarianceStamped
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RelativePositionWithCovarianceStamped
+struct autoware_auto_msgs_RelativePositionWithCovarianceStamped final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::rust::String child_frame_id;
+  ::zenoh_flow::autoware_auto::geometry_msgs_Point position;
+  ::std::array<double, 9> covariance;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RelativePositionWithCovarianceStamped
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_StationaryLockingCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_StationaryLockingCommand
+struct autoware_auto_msgs_StationaryLockingCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  bool avoid_stationary_locking;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_StationaryLockingCommand
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray_Constants
+enum class autoware_auto_msgs_BoundingBoxArray_Constants : ::std::uint16_t {
+  CAPACITY = 256,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin
+struct autoware_auto_msgs_HADMapBin final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::std::uint8_t map_format;
+  ::rust::String format_version;
+  ::rust::String map_version;
+  ::rust::Vec<::std::uint8_t> data;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_MapPrimitive
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_MapPrimitive
+struct autoware_auto_msgs_MapPrimitive final {
+  ::std::int64_t id;
+  ::rust::String primitive_type;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_MapPrimitive
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Vector3
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Vector3
+struct geometry_msgs_Vector3 final {
+  double x;
+  double y;
+  double z;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Vector3
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Twist
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Twist
+struct geometry_msgs_Twist final {
+  ::zenoh_flow::autoware_auto::geometry_msgs_Vector3 linear;
+  ::zenoh_flow::autoware_auto::geometry_msgs_Vector3 angular;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Twist
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjectKinematics_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjectKinematics_Constants
+enum class autoware_auto_msgs_TrackedObjectKinematics_Constants : ::std::uint8_t {
+  UNAVAILABLE = 0,
+  SIGN_UNKNOWN = 1,
+  AVAILABLE = 2,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjectKinematics_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Point32
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Point32
+struct geometry_msgs_Point32 final {
+  float x;
+  float y;
+  float z;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Point32
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport_Constants
+enum class autoware_auto_msgs_VehicleStateReport_Constants : ::std::uint8_t {
+  BLINKER_OFF = 1,
+  BLINKER_LEFT = 2,
+  BLINKER_RIGHT = 3,
+  BLINKER_HAZARD = 4,
+  HEADLIGHT_OFF = 1,
+  HEADLIGHT_ON = 2,
+  HEADLIGHT_HIGH = 3,
+  WIPER_OFF = 1,
+  WIPER_LOW = 2,
+  WIPER_HIGH = 3,
+  WIPER_CLEAN = 14,
+  GEAR_DRIVE = 1,
+  GEAR_REVERSE = 2,
+  GEAR_PARK = 3,
+  GEAR_LOW = 4,
+  GEAR_NEUTRAL = 5,
+  MODE_AUTONOMOUS = 1,
+  MODE_MANUAL = 2,
+  MODE_DISENGAGED = 3,
+  MODE_NOT_READY = 4,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport
+struct autoware_auto_msgs_TurnIndicatorsReport final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::std::uint8_t report;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand_Constants
+enum class autoware_auto_msgs_HeadlightsCommand_Constants : ::std::uint8_t {
+  NO_COMMAND = 0,
+  DISABLE = 1,
+  ENABLE_LOW = 2,
+  ENABLE_HIGH = 3,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_TwistWithCovariance
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_TwistWithCovariance
+struct geometry_msgs_TwistWithCovariance final {
+  ::zenoh_flow::autoware_auto::geometry_msgs_Twist twist;
+  ::std::array<double, 36> covariance;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_TwistWithCovariance
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics
+struct autoware_auto_msgs_DetectedObjectKinematics final {
+  ::zenoh_flow::autoware_auto::geometry_msgs_Point centroid_position;
+  ::std::array<double, 9> position_covariance;
+  bool has_position_covariance;
+  ::zenoh_flow::autoware_auto::geometry_msgs_Quaternion orientation;
+  ::std::uint8_t orientation_availability;
+  ::zenoh_flow::autoware_auto::geometry_msgs_TwistWithCovariance twist;
+  bool has_twist;
+  bool has_twist_covariance;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Polygon
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Polygon
+struct geometry_msgs_Polygon final {
+  ::rust::Vec<::zenoh_flow::autoware_auto::geometry_msgs_Point32> points;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Polygon
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Shape
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Shape
+struct autoware_auto_msgs_Shape final {
+  ::zenoh_flow::autoware_auto::geometry_msgs_Polygon polygon;
+  float height;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Shape
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObject
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObject
+struct autoware_auto_msgs_DetectedObject final {
+  float existence_probability;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_ObjectClassification> classification;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_DetectedObjectKinematics kinematics;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_Shape shape;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObject
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray
+struct autoware_auto_msgs_BoundingBoxArray final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_BoundingBox> boxes;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray
 
 #ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$builtin_interfaces_Duration
 #define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$builtin_interfaces_Duration
@@ -910,216 +1150,15 @@ struct autoware_auto_msgs_TrajectoryPoint final {
 };
 #endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrajectoryPoint
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Vector3
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Vector3
-struct geometry_msgs_Vector3 final {
-  double x;
-  double y;
-  double z;
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoi
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoi
+struct autoware_auto_msgs_ClassifiedRoi final {
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_ObjectClassification> classifications;
+  ::zenoh_flow::autoware_auto::geometry_msgs_Polygon polygon;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Vector3
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Quaternion
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Quaternion
-struct geometry_msgs_Quaternion final {
-  double x;
-  double y;
-  double z;
-  double w;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Quaternion
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Transform
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Transform
-struct geometry_msgs_Transform final {
-  ::zenoh_flow::autoware_auto::geometry_msgs_Vector3 translation;
-  ::zenoh_flow::autoware_auto::geometry_msgs_Quaternion rotation;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Transform
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleKinematicState
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleKinematicState
-struct autoware_auto_msgs_VehicleKinematicState final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint state;
-  ::zenoh_flow::autoware_auto::geometry_msgs_Transform delta;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleKinematicState
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand_Constants
-enum class autoware_auto_msgs_VehicleStateCommand_Constants : ::std::uint8_t {
-  BLINKER_NO_COMMAND = 0,
-  BLINKER_OFF = 1,
-  BLINKER_LEFT = 2,
-  BLINKER_RIGHT = 3,
-  BLINKER_HAZARD = 4,
-  HEADLIGHT_NO_COMMAND = 0,
-  HEADLIGHT_OFF = 1,
-  HEADLIGHT_ON = 2,
-  HEADLIGHT_HIGH = 3,
-  WIPER_NO_COMMAND = 0,
-  WIPER_OFF = 1,
-  WIPER_LOW = 2,
-  WIPER_HIGH = 3,
-  WIPER_CLEAN = 14,
-  GEAR_NO_COMMAND = 0,
-  GEAR_DRIVE = 1,
-  GEAR_REVERSE = 2,
-  GEAR_PARK = 3,
-  GEAR_LOW = 4,
-  GEAR_NEUTRAL = 5,
-  MODE_NO_COMMAND = 0,
-  MODE_AUTONOMOUS = 1,
-  MODE_MANUAL = 2,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjects
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjects
-struct autoware_auto_msgs_DetectedObjects final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_DetectedObject> objects;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjects
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport_Constants
-enum class autoware_auto_msgs_VehicleStateReport_Constants : ::std::uint8_t {
-  BLINKER_OFF = 1,
-  BLINKER_LEFT = 2,
-  BLINKER_RIGHT = 3,
-  BLINKER_HAZARD = 4,
-  HEADLIGHT_OFF = 1,
-  HEADLIGHT_ON = 2,
-  HEADLIGHT_HIGH = 3,
-  WIPER_OFF = 1,
-  WIPER_LOW = 2,
-  WIPER_HIGH = 3,
-  WIPER_CLEAN = 14,
-  GEAR_DRIVE = 1,
-  GEAR_REVERSE = 2,
-  GEAR_PARK = 3,
-  GEAR_LOW = 4,
-  GEAR_NEUTRAL = 5,
-  MODE_AUTONOMOUS = 1,
-  MODE_MANUAL = 2,
-  MODE_DISENGAGED = 3,
-  MODE_NOT_READY = 4,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Pose
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Pose
-struct geometry_msgs_Pose final {
-  ::zenoh_flow::autoware_auto::geometry_msgs_Point position;
-  ::zenoh_flow::autoware_auto::geometry_msgs_Quaternion orientation;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Pose
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovariance
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovariance
-struct geometry_msgs_PoseWithCovariance final {
-  ::zenoh_flow::autoware_auto::geometry_msgs_Pose pose;
-  ::std::array<double, 36> covariance;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovariance
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovarianceStamped
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovarianceStamped
-struct geometry_msgs_PoseWithCovarianceStamped final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::zenoh_flow::autoware_auto::geometry_msgs_PoseWithCovariance pose;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovarianceStamped
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory_Constants
-enum class autoware_auto_msgs_Trajectory_Constants : ::std::uint8_t {
-  CAPACITY = 100,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RoutePoint
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RoutePoint
-struct autoware_auto_msgs_RoutePoint final {
-  ::zenoh_flow::autoware_auto::geometry_msgs_Point position;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_Complex32 heading;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RoutePoint
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapRoute
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapRoute
-struct autoware_auto_msgs_HADMapRoute final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_RoutePoint start_point;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_RoutePoint goal_point;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_HADMapSegment> segments;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapRoute
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DiagnosticHeader
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DiagnosticHeader
-struct autoware_auto_msgs_DiagnosticHeader final {
-  ::rust::String name;
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time data_stamp;
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time computation_start;
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Duration runtime;
-  ::std::uint32_t iterations;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DiagnosticHeader
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport
-struct autoware_auto_msgs_HazardLightsReport final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint8_t report;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Twist
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Twist
-struct geometry_msgs_Twist final {
-  ::zenoh_flow::autoware_auto::geometry_msgs_Vector3 linear;
-  ::zenoh_flow::autoware_auto::geometry_msgs_Vector3 angular;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Twist
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_TwistWithCovariance
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_TwistWithCovariance
-struct geometry_msgs_TwistWithCovariance final {
-  ::zenoh_flow::autoware_auto::geometry_msgs_Twist twist;
-  ::std::array<double, 36> covariance;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_TwistWithCovariance
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoi
 
 #ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Accel
 #define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Accel
@@ -1156,596 +1195,6 @@ struct autoware_auto_msgs_TrackedObjectKinematics final {
 };
 #endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjectKinematics
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersCommand
-struct autoware_auto_msgs_WipersCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint8_t command;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersCommand
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RawControlCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RawControlCommand
-struct autoware_auto_msgs_RawControlCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint32_t throttle;
-  ::std::uint32_t brake;
-  ::std::int32_t front_steer;
-  ::std::int32_t rear_steer;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RawControlCommand
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory
-struct autoware_auto_msgs_Trajectory final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint> points;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_GearReport
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_GearReport
-struct autoware_auto_msgs_GearReport final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint8_t report;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_GearReport
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport_Constants
-enum class autoware_auto_msgs_TurnIndicatorsReport_Constants : ::std::uint8_t {
-  DISABLE = 1,
-  ENABLE_LEFT = 2,
-  ENABLE_RIGHT = 3,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Point32
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Point32
-struct geometry_msgs_Point32 final {
-  float x;
-  float y;
-  float z;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Point32
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand_Constants
-enum class autoware_auto_msgs_HazardLightsCommand_Constants : ::std::uint8_t {
-  NO_COMMAND = 0,
-  DISABLE = 1,
-  ENABLE = 2,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand_Constants
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersReport_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersReport_Constants
-enum class autoware_auto_msgs_WipersReport_Constants : ::std::uint8_t {
-  DISABLE = 1,
-  ENABLE_LOW = 2,
-  ENABLE_HIGH = 3,
-  ENABLE_INT_1 = 4,
-  ENABLE_INT_2 = 5,
-  ENABLE_INT_3 = 6,
-  ENABLE_INT_4 = 7,
-  ENABLE_INT_5 = 8,
-  ENABLE_INT_6 = 9,
-  ENABLE_INT_7 = 10,
-  ENABLE_INT_8 = 11,
-  ENABLE_INT_9 = 12,
-  ENABLE_INT_10 = 13,
-  ENABLE_CLEAN = 14,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersReport_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannLateralCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannLateralCommand
-struct autoware_auto_msgs_AckermannLateralCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  float steering_tire_angle;
-  float steering_tire_rotation_rate;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannLateralCommand
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RelativePositionWithCovarianceStamped
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RelativePositionWithCovarianceStamped
-struct autoware_auto_msgs_RelativePositionWithCovarianceStamped final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::rust::String child_frame_id;
-  ::zenoh_flow::autoware_auto::geometry_msgs_Point position;
-  ::std::array<double, 9> covariance;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RelativePositionWithCovarianceStamped
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification
-struct autoware_auto_msgs_ObjectClassification final {
-  ::std::uint8_t classification;
-  float probability;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport
-struct autoware_auto_msgs_TurnIndicatorsReport final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint8_t report;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics_Constants
-enum class autoware_auto_msgs_DetectedObjectKinematics_Constants : ::std::uint8_t {
-  UNAVAILABLE = 0,
-  SIGN_UNKNOWN = 1,
-  AVAILABLE = 2,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeCommand
-struct autoware_auto_msgs_HandBrakeCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  bool active;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeCommand
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF
-struct autoware_auto_msgs_PointXYZIF final {
-  float x;
-  float y;
-  float z;
-  float intensity;
-  ::std::uint16_t id;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand_Constants
-enum class autoware_auto_msgs_TurnIndicatorsCommand_Constants : ::std::uint8_t {
-  NO_COMMAND = 0,
-  DISABLE = 1,
-  ENABLE_LEFT = 2,
-  ENABLE_RIGHT = 3,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin
-struct autoware_auto_msgs_HADMapBin final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::std::uint8_t map_format;
-  ::rust::String format_version;
-  ::rust::String map_version;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjectKinematics
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjectKinematics
-struct autoware_auto_msgs_PredictedObjectKinematics final {
-  ::zenoh_flow::autoware_auto::geometry_msgs_PoseWithCovariance initial_pose;
-  ::zenoh_flow::autoware_auto::geometry_msgs_TwistWithCovariance initial_twist;
-  ::zenoh_flow::autoware_auto::geometry_msgs_AccelWithCovariance initial_acceleration;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_PredictedPath> predicted_paths;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjectKinematics
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport_Constants
-enum class autoware_auto_msgs_HazardLightsReport_Constants : ::std::uint8_t {
-  DISABLE = 1,
-  ENABLE = 2,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand
-struct autoware_auto_msgs_TurnIndicatorsCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint8_t command;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjects
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjects
-struct autoware_auto_msgs_TrackedObjects final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_TrackedObject> objects;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjects
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_MapPrimitive
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_MapPrimitive
-struct autoware_auto_msgs_MapPrimitive final {
-  ::std::int64_t id;
-  ::rust::String primitive_type;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_MapPrimitive
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeReport
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeReport
-struct autoware_auto_msgs_HandBrakeReport final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  bool report;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeReport
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornReport
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornReport
-struct autoware_auto_msgs_HornReport final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  bool report;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornReport
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObject
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObject
-struct autoware_auto_msgs_PredictedObject final {
-  ::std::uint64_t object_id;
-  float existence_probability;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_ObjectClassification> classification;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_PredictedObjectKinematics kinematics;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_Shape> shape;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObject
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Polygon
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Polygon
-struct geometry_msgs_Polygon final {
-  ::rust::Vec<::zenoh_flow::autoware_auto::geometry_msgs_Point32> points;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Polygon
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedPath
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedPath
-struct autoware_auto_msgs_PredictedPath final {
-  ::rust::Vec<::zenoh_flow::autoware_auto::geometry_msgs_Pose> path;
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Duration time_step;
-  float confidence;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedPath
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Quaternion32
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Quaternion32
-struct autoware_auto_msgs_Quaternion32 final {
-  float x;
-  float y;
-  float z;
-  float w;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Quaternion32
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointClusters
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointClusters
-struct autoware_auto_msgs_PointClusters final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_PointXYZIF> points;
-  ::rust::Vec<::std::uint32_t> cluster_boundary;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointClusters
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoi
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoi
-struct autoware_auto_msgs_ClassifiedRoi final {
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_ObjectClassification> classifications;
-  ::zenoh_flow::autoware_auto::geometry_msgs_Polygon polygon;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoi
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand
-struct autoware_auto_msgs_HazardLightsCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint8_t command;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Shape
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Shape
-struct autoware_auto_msgs_Shape final {
-  ::zenoh_flow::autoware_auto::geometry_msgs_Polygon polygon;
-  float height;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Shape
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Route
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Route
-struct autoware_auto_msgs_Route final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint start_point;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint goal_point;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_MapPrimitive> primitives;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Route
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport
-struct autoware_auto_msgs_HeadlightsReport final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint8_t report;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_LongitudinalCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_LongitudinalCommand
-struct autoware_auto_msgs_LongitudinalCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  float speed;
-  float acceleration;
-  float jerk;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_LongitudinalCommand
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannControlCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannControlCommand
-struct autoware_auto_msgs_AckermannControlCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_AckermannLateralCommand lateral;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_LongitudinalCommand longitudinal;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannControlCommand
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification_Constants
-enum class autoware_auto_msgs_ObjectClassification_Constants : ::std::uint8_t {
-  UNKNOWN = 0,
-  CAR = 1,
-  TRUCK = 2,
-  TRAILER = 3,
-  MOTORCYCLE = 4,
-  BICYCLE = 5,
-  PEDESTRIAN = 6,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification_Constants
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Route_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Route_Constants
-enum class autoware_auto_msgs_Route_Constants : ::std::uint8_t {
-  CAPACITY = 100,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Route_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapSegment
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapSegment
-struct autoware_auto_msgs_HADMapSegment final {
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_MapPrimitive> primitives;
-  ::std::int64_t preferred_primitive_id;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapSegment
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ControlDiagnostic
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ControlDiagnostic
-struct autoware_auto_msgs_ControlDiagnostic final {
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_DiagnosticHeader diag_header;
-  bool new_trajectory;
-  ::rust::String trajectory_source;
-  ::rust::String pose_source;
-  float lateral_error_m;
-  float longitudinal_error_m;
-  float velocity_error_mps;
-  float acceleration_error_mps2;
-  float yaw_error_rad;
-  float yaw_rate_error_rps;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ControlDiagnostic
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray
-struct autoware_auto_msgs_BoundingBoxArray final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_BoundingBox> boxes;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox_Constants
-enum class autoware_auto_msgs_BoundingBox_Constants : ::std::uint8_t {
-  NO_LABEL = 0,
-  CAR = 1,
-  PEDESTRIAN = 2,
-  CYCLIST = 3,
-  MOTORCYCLE = 4,
-  NO_SIGNAL = 0,
-  LEFT_SIGNAL = 1,
-  RIGHT_SIGNAL = 2,
-  BRAKE = 3,
-  POSE_X = 0,
-  POSE_Y = 1,
-  VELOCITY = 2,
-  HEADING = 3,
-  TURN_RATE = 4,
-  SIZE_X = 5,
-  SIZE_Y = 6,
-  ACCELERATION = 7,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox_Constants
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin_Constants
-enum class autoware_auto_msgs_HADMapBin_Constants : ::std::uint8_t {
-  MAP_FORMAT_LANELET2 = 0,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand
-struct autoware_auto_msgs_VehicleStateCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint8_t blinker;
-  ::std::uint8_t headlight;
-  ::std::uint8_t wiper;
-  ::std::uint8_t gear;
-  ::std::uint8_t mode;
-  bool hand_brake;
-  bool horn;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport_Constants
-enum class autoware_auto_msgs_HeadlightsReport_Constants : ::std::uint8_t {
-  DISABLE = 1,
-  ENABLE_LOW = 2,
-  ENABLE_HIGH = 3,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics
-struct autoware_auto_msgs_DetectedObjectKinematics final {
-  ::zenoh_flow::autoware_auto::geometry_msgs_Point centroid_position;
-  ::std::array<double, 9> position_covariance;
-  bool has_position_covariance;
-  ::zenoh_flow::autoware_auto::geometry_msgs_Quaternion orientation;
-  ::std::uint8_t orientation_availability;
-  ::zenoh_flow::autoware_auto::geometry_msgs_TwistWithCovariance twist;
-  bool has_twist;
-  bool has_twist_covariance;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObject
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObject
-struct autoware_auto_msgs_DetectedObject final {
-  float existence_probability;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_ObjectClassification> classification;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_DetectedObjectKinematics kinematics;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_Shape shape;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObject
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand_Constants
-enum class autoware_auto_msgs_HeadlightsCommand_Constants : ::std::uint8_t {
-  NO_COMMAND = 0,
-  DISABLE = 1,
-  ENABLE_LOW = 2,
-  ENABLE_HIGH = 3,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WheelEncoder
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WheelEncoder
-struct autoware_auto_msgs_WheelEncoder final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  float speed_mps;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WheelEncoder
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornCommand
-struct autoware_auto_msgs_HornCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  bool active;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornCommand
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjectKinematics_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjectKinematics_Constants
-enum class autoware_auto_msgs_TrackedObjectKinematics_Constants : ::std::uint8_t {
-  UNAVAILABLE = 0,
-  SIGN_UNKNOWN = 1,
-  AVAILABLE = 2,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjectKinematics_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleControlCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleControlCommand
-struct autoware_auto_msgs_VehicleControlCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  float long_accel_mps2;
-  float velocity_mps;
-  float front_wheel_angle_rad;
-  float rear_wheel_angle_rad;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleControlCommand
-
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray_Constants
-enum class autoware_auto_msgs_BoundingBoxArray_Constants : ::std::uint16_t {
-  CAPACITY = 256,
-};
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBoxArray_Constants
-
 #ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObject
 #define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObject
 struct autoware_auto_msgs_TrackedObject final {
@@ -1759,35 +1208,46 @@ struct autoware_auto_msgs_TrackedObject final {
 };
 #endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObject
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjects
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjects
-struct autoware_auto_msgs_PredictedObjects final {
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoiArray
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoiArray
+struct autoware_auto_msgs_ClassifiedRoiArray final {
   ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_PredictedObject> objects;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_ClassifiedRoi> rois;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjects
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoiArray
 
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox
-struct autoware_auto_msgs_BoundingBox final {
-  ::zenoh_flow::autoware_auto::geometry_msgs_Point32 centroid;
-  ::zenoh_flow::autoware_auto::geometry_msgs_Point32 size;
-  ::zenoh_flow::autoware_auto::autoware_auto_msgs_Quaternion32 orientation;
-  float velocity;
-  float heading;
-  float heading_rate;
-  ::std::array<::zenoh_flow::autoware_auto::geometry_msgs_Point32, 4> corners;
-  ::std::array<float, 8> variance;
-  float value;
-  ::std::uint8_t vehicle_label;
-  ::std::uint8_t signal_label;
-  float class_likelihood;
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointClusters
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointClusters
+struct autoware_auto_msgs_PointClusters final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_PointXYZIF> points;
+  ::rust::Vec<::std::uint32_t> cluster_boundary;
 
   using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointClusters
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand
+struct autoware_auto_msgs_HazardLightsCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::std::uint8_t command;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovarianceStamped
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovarianceStamped
+struct geometry_msgs_PoseWithCovarianceStamped final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::zenoh_flow::autoware_auto::geometry_msgs_PoseWithCovariance pose;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseWithCovarianceStamped
 
 #ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_GearReport_Constants
 #define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_GearReport_Constants
@@ -1818,12 +1278,130 @@ enum class autoware_auto_msgs_GearReport_Constants : ::std::uint8_t {
 };
 #endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_GearReport_Constants
 
-#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF_Constants
-#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF_Constants
-enum class autoware_auto_msgs_PointXYZIF_Constants : ::std::uint16_t {
-  END_OF_SCAN_ID = 65535,
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjectKinematics
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjectKinematics
+struct autoware_auto_msgs_PredictedObjectKinematics final {
+  ::zenoh_flow::autoware_auto::geometry_msgs_PoseWithCovariance initial_pose;
+  ::zenoh_flow::autoware_auto::geometry_msgs_TwistWithCovariance initial_twist;
+  ::zenoh_flow::autoware_auto::geometry_msgs_AccelWithCovariance initial_acceleration;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_PredictedPath> predicted_paths;
+
+  using IsRelocatable = ::std::true_type;
 };
-#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF_Constants
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjectKinematics
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObject
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObject
+struct autoware_auto_msgs_PredictedObject final {
+  ::std::uint64_t object_id;
+  float existence_probability;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_ObjectClassification> classification;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_PredictedObjectKinematics kinematics;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_Shape> shape;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObject
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport
+struct autoware_auto_msgs_VehicleStateReport final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::std::uint8_t fuel;
+  ::std::uint8_t blinker;
+  ::std::uint8_t headlight;
+  ::std::uint8_t wiper;
+  ::std::uint8_t gear;
+  ::std::uint8_t mode;
+  bool hand_brake;
+  bool horn;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateReport
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory
+struct autoware_auto_msgs_Trajectory final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint> points;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RoutePoint
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RoutePoint
+struct autoware_auto_msgs_RoutePoint final {
+  ::zenoh_flow::autoware_auto::geometry_msgs_Point position;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_Complex32 heading;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RoutePoint
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapRoute
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapRoute
+struct autoware_auto_msgs_HADMapRoute final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_RoutePoint start_point;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_RoutePoint goal_point;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_HADMapSegment> segments;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapRoute
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand
+struct autoware_auto_msgs_VehicleStateCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::std::uint8_t blinker;
+  ::std::uint8_t headlight;
+  ::std::uint8_t wiper;
+  ::std::uint8_t gear;
+  ::std::uint8_t mode;
+  bool hand_brake;
+  bool horn;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox_Constants
+enum class autoware_auto_msgs_BoundingBox_Constants : ::std::uint8_t {
+  NO_LABEL = 0,
+  CAR = 1,
+  PEDESTRIAN = 2,
+  CYCLIST = 3,
+  MOTORCYCLE = 4,
+  NO_SIGNAL = 0,
+  LEFT_SIGNAL = 1,
+  RIGHT_SIGNAL = 2,
+  BRAKE = 3,
+  POSE_X = 0,
+  POSE_Y = 1,
+  VELOCITY = 2,
+  HEADING = 3,
+  TURN_RATE = 4,
+  SIZE_X = 5,
+  SIZE_Y = 6,
+  ACCELERATION = 7,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Quaternion32
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Quaternion32
+struct autoware_auto_msgs_Quaternion32 final {
+  float x;
+  float y;
+  float z;
+  float w;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Quaternion32
 
 #ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersReport
 #define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersReport
@@ -1834,6 +1412,460 @@ struct autoware_auto_msgs_WipersReport final {
   using IsRelocatable = ::std::true_type;
 };
 #endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersReport
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_LongitudinalCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_LongitudinalCommand
+struct autoware_auto_msgs_LongitudinalCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  float speed;
+  float acceleration;
+  float jerk;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_LongitudinalCommand
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleControlCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleControlCommand
+struct autoware_auto_msgs_VehicleControlCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  float long_accel_mps2;
+  float velocity_mps;
+  float front_wheel_angle_rad;
+  float rear_wheel_angle_rad;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleControlCommand
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand_Constants
+enum class autoware_auto_msgs_TurnIndicatorsCommand_Constants : ::std::uint8_t {
+  NO_COMMAND = 0,
+  DISABLE = 1,
+  ENABLE_LEFT = 2,
+  ENABLE_RIGHT = 3,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Transform
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Transform
+struct geometry_msgs_Transform final {
+  ::zenoh_flow::autoware_auto::geometry_msgs_Vector3 translation;
+  ::zenoh_flow::autoware_auto::geometry_msgs_Quaternion rotation;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_Transform
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RawControlCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RawControlCommand
+struct autoware_auto_msgs_RawControlCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::std::uint32_t throttle;
+  ::std::uint32_t brake;
+  ::std::int32_t front_steer;
+  ::std::int32_t rear_steer;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_RawControlCommand
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleOdometry
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleOdometry
+struct autoware_auto_msgs_VehicleOdometry final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  float velocity_mps;
+  float front_wheel_angle_rad;
+  float rear_wheel_angle_rad;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleOdometry
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjects
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjects
+struct autoware_auto_msgs_DetectedObjects final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_DetectedObject> objects;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjects
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjects
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjects
+struct autoware_auto_msgs_TrackedObjects final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_TrackedObject> objects;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TrackedObjects
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory_Constants
+enum class autoware_auto_msgs_Trajectory_Constants : ::std::uint8_t {
+  CAPACITY = 100,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Trajectory_Constants
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport_Constants
+enum class autoware_auto_msgs_TurnIndicatorsReport_Constants : ::std::uint8_t {
+  DISABLE = 1,
+  ENABLE_LEFT = 2,
+  ENABLE_RIGHT = 3,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsReport_Constants
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport_Constants
+enum class autoware_auto_msgs_HazardLightsReport_Constants : ::std::uint8_t {
+  DISABLE = 1,
+  ENABLE = 2,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport_Constants
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport_Constants
+enum class autoware_auto_msgs_HeadlightsReport_Constants : ::std::uint8_t {
+  DISABLE = 1,
+  ENABLE_LOW = 2,
+  ENABLE_HIGH = 3,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsReport_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand
+struct autoware_auto_msgs_HeadlightsCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::std::uint8_t command;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Route_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Route_Constants
+enum class autoware_auto_msgs_Route_Constants : ::std::uint8_t {
+  CAPACITY = 100,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_Route_Constants
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand_Constants
+enum class autoware_auto_msgs_VehicleStateCommand_Constants : ::std::uint8_t {
+  BLINKER_NO_COMMAND = 0,
+  BLINKER_OFF = 1,
+  BLINKER_LEFT = 2,
+  BLINKER_RIGHT = 3,
+  BLINKER_HAZARD = 4,
+  HEADLIGHT_NO_COMMAND = 0,
+  HEADLIGHT_OFF = 1,
+  HEADLIGHT_ON = 2,
+  HEADLIGHT_HIGH = 3,
+  WIPER_NO_COMMAND = 0,
+  WIPER_OFF = 1,
+  WIPER_LOW = 2,
+  WIPER_HIGH = 3,
+  WIPER_CLEAN = 14,
+  GEAR_NO_COMMAND = 0,
+  GEAR_DRIVE = 1,
+  GEAR_REVERSE = 2,
+  GEAR_PARK = 3,
+  GEAR_LOW = 4,
+  GEAR_NEUTRAL = 5,
+  MODE_NO_COMMAND = 0,
+  MODE_AUTONOMOUS = 1,
+  MODE_MANUAL = 2,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleStateCommand_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedPath
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedPath
+struct autoware_auto_msgs_PredictedPath final {
+  ::rust::Vec<::zenoh_flow::autoware_auto::geometry_msgs_Pose> path;
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Duration time_step;
+  float confidence;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedPath
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannControlCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannControlCommand
+struct autoware_auto_msgs_AckermannControlCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_AckermannLateralCommand lateral;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_LongitudinalCommand longitudinal;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_AckermannControlCommand
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersCommand
+struct autoware_auto_msgs_WipersCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::std::uint8_t command;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersCommand
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin_Constants
+enum class autoware_auto_msgs_HADMapBin_Constants : ::std::uint8_t {
+  MAP_FORMAT_LANELET2 = 0,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapBin_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand
+struct autoware_auto_msgs_TurnIndicatorsCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::std::uint8_t command;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_TurnIndicatorsCommand
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics_Constants
+enum class autoware_auto_msgs_DetectedObjectKinematics_Constants : ::std::uint8_t {
+  UNAVAILABLE = 0,
+  SIGN_UNKNOWN = 1,
+  AVAILABLE = 2,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_DetectedObjectKinematics_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleKinematicState
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleKinematicState
+struct autoware_auto_msgs_VehicleKinematicState final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint state;
+  ::zenoh_flow::autoware_auto::geometry_msgs_Transform delta;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_VehicleKinematicState
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DiagnosticHeader
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DiagnosticHeader
+struct autoware_auto_msgs_DiagnosticHeader final {
+  ::rust::String name;
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time data_stamp;
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time computation_start;
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Duration runtime;
+  ::std::uint32_t iterations;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_DiagnosticHeader
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjects
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjects
+struct autoware_auto_msgs_PredictedObjects final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_PredictedObject> objects;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PredictedObjects
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_GearReport
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_GearReport
+struct autoware_auto_msgs_GearReport final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::std::uint8_t report;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_GearReport
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersReport_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersReport_Constants
+enum class autoware_auto_msgs_WipersReport_Constants : ::std::uint8_t {
+  DISABLE = 1,
+  ENABLE_LOW = 2,
+  ENABLE_HIGH = 3,
+  ENABLE_INT_1 = 4,
+  ENABLE_INT_2 = 5,
+  ENABLE_INT_3 = 6,
+  ENABLE_INT_4 = 7,
+  ENABLE_INT_5 = 8,
+  ENABLE_INT_6 = 9,
+  ENABLE_INT_7 = 10,
+  ENABLE_INT_8 = 11,
+  ENABLE_INT_9 = 12,
+  ENABLE_INT_10 = 13,
+  ENABLE_CLEAN = 14,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersReport_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification
+struct autoware_auto_msgs_ObjectClassification final {
+  ::std::uint8_t classification;
+  float probability;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ObjectClassification
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseStamped
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseStamped
+struct geometry_msgs_PoseStamped final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::zenoh_flow::autoware_auto::geometry_msgs_Pose pose;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$geometry_msgs_PoseStamped
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HighLevelControlCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HighLevelControlCommand
+struct autoware_auto_msgs_HighLevelControlCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  float velocity_mps;
+  float curvature;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HighLevelControlCommand
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport
+struct autoware_auto_msgs_HazardLightsReport final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  ::std::uint8_t report;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsReport
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeReport
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeReport
+struct autoware_auto_msgs_HandBrakeReport final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  bool report;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeReport
+
+#ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand_Constants
+#define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand_Constants
+enum class autoware_auto_msgs_HazardLightsCommand_Constants : ::std::uint8_t {
+  NO_COMMAND = 0,
+  DISABLE = 1,
+  ENABLE = 2,
+};
+#endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_HazardLightsCommand_Constants
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapSegment
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapSegment
+struct autoware_auto_msgs_HADMapSegment final {
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_MapPrimitive> primitives;
+  ::std::int64_t preferred_primitive_id;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HADMapSegment
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox
+struct autoware_auto_msgs_BoundingBox final {
+  ::zenoh_flow::autoware_auto::geometry_msgs_Point32 centroid;
+  ::zenoh_flow::autoware_auto::geometry_msgs_Point32 size;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_Quaternion32 orientation;
+  float velocity;
+  float heading;
+  float heading_rate;
+  ::std::array<::zenoh_flow::autoware_auto::geometry_msgs_Point32, 4> corners;
+  ::std::array<float, 8> variance;
+  float value;
+  ::std::uint8_t vehicle_label;
+  ::std::uint8_t signal_label;
+  float class_likelihood;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_BoundingBox
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornCommand
+struct autoware_auto_msgs_HornCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  bool active;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornCommand
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornReport
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornReport
+struct autoware_auto_msgs_HornReport final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  bool report;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HornReport
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF
+struct autoware_auto_msgs_PointXYZIF final {
+  float x;
+  float y;
+  float z;
+  float intensity;
+  ::std::uint16_t id;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_PointXYZIF
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ControlDiagnostic
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ControlDiagnostic
+struct autoware_auto_msgs_ControlDiagnostic final {
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_DiagnosticHeader diag_header;
+  bool new_trajectory;
+  ::rust::String trajectory_source;
+  ::rust::String pose_source;
+  float lateral_error_m;
+  float longitudinal_error_m;
+  float velocity_error_mps;
+  float acceleration_error_mps2;
+  float yaw_error_rad;
+  float yaw_rate_error_rps;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ControlDiagnostic
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Route
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Route
+struct autoware_auto_msgs_Route final {
+  ::zenoh_flow::autoware_auto::std_msgs_Header header;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint start_point;
+  ::zenoh_flow::autoware_auto::autoware_auto_msgs_TrajectoryPoint goal_point;
+  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_MapPrimitive> primitives;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_Route
+
+#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeCommand
+#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeCommand
+struct autoware_auto_msgs_HandBrakeCommand final {
+  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
+  bool active;
+
+  using IsRelocatable = ::std::true_type;
+};
+#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HandBrakeCommand
 
 #ifndef CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersCommand_Constants
 #define CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersCommand_Constants
@@ -1855,25 +1887,5 @@ enum class autoware_auto_msgs_WipersCommand_Constants : ::std::uint8_t {
   ENABLE_CLEAN = 14,
 };
 #endif // CXXBRIDGE1_ENUM_zenoh_flow$autoware_auto$autoware_auto_msgs_WipersCommand_Constants
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand
-struct autoware_auto_msgs_HeadlightsCommand final {
-  ::zenoh_flow::autoware_auto::builtin_interfaces_Time stamp;
-  ::std::uint8_t command;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_HeadlightsCommand
-
-#ifndef CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoiArray
-#define CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoiArray
-struct autoware_auto_msgs_ClassifiedRoiArray final {
-  ::zenoh_flow::autoware_auto::std_msgs_Header header;
-  ::rust::Vec<::zenoh_flow::autoware_auto::autoware_auto_msgs_ClassifiedRoi> rois;
-
-  using IsRelocatable = ::std::true_type;
-};
-#endif // CXXBRIDGE1_STRUCT_zenoh_flow$autoware_auto$autoware_auto_msgs_ClassifiedRoiArray
 } // namespace autoware_auto
 } // namespace zenoh_flow

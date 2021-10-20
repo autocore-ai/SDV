@@ -71,13 +71,14 @@ public:
   bool8_t transform_pose_to_map(
     const geometry_msgs::msg::PoseStamped & pose_in, geometry_msgs::msg::PoseStamped & pose_out);
 
+  autoware_auto_msgs::msg::HADMapRoute m_global_path_msg;
 private:
   std::shared_ptr<Lanelet2GlobalPlanner> lanelet2_global_planner;
   rclcpp::Client<autoware_auto_msgs::srv::HADMapService>::SharedPtr map_client;
-  rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr goal_pose_sub_ptr;
-  rclcpp::Subscription<autoware_auto_msgs::msg::VehicleKinematicState>::SharedPtr
-    current_pose_sub_ptr;
-  rclcpp::Publisher<autoware_auto_msgs::msg::HADMapRoute>::SharedPtr global_path_pub_ptr;
+//   rclcpp::Subscription<geometry_msgs::msg::PoseStamped>::SharedPtr goal_pose_sub_ptr;
+//   rclcpp::Subscription<autoware_auto_msgs::msg::VehicleKinematicState>::SharedPtr
+//     current_pose_sub_ptr;
+//   rclcpp::Publisher<autoware_auto_msgs::msg::HADMapRoute>::SharedPtr global_path_pub_ptr;
   geometry_msgs::msg::PoseStamped start_pose;
   geometry_msgs::msg::PoseStamped goal_pose;
   bool8_t start_pose_init;

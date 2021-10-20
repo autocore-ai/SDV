@@ -55,6 +55,13 @@ geometry_msgs::msg::Pose Convert (zenoh_flow::autoware_auto::geometry_msgs_Pose 
     return dest_msg;
 }
 
+zenoh_flow::autoware_auto::geometry_msgs_Pose Convert (geometry_msgs::msg::Pose &source_msg) {
+    zenoh_flow::autoware_auto::geometry_msgs_Pose dest_msg;
+    dest_msg.orientation = Convert(source_msg.orientation);
+    dest_msg.position = Convert(source_msg.position);
+    return dest_msg;
+}
+
 zenoh_flow::autoware_auto::geometry_msgs_Transform Convert(geometry_msgs::msg::Transform &source_msg) {
     zenoh_flow::autoware_auto::geometry_msgs_Transform dest_msg;
     dest_msg.rotation = Convert(source_msg.rotation);
@@ -82,5 +89,19 @@ geometry_msgs::msg::Vector3 Convert(zenoh_flow::autoware_auto::geometry_msgs_Vec
     dest_msg.x = source_msg.x;
     dest_msg.y = source_msg.y;
     dest_msg.z = source_msg.z;
+    return dest_msg;
+}
+
+zenoh_flow::autoware_auto::geometry_msgs_PoseStamped Convert(geometry_msgs::msg::PoseStamped &source_msg) {
+    zenoh_flow::autoware_auto::geometry_msgs_PoseStamped dest_msg;
+    dest_msg.header = Convert(source_msg.header);
+    dest_msg.pose = Convert(source_msg.pose);
+    return dest_msg;
+}
+
+geometry_msgs::msg::PoseStamped Convert(zenoh_flow::autoware_auto::geometry_msgs_PoseStamped &source_msg) {
+    geometry_msgs::msg::PoseStamped dest_msg;
+    dest_msg.header = Convert(source_msg.header);
+    dest_msg.pose = Convert(source_msg.pose);
     return dest_msg;
 }

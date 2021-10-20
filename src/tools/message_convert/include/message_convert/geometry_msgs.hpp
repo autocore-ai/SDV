@@ -6,6 +6,7 @@
 #include <geometry_msgs/msg/pose.hpp>
 #include <geometry_msgs/msg/transform.hpp>
 #include <geometry_msgs/msg/vector3.hpp>
+#include <geometry_msgs/msg/pose_stamped.hpp>
 
 #include "message_convert/rust_msgs.hpp"
 
@@ -26,3 +27,6 @@ __attribute__((visibility("default"))) geometry_msgs::msg::Transform Convert(zen
 
 __attribute__((visibility("default"))) zenoh_flow::autoware_auto::geometry_msgs_Vector3 Convert(geometry_msgs::msg::Vector3 &source_msg);
 __attribute__((visibility("default"))) geometry_msgs::msg::Vector3 Convert(zenoh_flow::autoware_auto::geometry_msgs_Vector3 &source_msg);
+
+__attribute__((visibility("default"))) zenoh_flow::autoware_auto::geometry_msgs_PoseStamped Convert(geometry_msgs::msg::PoseStamped &source_msg);
+__attribute__((visibility("default"))) geometry_msgs::msg::PoseStamped Convert(zenoh_flow::autoware_auto::geometry_msgs_PoseStamped &source_msg);

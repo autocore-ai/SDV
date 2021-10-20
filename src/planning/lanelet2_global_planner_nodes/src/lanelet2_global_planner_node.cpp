@@ -71,24 +71,25 @@ Lanelet2GlobalPlannerNode::Lanelet2GlobalPlannerNode(
   // Global planner instance init
   lanelet2_global_planner = std::make_shared<Lanelet2GlobalPlanner>();
   // Subcribers Goal Pose
-  goal_pose_sub_ptr =
-    this->create_subscription<geometry_msgs::msg::PoseStamped>(
-    "goal_pose", rclcpp::QoS(10),
-    std::bind(&Lanelet2GlobalPlannerNode::goal_pose_cb, this, _1));
+//   goal_pose_sub_ptr =
+//     this->create_subscription<geometry_msgs::msg::PoseStamped>(
+//     "goal_pose", rclcpp::QoS(10),
+//     std::bind(&Lanelet2GlobalPlannerNode::goal_pose_cb, this, _1));
 
   // Subcribers Current Pose
-  current_pose_sub_ptr =
-    this->create_subscription<autoware_auto_msgs::msg::VehicleKinematicState>(
-    "vehicle_kinematic_state", rclcpp::QoS(10),
-    std::bind(&Lanelet2GlobalPlannerNode::current_pose_cb, this, _1));
+//   current_pose_sub_ptr =
+//     this->create_subscription<autoware_auto_msgs::msg::VehicleKinematicState>(
+//     "vehicle_kinematic_state", rclcpp::QoS(10),
+//     std::bind(&Lanelet2GlobalPlannerNode::current_pose_cb, this, _1));
 
   // Global path publisher
-  global_path_pub_ptr =
-    this->create_publisher<autoware_auto_msgs::msg::HADMapRoute>(
-    "global_path", rclcpp::QoS(10));
+//   global_path_pub_ptr =
+//     this->create_publisher<autoware_auto_msgs::msg::HADMapRoute>(
+//     "global_path", rclcpp::QoS(10));
 
   // Create map client
-  map_client = this->create_client<autoware_auto_msgs::srv::HADMapService>("HAD_Map_Client");
+  // 指定订阅地址
+  map_client = this->create_client<autoware_auto_msgs::srv::HADMapService>("/had_maps/HAD_Map_Service");
 
   // Request binary map from the map loader node
   this->request_osm_binary_map();
@@ -238,7 +239,8 @@ void Lanelet2GlobalPlannerNode::send_global_path(
     global_route.segments.push_back(new_segment);
   }
   // publish the global path
-  global_path_pub_ptr->publish(global_route);
+  // global_path_pub_ptr->publish(global_route);
+  m_global_path_msg = global_route;
 }
 
 bool8_t Lanelet2GlobalPlannerNode::transform_pose_to_map(
