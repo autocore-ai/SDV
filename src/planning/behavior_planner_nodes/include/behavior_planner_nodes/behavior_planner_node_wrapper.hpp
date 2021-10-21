@@ -1,3 +1,4 @@
+#pragma once
 #include <message_convert/rust_msgs.hpp>
 #include <behavior_planner_nodes/behavior_planner_node.hpp>
 #include <memory>
