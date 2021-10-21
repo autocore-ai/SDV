@@ -23,21 +23,26 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(GEOGRAPHICLIB REQUIRED)
 
 set(LANELET2_MAP_PROVIDER_LIB_SRC
+  src/lanelet2_map_provider_node_wrapper.cpp
+  src/lanelet2_map_provider_node.cpp
   src/lanelet2_map_provider.cpp
 )
 
 set(LANELET2_MAP_PROVIDER_LIB_HEADERS
+  include/lanelet2_map_provider/lanelet2_map_provider_node_wrapper.hpp
+  include/lanelet2_map_provider/lanelet2_map_provider_node.hpp
   include/lanelet2_map_provider/lanelet2_map_provider.hpp
+  include/lanelet2_map_provider/visibility_control.hpp
   include/lanelet2_map_provider/visibility_control.hpp
 )
 
-set(LANELET2_MAP_PROVIDER_NODE_SRC
-  src/lanelet2_map_provider_node.cpp
-)
+# set(LANELET2_MAP_PROVIDER_NODE_SRC
+#   src/lanelet2_map_provider_node.cpp
+# )
 
-set(LANELET2_MAP_PROVIDER_NODE_HEADERS
-  include/lanelet2_map_provider/lanelet2_map_provider_node.hpp
-)
+# set(LANELET2_MAP_PROVIDER_NODE_HEADERS
+#   include/lanelet2_map_provider/lanelet2_map_provider_node.hpp
+# )
 
 ament_auto_add_library(${PROJECT_NAME} SHARED
   ${LANELET2_MAP_PROVIDER_LIB_SRC}
@@ -49,64 +54,74 @@ target_link_libraries(${PROJECT_NAME}
   ${GeographicLib_LIBRARIES})
 
 
-set(LANELET2_MAP_NODES lanelet2_map_nodes)
+# set(LANELET2_MAP_NODES lanelet2_map_nodes)
 
-set(LANELET2_MAP_VISUALIZER_SRC
-  src/lanelet2_map_visualizer.cpp
-)
-set(LANELET2_MAP_VISUALIZER_HEADERS
-  include/lanelet2_map_provider/lanelet2_map_visualizer.hpp
-  include/lanelet2_map_provider/visibility_control.hpp
-)
-ament_auto_add_library(${LANELET2_MAP_NODES} SHARED
-  ${LANELET2_MAP_PROVIDER_NODE_SRC}
-  ${LANELET2_MAP_PROVIDER_NODE_HEADERS}
-  ${LANELET2_MAP_VISUALIZER_SRC}
-  ${LANELET2_MAP_VISUALIZER_HEADERS}
-)
-autoware_set_compile_options(${LANELET2_MAP_NODES})
+# set(LANELET2_MAP_VISUALIZER_SRC
+#   src/lanelet2_map_visualizer.cpp
+# )
+# set(LANELET2_MAP_VISUALIZER_HEADERS
+#   include/lanelet2_map_provider/lanelet2_map_visualizer.hpp
+#   include/lanelet2_map_provider/visibility_control.hpp
+# )
+# ament_auto_add_library(${LANELET2_MAP_NODES} SHARED
+#   ${LANELET2_MAP_PROVIDER_NODE_SRC}
+#   ${LANELET2_MAP_PROVIDER_NODE_HEADERS}
+#   ${LANELET2_MAP_VISUALIZER_SRC}
+#   ${LANELET2_MAP_VISUALIZER_HEADERS}
+# )
+# autoware_set_compile_options(${LANELET2_MAP_NODES})
 
-target_link_libraries(${LANELET2_MAP_NODES}
-  ${GeographicLib_LIBRARIES})
+# target_link_libraries(${LANELET2_MAP_NODES}
+#   ${GeographicLib_LIBRARIES})
 
-rclcpp_components_register_node(${LANELET2_MAP_NODES}
-  PLUGIN "autoware::lanelet2_map_provider::Lanelet2MapProviderNode"
-  EXECUTABLE ${PROJECT_NAME}_exe
-)
+# rclcpp_components_register_node(${LANELET2_MAP_NODES}
+#   PLUGIN "autoware::lanelet2_map_provider::Lanelet2MapProviderNode"
+#   EXECUTABLE ${PROJECT_NAME}_exe
+# )
 
-rclcpp_components_register_node(${LANELET2_MAP_NODES}
-  PLUGIN "autoware::lanelet2_map_provider::Lanelet2MapVisualizer"
-  EXECUTABLE lanelet2_map_visualizer_exe
-)
+# rclcpp_components_register_node(${LANELET2_MAP_NODES}
+#   PLUGIN "autoware::lanelet2_map_provider::Lanelet2MapVisualizer"
+#   EXECUTABLE lanelet2_map_visualizer_exe
+# )
 
-# Testing
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  ament_lint_auto_find_test_dependencies()
+# # Testing
+# if(BUILD_TESTING)
+#   find_package(ament_lint_auto REQUIRED)
+#   ament_lint_auto_find_test_dependencies()
 
-  add_ros_test(
-    test/lanelet2_map_provider_launch.test.py
-    TIMEOUT "30"
-  )
-  add_ros_test(
-    test/lanelet2_map_visualizer_launch.test.py
-    TIMEOUT "30"
-  )
+#   add_ros_test(
+#     test/lanelet2_map_provider_launch.test.py
+#     TIMEOUT "30"
+#   )
+#   add_ros_test(
+#     test/lanelet2_map_visualizer_launch.test.py
+#     TIMEOUT "30"
+#   )
 
-  # Unit tests
-  set(TEST_SOURCES test/test_lanelet2_map_provider.cpp)
-  set(TEST_LANELET2_MAP_PROVIDER_EXE test_lanelet2_map_provider)
-  ament_add_gtest(${TEST_LANELET2_MAP_PROVIDER_EXE} ${TEST_SOURCES})
-  autoware_set_compile_options(${TEST_LANELET2_MAP_PROVIDER_EXE})
-  target_link_libraries(${TEST_LANELET2_MAP_PROVIDER_EXE}
-    ${PROJECT_NAME}
-  )
-  add_dependencies(${TEST_LANELET2_MAP_PROVIDER_EXE} ${PROJECT_NAME})
-endif()
+#   # Unit tests
+#   set(TEST_SOURCES test/test_lanelet2_map_provider.cpp)
+#   set(TEST_LANELET2_MAP_PROVIDER_EXE test_lanelet2_map_provider)
+#   ament_add_gtest(${TEST_LANELET2_MAP_PROVIDER_EXE} ${TEST_SOURCES})
+#   autoware_set_compile_options(${TEST_LANELET2_MAP_PROVIDER_EXE})
+#   target_link_libraries(${TEST_LANELET2_MAP_PROVIDER_EXE}
+#     ${PROJECT_NAME}
+#   )
+#   add_dependencies(${TEST_LANELET2_MAP_PROVIDER_EXE} ${PROJECT_NAME})
+# endif()
 
 # ament package generation and installing
-ament_auto_package(INSTALL_TO_SHARE
-  data
-  launch
-  param
+# ament_auto_package(INSTALL_TO_SHARE
+#   data
+#   launch
+#   param
+# )
+
+install(
+  DIRECTORY include/
+  DESTINATION /opt/AutowareAuto/include
+)
+
+install(
+  TARGETS ${GB_PLANNER_NODE_LIB}
+  LIBRARY DESTINATION /opt/AutowareAuto/lib
 )

@@ -20,7 +20,7 @@ Lanelet2MapProviderNodeWrapper::Lanelet2MapProviderNodeWrapper() {
 
     m_lanelet2_map_provider_node_ptr = std::make_shared<autoware::lanelet2_map_provider::Lanelet2MapProviderNode>(options);
 
-    std::thread{std::bind(&spin, this)}.detach();
+    std::thread{std::bind(&Lanelet2MapProviderNodeWrapper::spin, this)}.detach();
     
     signal(SIGINT, shutdown);
 }
