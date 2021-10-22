@@ -21,11 +21,13 @@ ament_auto_find_build_dependencies()
 
 
 set(LANE_PLANNER_NODES_NODE_SRC
+  src/lane_planner_node_wrapper.cpp
   src/lane_planner_node.cpp
 )
 
 set(LANE_PLANNER_NODES_NODE_HEADERS
   include/lane_planner_nodes/lane_planner_node.hpp
+  include/lane_planner_nodes/lane_planner_node_wrapper.hpp
 )
 
 # generate component node library
@@ -35,31 +37,41 @@ ament_auto_add_library(lane_planner_node SHARED
 )
 
 autoware_set_compile_options(lane_planner_node)
-rclcpp_components_register_node(lane_planner_node
-  PLUGIN "autoware::lane_planner_nodes::LanePlannerNode"
-  EXECUTABLE lane_planner_node_exe
-)
+# rclcpp_components_register_node(lane_planner_node
+#   PLUGIN "autoware::lane_planner_nodes::LanePlannerNode"
+#   EXECUTABLE lane_planner_node_exe
+# )
 
-# Testing
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  ament_lint_auto_find_test_dependencies()
+# # Testing
+# if(BUILD_TESTING)
+#   find_package(ament_lint_auto REQUIRED)
+#   ament_lint_auto_find_test_dependencies()
 
-  add_ros_test(
-    test/lane_planner_node_launch.test.py
-    TIMEOUT "30"
-  )
+#   add_ros_test(
+#     test/lane_planner_node_launch.test.py
+#     TIMEOUT "30"
+#   )
 
-  # Unit tests
-  set(TEST_SOURCES test/test_lane_planner_node.cpp)
-  set(TEST_LANE_PLANNER_NODE_EXE test_lane_planner_node)
-  ament_add_gtest(${TEST_LANE_PLANNER_NODE_EXE} ${TEST_SOURCES})
-  autoware_set_compile_options(${TEST_LANE_PLANNER_NODE_EXE})
-  target_link_libraries(${TEST_LANE_PLANNER_NODE_EXE} lane_planner_node)
-endif()
+#   # Unit tests
+#   set(TEST_SOURCES test/test_lane_planner_node.cpp)
+#   set(TEST_LANE_PLANNER_NODE_EXE test_lane_planner_node)
+#   ament_add_gtest(${TEST_LANE_PLANNER_NODE_EXE} ${TEST_SOURCES})
+#   autoware_set_compile_options(${TEST_LANE_PLANNER_NODE_EXE})
+#   target_link_libraries(${TEST_LANE_PLANNER_NODE_EXE} lane_planner_node)
+# endif()
 
 # ament package generation and installing
-ament_auto_package(
-  INSTALL_TO_SHARE
-    param
+# ament_auto_package(
+#   INSTALL_TO_SHARE
+#     param
+# )
+
+install(
+  DIRECTORY include/
+  DESTINATION /opt/AutowareAuto/include
+)
+
+install(
+  TARGETS lane_planner_node
+  LIBRARY DESTINATION /opt/AutowareAuto/lib
 )

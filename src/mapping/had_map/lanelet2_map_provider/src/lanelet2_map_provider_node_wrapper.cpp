@@ -38,3 +38,7 @@ void shutdown(int sig)
   (void)sig;
   exit(0);
 }
+
+void* getLanelet2MapProviderNodeWrapper() {
+    return new Lanelet2MapProviderNodeWrapper();
+}
